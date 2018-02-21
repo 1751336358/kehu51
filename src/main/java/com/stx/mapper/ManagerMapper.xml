@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.stx.mapper.ManagerMapper">
+	<!-- 根据父菜单id查询子菜单 -->
+	<select id="getsonmenu" parameterType="int" resultType="com.stx.pojo.Menu">
+		 select * from menu where parent_id=#{idIndex}
+	</select>
+	
+	<!-- 将添加的员工信息插入数据库，password默认为username，authority_id是2， -->
+	<insert id="insertEmploy" parameterType="com.stx.pojo.Employ">
+		insert into Employ(username,password,info,authority_id,department_id,queuename) values(#{username},#{username},#{info},2,#{departmentid},#{username})
+	</insert>
+	<!-- 根据username查询department_id -->
+	<select id="getDepartmentIdByUserName" parameterType="String" resultType="int">
+		select department_id departmentid from employ where username like #{username}
+	</select>
+	
+	<!-- 查询是否有相同username的员工 -->
+	<select id="getUsername" parameterType="String" resultType="int">
+		select count(*) from employ where username like #{username}
+	</select>
+	
+	<!-- 根据经理的userid查询该部门所有的员工 -->
+	<select id="getAllEmploy" parameterType="int" resultType="com.stx.pojo.Employ">
+		select id,username,info,department_id departmentid,queuename from employ where department_id=(select department_id from employ where id=#{id}) and id!=#{id}
+	</select>
+	
+	<!-- 根据departmentid查询部门信息 -->
+	<select id="getDepartment" resultType="com.stx.pojo.Department">
+		select * from department
+	</select>
+	
+	<!-- 将新修改的员工信息存入数据库 -->
+	<update id="newEmploy" parameterType="com.stx.pojo.Employ">
+		update employ set info=#{info},department_id=#{departmentid} where id=#{id}
+	</update>
+	
+	<!-- 删除员工，根据userid -->
+	<delete id="deleteManager" parameterType="int">
+		delete from employ where id=#{userId}
+	</delete>
+	<!-- 查询出前5条日志 ,id降序,根据manager_id或employ_id查询-->
+	<select id="getlogs" parameterType="com.stx.pojo.page.Page" resultType="com.stx.pojo.Log">
+		select log.*,employ.username from log,employ
+		<where>
+			<if test="manager_id != 0">
+				and manager_id=#{manager_id}
+			</if>
+			<if test="employ_id != 0">
+				and employ_id=#{employ_id}
+			</if>
+		</where>
+		and employ.id=log.employ_id order by id desc limit #{currentPage},5
+	</select>
+	<!-- 根据日志id查询出员工的username -->
+	<select id="getUserNameByLogId" parameterType="int" resultType="java.lang.String">
+		select username from employ where id=(select employ_id from log where id=#{id});
+	</select>
+	<!-- 根据日志id查询日志详细信息 -->
+	<select id="getLogById" parameterType="int" resultType="com.stx.pojo.Log">
+		select * from log where id=#{id}
+	</select>
+	<!-- 经理查询考勤状况,parameterType:经理id ,按id降序-->
+	<select id="getWorkByManagerId" parameterType="com.stx.pojo.page.Page" resultType="com.stx.pojo.Work">
+		select 
+			work.*,employ.username 
+		from 
+			work,employ 
+		where 
+			employ_id in (select id from employ where department_id=(select department_id from employ where id=#{manager_id})) and work.employ_id=employ.id order by id desc limit #{currentPage},5
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

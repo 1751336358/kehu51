@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.stx.mapper.CustomMapper">
+	<!-- 查询部门信息 -->
+	<select id="getDepartment" resultType="com.stx.pojo.Department">
+		select * from department
+	</select>
+	<!-- 跳转到客户注册页面，查询员工信息 -->
+	<select id="showIndexEmploy"  resultType="com.stx.pojo.Employ">
+		select * from employ where department_id=1 and authority_id=2;
+	</select>
+	<!--根据部门id查询该部门的所有员工  -->
+	<select id="getEmployByDepartmentId" parameterType="int" resultType="com.stx.pojo.Employ">
+		select * from employ where department_id=#{department_id} and authority_id=2;
+	</select>
+	<!-- 根据username查询该用户是否注册 -->
+	<select id="isRegister" parameterType="java.lang.String" resultType="int">
+		select count(*) from custom where username like #{username}
+	</select>
+	<!-- 将注册的客户信息插入数据库 -->
+	<insert id="register" parameterType="com.stx.pojo.Custom">
+		insert into custom(username,password,phonenumber,email,birthday,registertime,queuename,employ_id,authority_id) values(#{username},#{password},#{phoneNumber},#{email},#{birthday},#{registerTime},#{queueName},#{employ.id},1)
+	</insert>
+	<!-- 根据username查询custom的信息 -->
+	<select id="getCustomByUserName" resultType="com.stx.pojo.Custom" parameterType="java.lang.String">
+		select * from custom where username like #{username}
+	</select>
+	<!-- 查看个人信息 -->
+	<select id="selCustomById" parameterType="int" resultType="com.stx.pojo.Custom">
+		select * from custom where id=#{id}
+	</select>
+	<!-- 将客户修改的个人信息更新到数据库 -->
+	<update id="updateCustom" parameterType="com.stx.pojo.Custom">
+		update custom set password=#{password},phonenumber=#{phoneNumber},email=#{email} where id=#{id}
+	</update>
+	<!-- 查看员工信息 -->
+	<select id="selEmployByCustomEmployId" parameterType="int" resultType="com.stx.pojo.Employ">
+		select * from employ where id=(select employ_id from custom where id=#{id})
+	</select>
+	<!-- 根据员工id查询出员工所在的部门信息 -->
+	<select id="getDepartmentByEmployId" parameterType="int" resultType="com.stx.pojo.Department">
+		select * from department where id = (select department_id from employ where id=#{id})
+	</select>
+	<!-- 将客户更改员工的信息更新到数据库 -->
+	<update id="updateEmployId" parameterType="com.stx.pojo.Custom">
+		update custom set employ_id = #{employ.id} where id=#{id}
+	</update>
+	<!-- 将客户的评论插入数据库 -->
+	<insert id="addComment" parameterType="com.stx.pojo.Comment">
+		insert into comment(username,content,commenttime,employ_id,custom_id) values(#{username},#{content},#{commenttime},#{employ_id},#{custom_id})
+	</insert>
+	<!-- 查询员工的最近20条评论 -->
+	<select id="getCommentByEmployId" parameterType="int" resultType="com.stx.pojo.Comment">
+		select * from comment where employ_id = #{employ_id} order by id limit 0,20
+	</select>
+</mapper>

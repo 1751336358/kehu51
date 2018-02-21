@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.stx.mapper.EmployMapper">
+	<!-- 根据userid查询员工信息 -->
+	<select id="selEmployById" parameterType="int" resultType="com.stx.pojo.Employ">
+		select id,username,info,department_id departmentid,queuename from employ where id=#{userid}
+	</select>
+	
+	<!-- 根据userid查询出该用户最近的签到状况 -->
+	<select id="selNearWork" parameterType="int" resultType="com.stx.pojo.Work">
+		select * from work where employ_id=#{userid} order by id desc limit 0,10
+	</select>
+	
+	<!-- 签到 -->
+	<insert id="workStart" parameterType="com.stx.pojo.Work">
+		insert into work(day,employ_id,workstart,workstart_time) values(#{day},#{employ_id},#{workstart},#{workstart_time})
+	</insert>
+	<!-- 是否签到 -->
+	<select id="isWorkStart" parameterType="com.stx.pojo.Work" resultType="int">
+		select count(*) from work where day like #{day} and employ_id=#{employ_id} and workstart=true
+	</select>
+	<!-- 签退 -->
+	<update id="workEnd" parameterType="com.stx.pojo.Work">
+		update work set workend=#{workend},workend_time=#{workend_time} where employ_id=#{employ_id} and day like #{day}
+	</update>
+	<!-- 是否签退 -->
+	<select id="isWorkEnd" parameterType="com.stx.pojo.Work" resultType="int">
+		select count(*) from work where day like #{day} and employ_id=#{employ_id} and workend=true
+	</select>
+	
+	<!-- 根据当前的员工的id查询出该员工所在的部门的经理的id -->
+	<select id="selManagerId" parameterType="int" resultType="int">
+		select id from employ where department_id=(select department_id from employ where id=#{employ_id}) and authority_id=3;
+	</select>
+	<!-- 根据当前员工的id查询该员工所在部门经理的信息 -->
+	<select id="getManagerInfoByEmployId" parameterType="int" resultType="com.stx.pojo.Employ">
+		select * from employ where department_id=(select department_id from employ where id=#{employ_id}) and authority_id=3;
+	</select>
+	<!-- 将日志插入数据库 -->
+	<insert id="addLog" parameterType="com.stx.pojo.Log">
+		insert into log(title,content,committime,employ_id,manager_id) values(#{title},#{content},#{committime},#{employ_id},#{manager_id})
+	</insert>
+	<!--根据当前员工id查询密码，用于修改个人信息比对  -->
+	<select id="getPasswordById" parameterType="int" resultType="java.lang.String">
+		select password from employ where id=#{id}
+	</select>
+	<!-- 将员工修改后的个人信息更新到数据库中 -->
+	<update id="updateInfo" parameterType="com.stx.pojo.Employ">
+		update employ
+		<set>
+			<if test="password != null and password != ''">
+				password=#{password},
+			</if>
+			<if test="info != null and info != ''">
+				info=#{info}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	<!-- 根据当前的员工id查看该员工下的所有客户 -->
+	<select id="getAllCustom" parameterType="int" resultType="com.stx.pojo.Custom">
+		select * from custom where employ_id = #{id}
+	</select>
+	
+	<!-- 评论我的 -->
+	<select id="myComment" parameterType="int" resultType="com.stx.pojo.Comment">
+		select * from comment where employ_id=#{id}
+	</select>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.stx.mapper.CommonMapper">
+	
+	<!-- 查询所有权限,跳转到首页 -->
+	<select id="getAllAuthority" resultType="com.stx.pojo.Authority">
+		select * from authority
+	</select>
+	
+	<!-- 登录时检查员工内部人员的username和password -->
+	<select id="checkEmploy" parameterType="com.stx.pojo.User" resultType="com.stx.pojo.User">
+		select id,username,password from employ where username like #{username} and password like #{password} and authority_id=#{authority.id}
+	</select>
+	<!-- 登录时检查客户的username和password -->
+	<select id="checkCustom" parameterType="com.stx.pojo.User" resultType="com.stx.pojo.User">
+		select id,username,password from custom where username like #{username} and password like #{password} and authority_id=#{authority.id}
+	</select>
+	
+	<!-- 查询权限，关联查询菜单列表 -->
+	<resultMap id="getMenuByAuthorityId" type="com.stx.pojo.Authority">
+		<id property="id" column="a_id"/>
+		<result property="name" column="a_name"/>
+		<collection property="menus" ofType="com.stx.pojo.Menu">
+			<id property="id" column="m_id"/>
+			<result property="name" column="m_name"/>
+			<result property="url" column="m_url"/>
+			<result property="authority_id" column="m_aid"/>
+		</collection>
+	</resultMap>
+	<select id="getAuthority" parameterType="int" resultMap="getMenuByAuthorityId">
+		select authority.id a_id,authority.name a_name,menu.id m_id,menu.name m_name,menu.url m_url,menu.authority_id m_aid
+		from authority,menu 
+		where authority.id=menu.authority_id and authority.id=#{authorityid} and menu.parent_id=0
+	</select>
+	
+</mapper>

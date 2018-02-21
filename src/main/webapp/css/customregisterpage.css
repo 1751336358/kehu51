@@ -1,0 +1,78 @@
+*{
+	padding:0px;
+	margin:0px;
+	text-decoration: none;
+	background: #F9F9F9;
+	position: relative;
+}
+#box{
+	width:1000px;	
+	position: absolute;
+	top:0px;
+	left:450px;
+	margin:0 auto;
+	margin-top:100px;
+	background: black;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+}
+#box #show{
+	width:70%;
+	margin:0 auto;
+	background: black;
+	position: relative;
+	height:600px;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+}
+#box #show input{
+	position: absolute;
+	left:50px;
+	font-size:18px;
+	border: none;
+	border-bottom: 1px solid black;
+	width:600px;
+	height:50px;
+	text-indent: 10px;
+}
+#box #show #username{
+	top:50px;	
+}
+#box #show #password{
+	top:130px;
+}
+#box #show #phone{
+	top:210px;
+}
+#box #show #email{
+	top:290px;
+}
+#box #show #bir{
+	top:370px;
+}
+#box #show #department{
+	position: absolute;
+	left:50px;
+	top:470px;
+	width:120px;
+	height:40px;
+	font-size:18px;
+	text-align: center;
+}
+#box #show #employ{
+	position: absolute;
+	left:180px;
+	top:470px;
+	width:150px;
+	height:40px;
+	font-size: 18px;
+}
+#box #show #submit{
+	position: absolute;
+	top:470px;
+	left:350px;
+	width:300px;
+	height:40px;
+	font-size:18px;
+	background: green;
+}
