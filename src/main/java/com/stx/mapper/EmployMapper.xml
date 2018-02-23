@@ -68,6 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 评论我的 -->
 	<select id="myComment" parameterType="int" resultType="com.stx.pojo.Comment">
-		select * from comment where employ_id=#{id}
+		select * from comment where employ_id=#{id} order by id desc;
 	</select>
 </mapper>

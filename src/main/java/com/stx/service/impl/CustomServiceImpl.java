@@ -132,14 +132,39 @@ public class CustomServiceImpl implements CustomService{
 	
 	//将客户更改员工的信息更新到数据库
 	public void updateEmployId(HttpServletRequest request,HttpServletResponse response){
-		int custom_id = Integer.parseInt(request.getParameter("custom_id"));
-		int employ_id = Integer.parseInt(request.getParameter("employ_id"));
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		int custom_id = u.getId();
+		String custom_name = u.getUsername();
+		int employ_id = Integer.parseInt(request.getParameter("employ_id"));	//新员工id
+		Employ oldEmploy = customDao.getEmployByCustomId(custom_id);			//旧员工信息
+		Employ newEmploy = employDao.selEmployById(employ_id);					//新员工信息
 		Custom custom = new Custom();
 		custom.setId(custom_id);
 		Employ employ = new Employ();
 		employ.setId(employ_id);
 		custom.setEmploy(employ);
 		customDao.updateEmployId(custom);	//更换员工
+		
+		System.out.println("分别给新员工和就员工发送消息");
+		//分别给旧员工和新员工发送消息
+		WorkMessage workMessage = new WorkMessage();
+		workMessage.setSource_id(custom_id);
+		workMessage.setSource_queue(custom_name);
+		workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+		workMessage.setType("客户消息");
+		//1.给旧员工发送消息
+		workMessage.setDistince_id(oldEmploy.getId());
+		workMessage.setDistince_queue(oldEmploy.getUsername());
+		workMessage.setContent("您的客户"+custom_name+"与您解除关系");
+		MessageSend.sendMessage(workMessage, oldEmploy.getId(),oldEmploy.getUsername());
+		System.out.println("给旧员工发送消息成功");
+		//2.给新员工发送消息
+		workMessage.setDistince_id(newEmploy.getId());
+		workMessage.setDistince_queue(newEmploy.getUsername());
+		workMessage.setContent("恭喜您，有一位名叫"+custom_name+"的客户与您建立关系");
+		MessageSend.sendMessage(workMessage, newEmploy.getId(), newEmploy.getUsername());
+		System.out.println("给新员工发送消息成功");
 	}
 	
 	//将客户评论信息插入数据库,并发送消息给员工
@@ -176,7 +201,7 @@ public class CustomServiceImpl implements CustomService{
 		workMessage.setSource_queue(username);
 		workMessage.setDistince_id(employ.getId());
 		workMessage.setDistince_queue(employ.getUsername());
-		workMessage.setContent("您的客户"+username+"评论了您，<a href='"+request.getContextPath()+"/getCommentDetail?id="+comment.getId()+"'>点击查看</a>");
+		workMessage.setContent("您的客户"+username+"评论了您，<a href='"+request.getContextPath()+"/mycomment?userid="+employ.getId()+"'>点击查看</a>");
 		workMessage.setTime(commenttime);
 		workMessage.setType("客户评论消息");
 		MessageSend.sendMessage(workMessage, employ.getId(), employ.getUsername());

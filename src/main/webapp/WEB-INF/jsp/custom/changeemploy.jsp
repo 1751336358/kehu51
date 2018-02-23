@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h1>更换员工</h1>
     <!-- 客户更换员工 -->
     <form action="${pageContext.request.contextPath}/updateemployid" method="post">
-    	id:<input type="text" name="custom_id" value="${sessionScope.user.id}" /><br/><br/>
     	<select name="department_id" id="department">
     		<c:forEach items="${departments}" var="department">
     			<option value="${department.id}">${department.name}</option>
