@@ -133,7 +133,7 @@ public class MassageServiceImpl implements MessageService{
 		int source_id = u.getId();
 		String data = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date());
 		WorkMessage workMessage = new WorkMessage();
-		workMessage.setContent("您所发送的日志《"+title+"》在"+data+"被阅读。");
+		workMessage.setContent("您所发送的日志《"+title+"》在"+data+"被经理阅读。");
 		workMessage.setSource_id(source_id);
 		workMessage.setSource_queue(source_queue);
 		workMessage.setDistince_id(distince_id);
@@ -202,7 +202,7 @@ public class MassageServiceImpl implements MessageService{
 	 * 同意/不同意补卡签到
 	 * 2018-08-21
 	 */
-	public void aggreeLogin(HttpServletRequest request,HttpServletResponse response){
+	public String aggreeLogin(HttpServletRequest request,HttpServletResponse response){
 		String aggreeLogin = request.getParameter("aggreeLogin");
 		String employ_id = request.getParameter("employ_id");	//补卡员工的id
 		String employ_name = request.getParameter("employ_name");	//补卡员工的name
@@ -215,7 +215,7 @@ public class MassageServiceImpl implements MessageService{
 		String id = u.getId()+"";			//当前登录用户的id
 		String username = u.getUsername();	//当前登录员工的username
 		if(!id.equals(manager_id) && !username.equals(manager_name)){
-			return;
+			return "当前权限错误，无法处理这条补卡签到消息";
 		}
 		if("1".equals(aggreeLogin)){	//同意补卡签到
 			//签到记录入库
@@ -238,7 +238,7 @@ public class MassageServiceImpl implements MessageService{
 			System.out.println("签到消息入库成功");
 			//发消息通知employ
 			WorkMessage workMessage = new WorkMessage();
-			workMessage.setContent("经理已经通过了您的补卡签到申请");
+			workMessage.setContent("经理已经通过了您"+bukaTime+"的补卡签到申请");
 			workMessage.setDistince_id(Integer.parseInt(employ_id));
 			workMessage.setDistince_queue(employ_name);
 			workMessage.setSource_id(u.getId());
@@ -247,7 +247,9 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
 			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
 			System.out.println("申请补卡消息发送完成");
-		}else if("0".equals(aggreeLogin)){	//不同意不卡签到
+			return "您已同意"+employ_name+"的申请签到消息";
+		}else if("0".equals(aggreeLogin)){	//不同意补卡签到
+			System.out.println("不同意补卡签到");
 			//发消息通知employ
 			WorkMessage workMessage = new WorkMessage();
 			workMessage.setContent("对不起，您的补卡签到申请未通过批准");
@@ -259,14 +261,16 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setSource_queue(u.getUsername());
 			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
 			System.out.println("不同意补卡消息发送成功");
+			return "您未同意"+employ_name+"的申请签到消息";
 		}
+		return "";
 	}
 	/**
 	 * manager处理employ的补卡信息
 	 * 同意/不同意补卡签退
 	 * 2018-08-21
 	 */
-	public void aggreeLogout(HttpServletRequest request,HttpServletResponse response){
+	public String aggreeLogout(HttpServletRequest request,HttpServletResponse response){
 		String aggreeLogout = request.getParameter("aggreeLogout");
 		String employ_id = request.getParameter("employ_id");
 		String employ_name = request.getParameter("employ_name");
@@ -274,12 +278,60 @@ public class MassageServiceImpl implements MessageService{
 		String manager_name = request.getParameter("manager_name");
 		String bukaTime = request.getParameter("bukaTime");
 		//权限校验，检查是否是该员工的经理给该员工处理的补卡消息
-		
-		if("1".equals(aggreeLogout)){	//同意补卡签退
-			
-		}else if("0".equals(aggreeLogout)){	//不同意不卡签退
-			
+		HttpSession session = request.getSession(true);
+		User u = (User)session.getAttribute("user");
+		String id = u.getId()+"";			//当前登录用户的id
+		String username = u.getUsername();	//当前登录员工的username
+		if(!id.equals(manager_id) && !username.equals(manager_name)){
+			return "当前权限错误，无法处理这条补卡签退消息";
 		}
+		if("1".equals(aggreeLogout)){	//同意补卡签退
+			//签退记录入库
+			Work work = new Work();
+			work.setDay(bukaTime);
+			work.setWorkend(true);
+			work.setEmploy_id(Integer.parseInt(employ_id));
+			//拼接签退时间
+			System.out.println("补卡时间:"+bukaTime);
+			String workEndTime[] = bukaTime.split("-");
+			String year = workEndTime[0]+"年";
+			String month = workEndTime[1]+"月";
+			String day = workEndTime[2]+"日 ";
+			String h = "18点";
+			String min = "30分";
+			String workendTime = year+month+day+h+min;	//签退具体时间;
+			work.setWorkend_time(workendTime);
+			System.out.println("签退具体时间格式:"+workendTime);
+			employDao.workEnd(work);
+			System.out.println("签退消息入库成功");
+			//发消息通知employ
+			WorkMessage workMessage = new WorkMessage();
+			workMessage.setContent("经理已经通过了您"+bukaTime+"的补卡签退申请");
+			workMessage.setDistince_id(Integer.parseInt(employ_id));
+			workMessage.setDistince_queue(employ_name);
+			workMessage.setSource_id(u.getId());
+			workMessage.setSource_queue(u.getUsername());
+			workMessage.setType("补卡签退消息");
+			workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			System.out.println("申请补卡消息发送完成");
+			return "您已同意"+employ_name+"的申请签退消息";
+		}else if("0".equals(aggreeLogout)){	//不同意不卡签退
+			System.out.println("不同意补卡签退");
+			//发消息通知employ
+			WorkMessage workMessage = new WorkMessage();
+			workMessage.setContent("对不起，您的补卡签退申请未通过批准");
+			workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+			workMessage.setType("补卡签退消息");
+			workMessage.setDistince_id(Integer.parseInt(employ_id));
+			workMessage.setDistince_queue(employ_name);
+			workMessage.setSource_id(u.getId());
+			workMessage.setSource_queue(u.getUsername());
+			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			System.out.println("不同意补卡消息发送成功");
+			return "您未同意"+employ_name+"的申请签退消息";
+		}
+		return "";
 	}
 	
 	@Resource(name="employdao")

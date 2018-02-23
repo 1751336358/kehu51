@@ -73,21 +73,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where 
 			employ_id in (select id from employ where department_id=(select department_id from employ where id=#{manager_id})) and work.employ_id=employ.id order by id desc limit #{currentPage},5
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

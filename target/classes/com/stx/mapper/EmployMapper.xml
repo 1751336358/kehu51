@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from employ where department_id=(select department_id from employ where id=#{employ_id}) and authority_id=3;
 	</select>
 	<!-- 将日志插入数据库 -->
-	<insert id="addLog" parameterType="com.stx.pojo.Log">
+	<insert id="addLog" parameterType="com.stx.pojo.Log" useGeneratedKeys="true" keyProperty="id">
 		insert into log(title,content,committime,employ_id,manager_id) values(#{title},#{content},#{committime},#{employ_id},#{manager_id})
 	</insert>
 	<!--根据当前员工id查询密码，用于修改个人信息比对  -->

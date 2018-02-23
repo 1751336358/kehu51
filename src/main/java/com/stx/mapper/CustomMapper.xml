@@ -50,11 +50,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update custom set employ_id = #{employ.id} where id=#{id}
 	</update>
 	<!-- 将客户的评论插入数据库 -->
-	<insert id="addComment" parameterType="com.stx.pojo.Comment">
+	<insert id="addComment" parameterType="com.stx.pojo.Comment" useGeneratedKeys="true" keyProperty="id">
 		insert into comment(username,content,commenttime,employ_id,custom_id) values(#{username},#{content},#{commenttime},#{employ_id},#{custom_id})
 	</insert>
 	<!-- 查询员工的最近20条评论 -->
 	<select id="getCommentByEmployId" parameterType="int" resultType="com.stx.pojo.Comment">
 		select * from comment where employ_id = #{employ_id} order by id limit 0,20
+	</select>
+	<!-- 根据客户id查询员工信息 -->
+	<select id="getEmployByCustomId" parameterType="int" resultType="com.stx.pojo.Employ">
+		select * from employ where id=(select employ_id from custom where id=#{id});
 	</select>
 </mapper>

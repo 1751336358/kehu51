@@ -46,11 +46,11 @@ public interface MessageService {
 	 * 2018-08-21
 	 */
 	
-	public void aggreeLogin(HttpServletRequest request,HttpServletResponse response);
+	public String aggreeLogin(HttpServletRequest request,HttpServletResponse response);
 	/**
 	 * manager处理employ的补卡信息
 	 * 同意/不同意补卡签退
 	 * 2018-08-21
 	 */
-	public void aggreeLogout(HttpServletRequest request,HttpServletResponse response);
+	public String aggreeLogout(HttpServletRequest request,HttpServletResponse response);
 }

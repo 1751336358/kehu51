@@ -3,14 +3,11 @@ package com.stx.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
-
 import com.stx.dao.EmployDao;
 import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
@@ -18,7 +15,9 @@ import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
 import com.stx.pojo.User;
 import com.stx.pojo.Work;
+import com.stx.pojo.WorkMessage;
 import com.stx.service.EmployService;
+import com.stx.utils.MessageSend;
 
 @Service("employServices")
 public class EmployServiceImpl implements EmployService{
@@ -125,12 +124,17 @@ public class EmployServiceImpl implements EmployService{
 	 * 将日志添加到数据库
 	 */
 	public void addLog(HttpServletRequest request,HttpServletResponse response){
-		int employ_id = Integer.parseInt(request.getParameter("employ_id"));
+		HttpSession session = request.getSession(true);
+		User u = (User)session.getAttribute("user");
+		int employ_id = u.getId();
+		String employ_name = u.getUsername();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String committime = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分").format(new Date());
 		//根据当前员工的id查询该员工所在部门的部门经理id
-		int manager_id=employDao.selManagerId(employ_id);
+		Employ manager = employDao.getManagerInfoByEmployId(employ_id);
+		int manager_id=manager.getId();
+		String manager_name = manager.getUsername();
 		//封装
 		Log log = new Log();
 		log.setEmploy_id(employ_id);
@@ -139,6 +143,17 @@ public class EmployServiceImpl implements EmployService{
 		log.setCommittime(committime);
 		log.setManager_id(manager_id);
 		employDao.addLog(log);
+		System.out.println("主键回显的日志id是："+log.getId());
+		//发送消息给manager
+		WorkMessage workMessage = new WorkMessage();
+		workMessage.setType("日志消息");
+		workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+		workMessage.setContent("您的员工"+employ_name+"发表了《"+title+"》日志,<a href='"+request.getContextPath()+"/getlogdetail?id="+log.getId()+"'>点击查看</a>");
+		workMessage.setSource_id(employ_id);
+		workMessage.setSource_queue(employ_name);
+		workMessage.setDistince_id(manager_id);
+		workMessage.setDistince_queue(manager_name);
+		MessageSend.sendMessage(workMessage, manager_id, manager_name);
 	}
 	
 	/**

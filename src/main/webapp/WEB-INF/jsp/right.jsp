@@ -115,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			//发送ajax请求给不同的controller处理不同的业务，由于页面很少，所以最好不用页面跳转，直接ajax请求处理
    			//数据返回的格式也要一致，是一个String类型，标记消息处理结果
    			$.get(url,function(data){
-   				
+   				alert(data);
    			});
    		}
    		</script>

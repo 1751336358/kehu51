@@ -86,8 +86,9 @@ public class MessageController {
 	 * 2018-08-21
 	 */
 	@RequestMapping("/aggreeLogin")
-	public void aggreeLogin(HttpServletRequest request,HttpServletResponse response){
-		messageService.aggreeLogin(request, response);
+	public @ResponseBody String aggreeLogin(HttpServletRequest request,HttpServletResponse response){
+		String message=  messageService.aggreeLogin(request, response);
+		return message;
 	}
 	/**
 	 * manager处理employ的补卡信息
@@ -95,8 +96,9 @@ public class MessageController {
 	 * 2018-08-21
 	 */
 	@RequestMapping("/aggreeLogout")
-	public void aggreeLogout(HttpServletRequest request,HttpServletResponse response){
-		messageService.aggreeLogout(request, response);
+	public @ResponseBody String aggreeLogout(HttpServletRequest request,HttpServletResponse response){
+		String message = messageService.aggreeLogout(request, response);
+		return message;
 	}
 	
 	@Resource(name="messageServices")

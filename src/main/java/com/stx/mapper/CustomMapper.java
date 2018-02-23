@@ -7,9 +7,6 @@ import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 
-
-
-
 public interface CustomMapper {
 	//查询部门信息
 		public List<Department> getDepartment();
@@ -49,4 +46,7 @@ public interface CustomMapper {
 		
 		//查看该员工最近20条评论
 		public List<Comment> getCommentByEmployId(int employ_id);
+		
+		//根据客户id查询员工信息
+		public Employ getEmployByCustomId(int id);
 }

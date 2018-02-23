@@ -50,4 +50,5 @@ public interface EmployMapper {
 		
 		//评论我的
 		public List<Comment> myComment(int userid);
+		 
 }

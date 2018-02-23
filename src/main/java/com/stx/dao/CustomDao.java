@@ -46,4 +46,7 @@ public interface CustomDao {
 		
 		//查看该员工最近20条评论
 		public List<Comment> getCommentByEmployId(int employ_id);
+		
+		//根据客户id查询员工信息
+		public Employ getEmployByCustomId(int id);
 }

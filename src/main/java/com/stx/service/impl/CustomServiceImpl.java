@@ -1,6 +1,5 @@
 package com.stx.service.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,10 @@ import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
+import com.stx.pojo.User;
+import com.stx.pojo.WorkMessage;
 import com.stx.service.CustomService;
+import com.stx.utils.MessageSend;
 
 @Service("customServices")
 public class CustomServiceImpl implements CustomService{
@@ -140,8 +142,10 @@ public class CustomServiceImpl implements CustomService{
 		customDao.updateEmployId(custom);	//更换员工
 	}
 	
-	//将客户评论信息插入数据库
+	//将客户评论信息插入数据库,并发送消息给员工
 	public boolean addcomment(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession(true);
+		User u = (User)session.getAttribute("user");
 		String content = request.getParameter("content");
 		System.out.println(content);
 		/*try {
@@ -149,22 +153,33 @@ public class CustomServiceImpl implements CustomService{
 		} catch (UnsupportedEncodingException e1) {
 		}*/
 		System.out.println(content);
-		String username = request.getParameter("username");
-		int employ_id = Integer.parseInt(request.getParameter("employ_id"));
-		int custom_id = Integer.parseInt(request.getParameter("custom_id"));
+		String username = u.getUsername();		//客户名
+		int custom_id = u.getId();	//客户id
+		Employ employ = customDao.getEmployByCustomId(custom_id);
 		//构造评论时间
 		String commenttime = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
 		Comment comment = new Comment();
 		comment.setContent(content);
 		comment.setUsername(username);
 		comment.setCustom_id(custom_id);
-		comment.setEmploy_id(employ_id);
+		comment.setEmploy_id(employ.getId());
 		comment.setCommenttime(commenttime);
 		try{
 			customDao.addComment(comment);
 		}catch(Exception e){
-			return false;	//评论失败
-		}	
+			return false;	//评论失败,消息发送失败
+		}
+		//发送消息-->employ
+		WorkMessage workMessage = new WorkMessage();
+		workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+		workMessage.setSource_id(custom_id);
+		workMessage.setSource_queue(username);
+		workMessage.setDistince_id(employ.getId());
+		workMessage.setDistince_queue(employ.getUsername());
+		workMessage.setContent("您的客户"+username+"评论了您，<a href='"+request.getContextPath()+"/getCommentDetail?id="+comment.getId()+"'>点击查看</a>");
+		workMessage.setTime(commenttime);
+		workMessage.setType("客户评论消息");
+		MessageSend.sendMessage(workMessage, employ.getId(), employ.getUsername());
 		return true;
 	}
 	

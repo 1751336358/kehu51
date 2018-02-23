@@ -83,6 +83,12 @@ public class CustomDaoImpl extends SqlSessionDaoSupport implements CustomDao{
 	public List<Comment> getCommentByEmployId(int employ_id){
 		return this.getSqlSession().getMapper(CustomMapper.class).getCommentByEmployId(employ_id);
 	}
+	
+	//根据客户id查询员工信息
+	public Employ getEmployByCustomId(int id){
+		return this.getSqlSession().getMapper(CustomMapper.class).getEmployByCustomId(id);
+	}
+	
 	@Autowired
 	@Override
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
