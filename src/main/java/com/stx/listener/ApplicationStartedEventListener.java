@@ -10,5 +10,6 @@ public class ApplicationStartedEventListener implements ApplicationListener<Appl
 	@Override
 	public void onApplicationEvent(ApplicationStartedEvent event) {
 		System.out.println("ApplicationStartedEvent");
+	
 	}
 }

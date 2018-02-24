@@ -5,7 +5,7 @@
   <groupId>com.stx</groupId>
   <artifactId>com.stx</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+ <packaging>jar</packaging>
 
   <name>com.stx</name>
   <url>http://maven.apache.org</url>

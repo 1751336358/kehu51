@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.stx.dao.CommonDao;
@@ -17,7 +19,7 @@ import com.stx.service.CommonService;
 
 @Service("commonServices")
 public class CommonServiceImpl implements CommonService{
-	
+	private static Logger logger =  LoggerFactory.getLogger(CommonServiceImpl.class);
 	
 	//跳转首页，查询出所有权限
 	@Override
