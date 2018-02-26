@@ -1,0 +1,139 @@
+#workstart{
+	width:130px;
+	height:40px;
+	background: #175A9F;
+	color:white;
+	font-size:20px;
+	font-weight: 800;
+	border:none;
+	border-radius:5px;
+	margin-bottom: 15px;
+	margin-top:15px;
+}
+#workend{
+	width:130px;
+	height:40px;
+	background: #175A9F;
+	color:white;
+	font-size:20px;
+	font-weight: 800;
+	border:none;
+	border-radius:5px;
+	margin-bottom: 15px;
+	margin-top:15px;
+}
+#appeal{
+	width:130px;
+	height:40px;
+	background: #175A9F;
+	color:white;
+	font-size:20px;
+	font-weight: 800;
+	border:none;
+	border-radius:5px;
+	margin-bottom: 15px;
+	margin-top:15px;
+}
+#cover{
+	position: absolute;
+	top:0px;
+	width:0px;
+	width:100%;
+	height:100%;
+	display:none;
+	z-index: 1;
+	background:black;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+}
+#msg_box{
+	position: absolute;
+	width:50%;
+	height:80%;
+	border:1px solid #ccc;
+	top:10%;
+	left:25%;
+	z-index: 2;
+	background: white;
+	display:none;
+}
+#msg_box #closeWindow{
+	position: absolute;
+	top:0px;
+	right:0px;
+	width:15px;
+	height:15px;
+	cursor: pointer;
+}
+#msg_box #form{
+	position: absolute;
+	left:10%;
+	top:10%;
+	width:80%;
+	height:80%;
+	border: 1px solid red;
+}
+#msg_box #form #time{
+	position:absolute;
+	top:20px;
+	left:0px;
+	width:100%;
+}
+#msg_box #form #time lable{
+	font-size:12px;
+	margin-left:34px;
+}
+#msg_box #form #time input{
+	width:200px;
+	margin-left:15px;
+}
+#msg_box #form #reason{
+	position:absolute;
+	top:60px;
+	left:0px;
+	width:100%;
+}
+#msg_box #form #reason lable{
+	font-size:12px;
+	margin-left:10px;
+}
+#msg_box #form #reason textarea{
+	width:200px;
+	height:80px;
+	margin-left:15px;
+}
+#msg_box #form #select{
+	position:absolute;
+	top:180px;
+	left:0px;
+	width:100%;
+}
+#msg_box #form #select #input1{
+	position:absolute;
+	left:25%;
+}
+#msg_box #form #select #input2{
+	position:absolute;
+	left:50%;
+}
+#msg_box #form #select #lable1{
+	position:absolute;
+	font-size:12px;
+	left:29%;
+}
+#msg_box #form #select #lable2{
+	position:absolute;
+	font-size:12px;
+	left:54%;
+}
+#msg_box #form #appeal_btn{
+	position: absolute;
+	top:210px;
+	width:100%;
+	
+}
+#msg_box #form #appeal_btn button{
+	position: absolute;
+	left:25%;
+	width:50%;
+}

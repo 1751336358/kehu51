@@ -1,0 +1,31 @@
+#prePage{
+	width:110px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:20px;
+	border:none;
+	height:35px;
+	font-size: 25px;
+	font-weight: 800;
+	color:white;
+	background: #175A9F;
+	display:block;
+	border-radius:5px;
+	float:right;
+}
+#nextPage{
+	width:110px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:20px;
+	border:none;
+	height:35px;
+	font-size: 25px;
+	font-weight: 800;
+	color:white;
+	background: #175A9F;
+	display:block;
+	border-radius:5px;
+	float:right;
+	margin-left:25px;
+}

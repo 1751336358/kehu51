@@ -25,7 +25,12 @@ public interface MessageDao {
 	 * 查询已发送消息
 	 */
 	public List<WorkMessage> queryHasSendMsg(Jedis jedis,int id,String username);
-	
+
+	/**
+	 * 历史消息
+	 * 2018-02-26
+	 */
+	public List<WorkMessage> queryHistroyMessage(Jedis jedis,int id,String username);
 	/**
 	 * 日志标记已读  manager-->employ
 	 * 2018-02-20

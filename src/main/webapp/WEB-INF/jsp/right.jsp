@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				历史消息(刷新)				
    			</div>
    			<div class="msgBody">
-   				<div class="msg" onclick=openWindow(this)><p class="sname">employ1</p><p class="type">补卡消息1</p><p class="time">2018-02-14 15:30</p><p class="content">一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命</p><div class="other"></div></div>
+   				<!-- <div class="msg" onclick=openWindow(this)><p class="sname">employ1</p><p class="type">补卡消息1</p><p class="time">2018-02-14 15:30</p><p class="content">一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命一直回车,会将redis启动程序6379.conf复制到/etc/init.d下，命</p><div class="other"></div></div>-->
    			</div>
    		</div>
    		<div class="hasSend msgBox">

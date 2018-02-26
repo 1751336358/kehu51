@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,12 +25,13 @@ import com.stx.pojo.WorkMessage;
 import com.stx.service.MessageService;
 import com.stx.utils.MessageReceive;
 import com.stx.utils.MessageSend;
+import com.stx.utils.MessageSerializable;
 
 import redis.clients.jedis.Jedis;
 
 @Service("messageServices")
 public class MassageServiceImpl implements MessageService{
-
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	/**
 	 * 员工申请补卡
 	 * 2018-02-14
@@ -100,6 +103,19 @@ public class MassageServiceImpl implements MessageService{
 		}else{
 			System.out.println("获得了"+messageList.size()+"条消息");
 		}
+		//将最新消息存入redis[1]成为历史消息
+		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		if(jedis == null){
+			this.logger.debug("debug|(Jedis)request.getServletContext().getAttribute('jedis') is null", jedis);
+			return messageList;
+		}
+		jedis.select(1);
+		String key = id+"_"+username;
+		if(messageList!=null && messageList.size()>0){
+			for(WorkMessage workMessage:messageList){
+				jedis.lpush(key.getBytes(),MessageSerializable.serializable(workMessage));
+			}
+		}
 		return messageList;
 	}
 	
@@ -118,7 +134,24 @@ public class MassageServiceImpl implements MessageService{
 		}
 		return listMessage;
 	}
-	
+	/**
+	 * 历史消息
+	 * 2018-02-26
+	 */
+	public List<WorkMessage> queryHistroyMessage(HttpServletRequest request,HttpServletResponse response){
+		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		HttpSession session = request.getSession(false);
+		if(session != null){
+			User u = (User)session.getAttribute("user");
+			int id = u.getId();
+			String username = u.getUsername();
+			List<WorkMessage> messageList = messageDao.queryHistroyMessage(jedis, id, username);
+			return messageList;
+		}else{
+			this.logger.debug("debug|session is null,relogin will be better", session);
+			return null;
+		}
+	}
 	/**
 	 * 日志标记已读  manager-->employ
 	 * 2018-02-20

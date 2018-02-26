@@ -1,0 +1,172 @@
+*{
+	padding:0px;
+	margin:0px;
+	text-decoration: none;
+	background: #F9F9F9;
+}
+body{
+	width:100%;
+	height:100%;
+}
+.box{
+	width:100%;
+	height:100%;
+	float:left;
+	background: #F9F9F9;
+}
+.box .msgBox{
+	width:25%;
+	margin-left:6%;
+	height:380px;
+	float:left;
+	margin-top:50px;
+	background: white;
+	border:1px solid #ccc;
+}
+.box .msgBox:hover{
+	box-shadow:0px 0px 10px 5px #D1D2D3;
+	cursor: pointer;
+}
+.box .msgBox .head{
+	width:100%;
+	height:50px;
+	color:white;
+	font-weight: 800;
+	font-size:15px;
+	line-height: 50px;
+	text-indent: 15px;
+}
+.box .msgBox .msgBody{
+	overflow: scroll;
+	width:100%;
+	height:330px;
+}
+/*隐藏滚动条*/
+.box .msgBox .msgBody::-webkit-scrollbar {
+    display: none;
+}
+ .box .msgBox .msgBody .msg{
+	width:100%;
+	height:60px;
+	border:0.5px dashed #ddd;
+}
+
+.box .msgBox .msgBody .msg .sname{
+	float:left;
+	margin-top:5px;
+	font-size:12px;
+	padding-left:10px;
+}
+.box .msgBox .msgBody .msg .type{
+	float:left;
+	margin-top:5px;
+	font-size:12px;
+	padding-left:30px;
+}
+.box .msgBox .msgBody .msg .time{
+	float:right;
+	margin-top:5px;
+	padding-right:10px;
+	font-size:12px;
+}
+.box .msgBox .msgBody .msg .content{
+	margin-top:30px;
+	font-size:12px;
+	margin-left:10px;
+	margin-right:10px;
+	white-space: nowrap;/*禁止换行*/
+	overflow:hidden;
+	text-overflow:ellipsis;/*超出部分显示省略号*/
+}
+.box .msgBox .msgBody .msg .other{
+	/* display:none; */
+}
+.box .new{
+	
+}
+
+.box .new .head{
+	background: #30C5DB;
+}
+.box .new .head:hover{
+	background: #1BA9BF;
+}
+
+
+
+.box .histroy{
+	
+}
+.box .histroy .head{
+	background: #9E9CF6;
+}
+.box .histroy .head:hover{
+	background: #8C8ADB;
+}
+.
+.box .hasSend{
+	
+}
+.box .hasSend .head{
+	background: #94CD4E;
+}
+.box .hasSend .head:hover{
+	background: #81B344;
+}
+/*弹出的窗口*/
+.cover{
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index: 2;
+	background: black;
+	opacity:0.5;
+	filter:alpha(opacity=50); 
+}
+.cbox{
+	position: absolute;
+	left:30%;
+	top:20%;
+	width:40%;
+	height:60%;
+	background: white;
+	z-index: 3;
+}
+.cbox .closeWindow{
+	float:right;
+	width:15px;
+	height:15px;
+	cursor: pointer;
+	border-left:1px solid black;
+	border-bottom:1px solid black;
+	line-height: 15px;
+	text-align: center;
+}
+.cbox .msgInfo{
+	position:none;
+	width:100%;
+	height:90%;
+	overflow: scroll;
+	text-indent:10px;
+	margin-top:10px;
+}
+/*隐藏滚动条*/
+.cbox .msgInfo::-webkit-scrollbar {
+    display: none;
+    font-size:12px;
+}
+.cbox .msgInfo p{
+	font-size:12px;
+	line-height: 30px;
+}
+.cbox .msgInfo p span{
+	background: green;
+}
+.none{
+	display:none;
+}
+.block{
+	display:block;
+}

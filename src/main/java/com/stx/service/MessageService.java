@@ -35,6 +35,11 @@ public interface MessageService {
 	public boolean tagHasBeenRead(HttpServletRequest request,HttpServletResponse response);
 	
 	/**
+	 * 历史消息
+	 * 2018-02-26
+	 */
+	public List<WorkMessage> queryHistroyMessage(HttpServletRequest request,HttpServletResponse response);
+	/**
 	 * 批量发送消息 manager-->employ
 	 * 2018-02-20
 	 */

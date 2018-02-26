@@ -49,6 +49,14 @@ public class MessageController {
 	}
 	
 	/**
+	 * 历史消息
+	 */
+	@RequestMapping("/queryHistroyMessage")
+	public List<WorkMessage> queryHistroyMessage(HttpServletRequest request,HttpServletResponse response){
+		return messageService.queryHistroyMessage(request, response);
+	}
+	
+	/**
 	 * 日志标记已读  manager-->employ
 	 * 2018-02-20
 	 */

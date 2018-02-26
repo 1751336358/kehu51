@@ -50,7 +50,24 @@ public class MessageDaoImpl implements MessageDao {
 		}
 		return listMessage;
 	}
-	
+	/**
+	 * 历史消息
+	 * 2018-02-26
+	 */
+	public List<WorkMessage> queryHistroyMessage(Jedis jedis,int id,String username){
+		jedis.select(1);
+		String key = id+"_"+username;
+		List<byte[]> msgByte = jedis.lrange(key.getBytes(),0, 100);
+		if(msgByte==null || msgByte.size()==0){
+			return null;
+		}
+		List<WorkMessage> listMessage = new ArrayList<WorkMessage>(0);
+		for(byte []b:msgByte){
+			WorkMessage workMessage = MessageSerializable.unSerializable(b);
+			listMessage.add(workMessage);
+		}
+		return listMessage;
+	}
 	/**
 	 * 日志标记已读  manager-->employ
 	 * 2018-02-20
