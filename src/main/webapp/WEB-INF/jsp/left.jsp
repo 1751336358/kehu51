@@ -24,7 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 			$(".menu").click(function(){
 				var id = $(this).attr("id");	//menu_1,menu_2,menu_3
-				var idIndex = id.substring(5,6);//1,2,3
+				var idIndex = id.split("_")[1];
+		//		var idIndex = id.substring(5,6);//1,2,3
 		//		alert(idIndex);
 				//Ajax发送查询子菜单
 				var url = "${pageContext.request.contextPath}"+"/getsonmenu/"+idIndex;
@@ -64,7 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		</div>
 		   </c:forEach>
 		   <a class="message" href="${pageContext.request.contextPath}/right" target="right">消息</a>
-		   <a class="logout" href="${pageContext.request.contextPath}/logout" target="_blank">退出系统</a>		   
+		   <%-- <a class="my" href="${pageContext.request.contextPath}/my" target="right">个人中心</a> --%>
+		   <a class="logout" href="${pageContext.request.contextPath}/logout" target="_blank">退出系统</a>   
 	  </div>
 	   
 	   

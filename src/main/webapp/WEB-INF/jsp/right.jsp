@@ -16,6 +16,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <!-- 不能加/，否则是以根路径 -->
+  <!--  <img src="kehu51\ccc.jpg" /> -->
   	<div class="cover none"></div>
   	<div class="cbox none">
   		<p class="closeWindow" onclick=closeWindow()>x</p>

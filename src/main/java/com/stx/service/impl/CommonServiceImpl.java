@@ -1,21 +1,38 @@
 package com.stx.service.impl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Service;
 
+import com.mysql.jdbc.Connection;
 import com.stx.dao.CommonDao;
 import com.stx.pojo.Authority;
-import com.stx.pojo.Custom;
 import com.stx.pojo.User;
 import com.stx.service.CommonService;
+import com.stx.utils.FileUpload;
 
 @Service("commonServices")
 public class CommonServiceImpl implements CommonService{
@@ -95,6 +112,7 @@ public class CommonServiceImpl implements CommonService{
 		}
 		session.invalidate();
 	}
+	
 	@Resource(name="commondao")
 	private CommonDao commonDao;
 

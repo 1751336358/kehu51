@@ -49,7 +49,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</select>
     	<input type="submit" value="确认更换员工" />
     </form> --%>
-    <img src="aaa.jpg">
+    <form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
+    	<input type="text" name="name"/>
+    	<input type="file" name="img" />
+    	<input type="submit" value="上传"/>
+    </form>
 	
     <script type="text/javascript">
     	var department = $("#department");

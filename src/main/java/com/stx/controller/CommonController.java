@@ -1,6 +1,9 @@
 package com.stx.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -65,6 +68,23 @@ public class CommonController {
 		} catch (Exception e) {
 		} 
 	}
+	
+	/**
+	 * 个人中心
+	 */
+	@RequestMapping("/my")
+	public void my(HttpServletRequest request,HttpServletResponse response){
+		try {
+			request.getRequestDispatcher("/WEB-INF/jsp/uploadhead.jsp").forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Resource(name="commonServices")
 	private CommonService commonService;
 }

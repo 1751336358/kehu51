@@ -4,6 +4,7 @@ public class User{
 	private int id;				//主键id	
 	private String username;	//用户名
 	private String password;	//密码
+	private String path;		//用户头像所在路径
 	private Authority authority;	//权限属性
 	
 	public User() {
@@ -43,6 +44,14 @@ public class User{
 
 	public void setAuthority(Authority authority) {
 		this.authority = authority;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 	
 }
