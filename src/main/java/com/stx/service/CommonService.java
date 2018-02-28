@@ -17,4 +17,7 @@ public interface CommonService {
 		
 		//注销
 		public void logout(HttpServletRequest request,HttpServletResponse response,HttpSession session);
+		
+		//上传头像
+		public boolean uploadHeadImg(HttpServletRequest request,HttpServletResponse response);
 	}

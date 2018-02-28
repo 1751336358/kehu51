@@ -99,7 +99,11 @@ var clipArea = new bjj.PhotoClip("#clipArea", {
 		 // 裁剪完成的回调函数。this指向图片对象，会将裁剪出的图像数据DataURL作为参数传入
 		$('.cover-wrap').fadeOut();
 		$('#view').css('background-size','100% 100%');
-		console.log(dataURL);
+		console.log(dataURL);	//打印出base64编码
+		var url = "uploadHeadImg";
+		$.post(url,"base64="+dataURL,function(){
+			
+		});
 	}
 });
 //clipArea.destroy();

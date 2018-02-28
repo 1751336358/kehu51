@@ -76,6 +76,16 @@ public class CustomServiceImpl implements CustomService{
 		user.setId(customDao.getCustomByUserName(username).getId());	//主键没有回显，查询出主键
 		//将登录信息存入session
 		session.setAttribute("user",user);
+		//发送消息 2018-02-28
+		WorkMessage workMessage = new WorkMessage();
+		workMessage.setSource_id(1);
+		workMessage.setSource_queue(username);
+		workMessage.setDistince_id(employ_id);
+		workMessage.setDistince_queue(employ.getUsername());
+		workMessage.setContent("您有一位新客户"+username+"注册并选择了您");
+		workMessage.setType("新用户注册");
+		workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
+		MessageSend.sendMessage(workMessage, employ_id, employ.getUsername());
 		return false;
 	}
 	

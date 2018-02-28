@@ -70,10 +70,10 @@ public class CommonController {
 	}
 	
 	/**
-	 * 个人中心
+	 * 跳转到上传头像页面
 	 */
-	@RequestMapping("/my")
-	public void my(HttpServletRequest request,HttpServletResponse response){
+	/*@RequestMapping("/gotoUploadHeadImg")
+	public void gotoUploadHeadImg(HttpServletRequest request,HttpServletResponse response){
 		try {
 			request.getRequestDispatcher("/WEB-INF/jsp/uploadhead.jsp").forward(request, response);
 		} catch (ServletException e) {
@@ -84,7 +84,16 @@ public class CommonController {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
+	/**
+	 * 上传头像
+	 */
+	/*
+	@RequestMapping("/uploadHeadImg")
+	public void uploadHeadImg(HttpServletRequest request,HttpServletResponse response){
+		this.commonService.uploadHeadImg(request, response);
+	}
+	*/
 	@Resource(name="commonServices")
 	private CommonService commonService;
 }

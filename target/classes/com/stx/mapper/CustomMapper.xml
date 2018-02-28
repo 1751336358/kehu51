@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from custom where username like #{username}
 	</select>
 	<!-- 将注册的客户信息插入数据库 -->
-	<insert id="register" parameterType="com.stx.pojo.Custom">
+	<insert id="register" parameterType="com.stx.pojo.Custom" useGeneratedKeys="true" keyProperty="id">
 		insert into custom(username,password,phonenumber,email,birthday,registertime,queuename,employ_id,authority_id) values(#{username},#{password},#{phoneNumber},#{email},#{birthday},#{registerTime},#{queueName},#{employ.id},1)
 	</insert>
 	<!-- 根据username查询custom的信息 -->

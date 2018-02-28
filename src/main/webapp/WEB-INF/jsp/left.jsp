@@ -65,7 +65,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		</div>
 		   </c:forEach>
 		   <a class="message" href="${pageContext.request.contextPath}/right" target="right">消息</a>
-		   <%-- <a class="my" href="${pageContext.request.contextPath}/my" target="right">个人中心</a> --%>
 		   <a class="logout" href="${pageContext.request.contextPath}/logout" target="_blank">退出系统</a>   
 	  </div>
 	   
