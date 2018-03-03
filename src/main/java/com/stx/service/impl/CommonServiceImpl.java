@@ -45,10 +45,29 @@ public class CommonServiceImpl implements CommonService{
 		request.setAttribute("authorityList", authorityList);
 		return request;
 	}
-	
+	//登录检查用户名和密码是否正确		
+	public  boolean checkInput(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		int employCount = commonDao.checkInputEmploy(user);
+		int customCount = commonDao.checkInputCustom(user);
+		if(employCount == 0 && customCount == 0){
+			return false;
+		}else if(employCount == 1){	//说明是employ或manager正在登录
+			session.setAttribute("loginRole", "employ");
+		}else if(customCount == 1){	//说明是custom正在登录
+			session.setAttribute("loginRole", "custom");
+		}
+		return true;
+	}
 	//登录
 	@Override
-	public boolean login(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+	public boolean login(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
 		int authorityid = Integer.parseInt(request.getParameter("authorityid"));	//登陆的权限值：1客户，2员工，3经理
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -63,7 +82,7 @@ public class CommonServiceImpl implements CommonService{
 		user.setAuthority(authority);
 		//再检查权限，注意：要将查询出来的菜单存入session里
 		if(authorityid == 1){
-			user = commonDao.checkCustom(user);
+			user = commonDao.checkCustom(user);	//username,password,id
 			System.out.println("客户");
 			if(user != null){
 				System.out.println("客户输入的用户名密码正确");
@@ -100,6 +119,67 @@ public class CommonServiceImpl implements CommonService{
 			}
 		}
 		return false;
+	}
+	/**
+	 * 登录，新接口
+	 * 2018-03-03
+	 */
+	@Override
+	public void loginIn(HttpServletRequest request,HttpServletResponse response){
+		//登录按钮可以点击说明username和password是没有问题的
+		HttpSession session = request.getSession();
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		User u = new User(username, password);
+		//根据username和password查询authority_id
+		String loginRole = (String)session.getAttribute("loginRole");
+		int authorityId = 0;
+		if("employ".equals(loginRole)){	//employ或manager正在登录,查employ表
+			authorityId = commonDao.getAuthorityId4Employ(username);
+		}else if("custom".equals(loginRole)){	//custom正在登录，查custom表
+			authorityId = commonDao.getAuthorityId4Custom(username);
+		}
+		Authority authority = commonDao.getAuthority(authorityId);
+		session.setAttribute("authority", authority);
+		u.setAuthority(authority);
+		//再检查权限，注意：要将查询出来的菜单存入session里
+		if(authorityId == 1){
+			u = commonDao.checkCustom(u);	//username,password,id
+			System.out.println("客户");
+			if(u != null){
+				System.out.println("客户输入的用户名密码正确");
+				session.setAttribute("user", u);
+				return;
+			}else {
+				System.out.println("客户输入错误");
+				session.removeAttribute("user");
+				return;
+			}
+		}else if(authorityId == 2){
+			u = commonDao.checkEmploy(u);
+			System.out.println("员工");
+			if(u != null){
+				System.out.println("员工输入的用户名密码正确");
+				session.setAttribute("user", u);
+				return;
+			}else{
+				System.out.println("员工输入错误");
+				session.removeAttribute("user");
+				return;
+			}
+		}else if(authorityId == 3){
+			u = commonDao.checkEmploy(u);
+			System.out.println("经理");
+			if(u != null){
+				System.out.println("经理输入的用户名密码正确");
+				session.setAttribute("user", u);				
+				return;
+			}else{
+				System.out.println("经理输入错误");
+				session.removeAttribute("user");
+				return;
+			}
+		}
 	}
 	
 	//注销

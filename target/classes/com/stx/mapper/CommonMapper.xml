@@ -10,7 +10,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllAuthority" resultType="com.stx.pojo.Authority">
 		select * from authority
 	</select>
+	<!-- 检查employ或manager用户名和密码是否正确 -->
+	<select id="checkInputEmploy" parameterType="com.stx.pojo.User" resultType="int">
+		select count(*) from employ where username like #{username} and password like #{password}
+	</select>
+	<!-- 检查custom用户名和密码是否正确 -->
+	<select id="checkInputCustom" parameterType="com.stx.pojo.User" resultType="int">
+		select count(*) from custom where username like #{username} and password like #{password}
+	</select>
+	<!-- 根据username查询authorityId,employ or manager -->
+	<select id="getAuthorityId4Employ" parameterType="String" resultType="int">
+		select authority_id from employ where username like #{username}
+	</select>
 	
+	<!-- 根据username查询authorityId,employ or manager -->
+	<select id="getAuthorityId4Custom" parameterType="String" resultType="int">
+		select authority_id from custom where username like #{username}
+	</select>
 	<!-- 登录时检查员工内部人员的username和password -->
 	<select id="checkEmploy" parameterType="com.stx.pojo.User" resultType="com.stx.pojo.User">
 		select id,username,password from employ where username like #{username} and password like #{password} and authority_id=#{authority.id}

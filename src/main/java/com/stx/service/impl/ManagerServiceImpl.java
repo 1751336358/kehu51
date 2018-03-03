@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stx.dao.ManagerDao;
 import com.stx.dao.EmployDao;
@@ -175,6 +176,7 @@ public class ManagerServiceImpl implements ManagerService{
 		List<Work> works = managerDao.getWorkByManagerId(page);
 		return works;
 	}
+	
 	@Resource(name="managerdao")
 	private ManagerDao managerDao;
 	@Resource(name="employdao")

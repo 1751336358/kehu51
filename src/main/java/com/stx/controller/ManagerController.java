@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stx.pojo.Department;
+import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
 import com.stx.pojo.Menu;
 import com.stx.pojo.Work;
@@ -164,6 +164,8 @@ public class ManagerController {
 	public @ResponseBody List<Work> getWorkByPage(HttpServletRequest request,HttpServletResponse response){
 		return managerService.getWorkByPage(request, response);
 	}
+	
+	
 	@Resource(name="managerServices")
 	private ManagerService managerService;
 }

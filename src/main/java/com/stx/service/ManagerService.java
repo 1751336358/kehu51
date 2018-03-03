@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.stx.pojo.Department;
+import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
 import com.stx.pojo.Menu;
 import com.stx.pojo.Work;
@@ -47,4 +50,5 @@ public interface ManagerService {
 		public HttpServletRequest getWorks(HttpServletRequest request,HttpServletResponse response);
 		// Ajax控制考勤列表翻页
 		public List<Work> getWorkByPage(HttpServletRequest request,HttpServletResponse response);
+		
 	}

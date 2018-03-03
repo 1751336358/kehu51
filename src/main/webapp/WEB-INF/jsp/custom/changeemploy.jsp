@@ -21,7 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   	<div class="box">
+  <h1>更换员工</h1>
+   	<%-- <div class="box">
    		<div class="level1">
    			<ul>
    			<c:forEach items="${departments}" var="department">
@@ -34,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<div class="level2">
    		
    		</div>
-   	</div>
+   	</div> --%>
     <!-- 客户更换员工 -->
    <%--  <form action="${pageContext.request.contextPath}/updateemployid" method="post">
     	<select name="department_id" id="department">
@@ -49,11 +50,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</select>
     	<input type="submit" value="确认更换员工" />
     </form> --%>
-    <form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
-    	<input type="text" name="name"/>
-    	<input type="file" name="img" />
-    	<input type="submit" value="上传"/>
-    </form>
 	
     <script type="text/javascript">
     	var department = $("#department");

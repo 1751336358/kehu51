@@ -22,7 +22,25 @@ public class CommonDaoImpl extends SqlSessionDaoSupport implements CommonDao{
 	public List<Authority> getAllAuthority() {
 		return this.getSqlSession().getMapper(CommonMapper.class).getAllAuthority();
 	}
+	//登录检查employ或manager用户名和密码是否正确
+	public  int checkInputEmploy(User u){
+		return this.getSqlSession().getMapper(CommonMapper.class).checkInputEmploy(u);
+	}
 	
+	//登录检查employ或manager用户名和密码是否正确
+	public  int checkInputCustom(User u){
+		return this.getSqlSession().getMapper(CommonMapper.class).checkInputCustom(u);
+	}
+	
+	//根据username查询authorityid,manager or employ
+	public int getAuthorityId4Employ(String username){
+		return this.getSqlSession().getMapper(CommonMapper.class).getAuthorityId4Employ(username);
+	}
+	
+	//根据username查authorityId，custom
+	public int getAuthorityId4Custom(String username){
+		return this.getSqlSession().getMapper(CommonMapper.class).getAuthorityId4Custom(username);
+	}
 	//登录
 	@Override
 	public void login(HttpServletRequest request,HttpServletResponse response){

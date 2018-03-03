@@ -1,0 +1,59 @@
+*{
+	padding:0px;
+	margin:0px;
+	text-decoration: none;
+}
+.box{
+	width:400px;
+	margin:0 auto;
+	margin-top:50px;
+	border:1px solid #ccc;
+	padding-bottom: 20px;
+}
+ .box .title{
+ 	width:100%;
+ 	height:50px;
+ 	line-height:50px;
+ 	text-align: center;
+ }
+.box table{
+	width:100%;
+}
+.box table tr{
+	width:100%;
+	height:40px;
+	line-height: 40px;
+}
+.box table tr td{
+	
+}
+.box table tr .left{
+	text-align: right;
+	font-size:14px;
+}
+.box table tr .right{
+	
+}
+.box table tr .right input{
+	border-radius: 3px;
+	border:1px solid #DDDDDD;
+	height:30px;
+	line-height: 30px;
+	outline:none;
+	text-indent: 5px;
+	width:83%;
+}
+.box table tr .right input:hover{
+	border:1px solid #99CCE6;
+	outline:none;
+}
+.box table tr #submit{
+	width:80%;
+	margin:0 auto;
+	display:block;
+	height:30px;
+	margin-top:30px;
+	background: #3E82C9;
+	color:white;
+	border:none;
+}

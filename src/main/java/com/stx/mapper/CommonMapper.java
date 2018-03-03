@@ -8,6 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.stx.pojo.Authority;
 import com.stx.pojo.User;
 public interface CommonMapper {
+	
+	//登录检查employ和 manager用户名和密码是否正确
+	public  int checkInputEmploy(User u);
+	//登录检查custom用户名和密码是否正确
+	public  int checkInputCustom(User u);
+	
+	//根据username查询authorityid,manager or employ
+	public int getAuthorityId4Employ(String username);
+	
+	//根据username查authorityId，custom
+	public int getAuthorityId4Custom(String username);
+	
 	//跳转首页，查询出所有权限
 	public List<Authority> getAllAuthority();
 	

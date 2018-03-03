@@ -21,6 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="isRegister" parameterType="java.lang.String" resultType="int">
 		select count(*) from custom where username like #{username}
 	</select>
+	<!-- 查employ表，用户名是否已经注册 -->
+	<select id="checkUsernameFromEmploy" parameterType="String" resultType="int">
+		select count(*) from employ where username like #{username}
+	</select>
+	<!-- 查custom表，用户名是否已经注册 -->
+	<select id="checkUsernameFromCustom" parameterType="String" resultType="int">
+		select count(*) from custom where username like #{username}
+	</select>
 	<!-- 将注册的客户信息插入数据库 -->
 	<insert id="register" parameterType="com.stx.pojo.Custom" useGeneratedKeys="true" keyProperty="id">
 		insert into custom(username,password,phonenumber,email,birthday,registertime,queuename,employ_id,authority_id) values(#{username},#{password},#{phoneNumber},#{email},#{birthday},#{registerTime},#{queueName},#{employ.id},1)

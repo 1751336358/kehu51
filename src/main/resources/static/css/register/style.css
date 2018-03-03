@@ -1,0 +1,318 @@
+/*--
+Author: 小贝壳网站模板
+Author URL: http://www.smallseashell.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+html, body{
+    font-size: 100%;
+	background: url(../../images/register/banner.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+	font-family: 'Comfortaa', cursive;
+}
+h1,h2,h3,h4,h5,h6,input,p,a,select{
+	font-family: 'Comfortaa', cursive;
+	margin:0;
+}
+ul,label{
+	margin:0;
+	padding:0;
+}
+body a:hover,body a{
+	text-decoration:none;
+}
+/*-- main --*/
+.wthree_footer_copy p{
+	font-size: 14px;
+    color: #fff;
+    margin: 3em 0 0;
+    line-height: 1.8em;
+    text-align: center;
+    padding: 0 1em;
+}
+.wthree_footer_copy p a{
+	color:#75AEEE;
+	text-decoration:none;
+}
+.wthree_footer_copy p a:hover{
+	color:#fff;
+}
+input[type="submit"],.wthree_footer_copy p a{
+	transition:.5s ease-in;
+	-webkit-transition:.5s ease-in;
+	-moz-transition:.5s ease-in;
+	-o-transition:.5s ease-in;
+	-ms-transition:.5s ease-in;
+}
+.main{
+	padding:4em 0;
+}
+.main h1{
+	text-align:center;
+	color:#fff;
+	font-size:2.5em;
+	margin-bottom: 1.5em;
+}
+.agileinfo_main h3 {
+    font-size: 1.8em;
+    color: #212121;
+    text-align: center;
+}
+.main h2{
+	text-align:center;
+	color:#212121;
+	font-size:1em;
+	margin:.5em 0 3em;
+}
+.agileinfo_main{
+	width:30%;
+    padding: 3em;
+    background:#9ccafd;
+    margin: 0 auto;
+	box-shadow: 0px 0px 25px #242424;
+}
+.agileinfo_main form{
+	display:block;
+}
+.agileinfo_main_grid input[type="text"],.agileinfo_main_grid_data input[type="text"],.agileinfo_main_grid #country,.agileinfo_main_grid input[type="email"],.agileinfo_main_grid input[type="password"]{
+	outline: none;
+    padding: 10px;
+    background: #0e7cf5;
+    border: 1px solid #086FDF;
+    color: #fff;
+    font-size: 14px;
+	border-radius:3px;
+	letter-spacing:1px;
+}
+.agileinfo_main_grid #country{
+	width:100%;
+}
+option {
+    background: #12195d;
+}
+.agileinfo_main_grid input[type="text"],.agileinfo_main_grid input[type="email"]{
+    width:95%;
+}
+.agileinfo_main_grid input[type="text"]::-webkit-input-placeholder,.agileinfo_main_grid input[type="email"]::-webkit-input-placeholder,.agileinfo_main_grid input[type="password"]::-webkit-input-placeholder{
+	color:#fff !important;
+}
+.agileinfo_main_grid input[type="password"],.agileinfo_main_grid_data input[type="text"]{
+	width:90%;
+}
+.agileinfo_main_grid_left,.agileinfo_main_grid_left1{
+	float:left;
+	width:48.3%;
+}
+.agileinfo_main_grid_left1{
+	margin-left:1em;
+}
+.agileinfo_main_grid1 {
+    margin-bottom: 1em;
+}
+.agileinfo_main_grid2{
+	margin:1em 0;
+}
+.agileinfo_main input[type="submit"]{
+	outline: none;
+    padding: 10px 0;
+    background: #033b79;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    text-transform: uppercase;
+    width: 100%;
+    margin: 2em 0 0;
+    cursor: pointer;
+    border-radius: 3px;
+	font-weight:600;
+	letter-spacing:2px;
+}
+.agileinfo_main input[type="submit"]:hover{
+	background:#060e56;
+}
+/*-- start-responsive-design --*/
+@media (max-width:1440px){
+	.agileinfo_main {
+		width: 33%;
+	}
+}
+@media (max-width: 1366px){
+	.agileinfo_main {
+		width: 35%;
+	}
+}
+@media (max-width: 1280px){
+	.agileinfo_main {
+		width: 38%;
+	}
+}
+@media (max-width: 1080px){
+	.main h1 {
+		font-size: 2.3em;
+	}
+	.agileinfo_main {
+		width: 45%;
+	}
+	.agileinfo_main h3 {
+		font-size: 1.6em;
+	}
+}
+@media (max-width: 1024px){
+	.agileinfo_main {
+		width: 47%;
+	}
+}
+@media (max-width: 991px){
+	.agileinfo_main {
+		width: 49%;
+		padding: 2em;
+	}
+}
+@media (max-width: 800px){
+	.main h1 {
+		font-size: 2em;
+/*-- 小贝壳网站模板 --*/
+	}
+	.agileinfo_main {
+		width: 61%;
+	}
+}
+@media (max-width: 768px){
+	.agileinfo_main {
+		width: 63%;
+	}
+}
+@media (max-width: 736px){
+	.agileinfo_main h3 {
+		font-size: 1.5em;
+	}
+	.main h2 {
+		margin: .5em 0 2em;
+	}
+	.agileinfo_main {
+		width: 66%;
+	}
+}
+@media (max-width: 667px){
+	.main {
+		padding: 3em 0;
+	}
+	.main h1 {
+		font-size: 1.8em;
+	}
+	.agileinfo_main h3 {
+		font-size: 1.4em;
+	}
+	.agileinfo_main {
+		width: 73%;
+	}
+}
+@media (max-width: 640px){
+	.agileinfo_main_grid_left, .agileinfo_main_grid_left1 {
+		width: 48%;
+	}
+	.agileinfo_main_grid input[type="text"], .agileinfo_main_grid input[type="email"] {
+		width: 95.3%;
+	}
+	.agileinfo_main_grid input[type="password"], .agileinfo_main_grid_data input[type="text"] {
+		width: 91%;
+	}
+}
+@media (max-width: 600px){
+	.agileinfo_main {
+		width: 80%;
+/*-- agileits --*/
+	}
+}
+@media (max-width: 480px){
+	.agileinfo_main {
+		padding: 1em;
+	}
+	.agileinfo_main_grid_left, .agileinfo_main_grid_left1 {
+		width: 100%;
+		float: none;
+	}
+	.agileinfo_main_grid_left1 {
+		margin: 1em 0 0;
+	}
+	.agileinfo_main_grid input[type="password"], .agileinfo_main_grid_data input[type="text"],.agileinfo_main_grid input[type="text"], .agileinfo_main_grid input[type="email"] {
+		width: 94%;
+	}
+}
+@media (max-width: 414px){
+	.main h1 {
+		font-size: 1.6em;
+	}
+	.main {
+		padding: 2em 0;
+	}
+	.agileinfo_main h3 {
+		font-size: 1.2em;
+	}
+	.main h2 {
+		margin: .3em 0 1.5em;
+		font-size: .9em;
+	}
+	.agileinfo_main_grid input[type="password"], .agileinfo_main_grid_data input[type="text"], .agileinfo_main_grid input[type="text"], .agileinfo_main_grid input[type="email"] {
+		width: 93%;
+	}
+	.wthree_footer_copy p {
+		margin: 2em 0 0;
+	}
+}
+@media (max-width: 375px){
+	.main h1 {
+		font-size: 1.5em;
+	}
+	.agileinfo_main_grid input[type="password"], .agileinfo_main_grid_data input[type="text"], .agileinfo_main_grid input[type="text"], .agileinfo_main_grid input[type="email"] {
+		width: 92%;
+	}
+	.agileinfo_main input[type="submit"] {
+		font-size: 15px;
+		margin: 1.5em 0 0;
+	}
+/*-- 小贝壳网站模板 --*/
+}
+@media (max-width: 320px){
+	.main h1 {
+		font-size: 1.3em;
+	}
+	.agileinfo_main h3 {
+		font-size: 1em;
+	}
+	.main h2 {
+		font-size: .8em;
+	}
+	.agileinfo_main_grid input[type="password"],.wthree_footer_copy p,.agileinfo_main_grid #country, .agileinfo_main_grid_data input[type="text"], .agileinfo_main_grid input[type="text"], .agileinfo_main_grid input[type="email"] {
+		font-size: 13px;
+	}
+/*-- agileits --*/
+}

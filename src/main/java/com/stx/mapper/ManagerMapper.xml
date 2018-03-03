@@ -29,9 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,username,info,department_id departmentid,queuename from employ where department_id=(select department_id from employ where id=#{id}) and id!=#{id}
 	</select>
 	
-	<!-- 根据departmentid查询部门信息 -->
+	<!-- 查询部门信息关联查询所有员工信息 -->
 	<select id="getDepartment" resultType="com.stx.pojo.Department">
-		select * from department
+		select id,name,info from department
+	</select>
+	<!-- 根据deartmentid查询部门下的所有员工信息,不包括经理 -->
+	<select id="queryEmployByDepartmentIdIngoreManager" parameterType="int" resultType="com.stx.pojo.Employ">
+		select id,username,info from employ where department_id=#{department_id} and authority_id=2
 	</select>
 	
 	<!-- 将新修改的员工信息存入数据库 -->
@@ -72,5 +76,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			work,employ 
 		where 
 			employ_id in (select id from employ where department_id=(select department_id from employ where id=#{manager_id})) and work.employ_id=employ.id order by id desc limit #{currentPage},5
+	</select>
+	<!-- 查看个人信息 -->
+	<select id="gotochangemyinfo4manager" parameterType="int" resultType="com.stx.pojo.Employ">
+		select id,username,info from employ where id=#{id};
 	</select>
 </mapper>

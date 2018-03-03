@@ -16,20 +16,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/changemyinfo.css">
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
   </head>
   
   <body>
-    	<h1>修改个人信息</h1>
-    	id:<input id="id" type="text" name="id" value="${requestScope.custom.id}" hidden/>
-    	用户名:<input id="username" type="text" name="username" value="${requestScope.custom.username}"><br/><br/>
-    	密	码：<input id="password" type="text" name="password" value="${requestScope.custom.password }"><br/><br/>
-    	手机号：<input id="phonenumber" type="text" name="phonenumber" value="${requestScope.custom.phoneNumber}"><br/><br/>
-    	邮	箱：<input id="email" type="email" name="email" value="${requestScope.custom.email }"><br/><br/>
-    	<button id="submit">确认修改</button>
+    <div class="box">
+    	<div class="title">修改个人信息</div>
+    	<table>
+    		<tr>
+    			<td class="left">id:&nbsp&nbsp&nbsp</td>
+    			<td class="right"><input id="id" type="text" name="id" value="${requestScope.custom.id}" readonly=true/></td>
+    		</tr>
+    		<tr>
+    			<td class="left">用户名:&nbsp&nbsp&nbsp</td>
+    			<td class="right"><input id="username" type="text" name="username" value="${requestScope.custom.username}" readonly=true/></td>
+    		</tr>
+    		<tr>
+    			<td class="left">密码:&nbsp&nbsp&nbsp</td>
+    			<td class="right"><input id="password" type="text" name="password" value="${requestScope.custom.password }"></td>
+    		</tr>
+    		<tr>
+    			<td class="left">手机号:&nbsp&nbsp&nbsp</td>
+    			<td class="right"><input id="phonenumber" type="text" name="phonenumber" value="${requestScope.custom.phoneNumber}"></td>
+    		</tr>
+    		<tr>
+    			<td class="left">邮箱:&nbsp&nbsp&nbsp</td>
+    			<td class="right"><input id="email" type="email" name="email" value="${requestScope.custom.email }"></td>
+    		</tr>
+    		<tr>
+    			<td colspan="2"><button id="submit">确认修改</button></td>
+    		</tr>
+    	</table>
+    	
+    </div>
     	<script type="text/javascript">
     		$("#submit").click(function(){
     			var id = $("#id").val();

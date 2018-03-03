@@ -53,6 +53,11 @@ public class ManagerDaoImpl extends SqlSessionDaoSupport implements ManagerDao{
 		return this.getSqlSession().getMapper(ManagerMapper.class).getDepartment();
 	}
 	
+	//根据deartmentid查询部门下的所有员工信息,不包括经理
+	public List<Employ>queryEmployByDepartmentIdIngoreManager(int departmentId){
+		return this.getSqlSession().getMapper(ManagerMapper.class).queryEmployByDepartmentIdIngoreManager(departmentId);
+	}
+	
 	//将新修改的员工信息存如数据库
 	public void newEmploy(Employ employ){
 		this.getSqlSession().getMapper(ManagerMapper.class).newEmploy(employ);
@@ -82,6 +87,7 @@ public class ManagerDaoImpl extends SqlSessionDaoSupport implements ManagerDao{
 	public List<Work> getWorkByManagerId(Page page){
 		return this.getSqlSession().getMapper(ManagerMapper.class).getWorkByManagerId(page);
 	}
+	
 	@Autowired
 	@Override
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {

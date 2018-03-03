@@ -1,6 +1,7 @@
 package com.stx.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,8 +43,10 @@ public class CustomServiceImpl implements CustomService{
 	//注册
 	public boolean  register(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		String username = request.getParameter("username");
-		int count = customDao.isRegister(username);
-		if(count != 0){	//该用户已经被注册
+		//在这里判断是否注册过，查custom和employ两张表
+		int employCount = customDao.checkUsernameFromEmploy(username);
+		int customCount = customDao.checkUsernameFromCustom(username);
+		if(employCount!=0 || customCount!=0){
 			System.out.println("该用户已经注册");
 			return true;
 		}
@@ -132,11 +135,20 @@ public class CustomServiceImpl implements CustomService{
 		return request;
 	}
 	
-	//跳转到更换员工页面
+	//跳转到更换员工页面,查询出部门的所有员工与部门信息
 	public HttpServletRequest changeEmploy(HttpServletRequest request,HttpServletResponse response){
 		//查询部门信息
 		List<Department> departments = managerDao.getDepartment();
-		request.setAttribute("departments", departments);
+		List<Department> retDepartments = new ArrayList<Department>();
+		for(Department department:departments){
+			//查询每个部门下的所有员工信息
+			int departmentId = department.getId();
+			List<Employ> employList = managerDao.queryEmployByDepartmentIdIngoreManager(departmentId);
+			department.setEmploys(employList);
+			retDepartments.add(department);
+		}
+		//返回的retDepartment中包括所有部门和员工的信息
+		request.setAttribute("departments", retDepartments);
 		return request;
 	}
 	

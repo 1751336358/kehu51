@@ -28,8 +28,11 @@ public interface ManagerMapper {
 		//根据经理的userid查询该部门下的所有员工
 		public List<Employ> getAllEmploy(int userid);
 		
-		//根据departmentid查询部门信息
+		//查询部门信息关联查询所有员工信息
 		public List<Department> getDepartment();
+		
+		//根据deartmentid查询部门下的所有员工信息,不包括经理
+		public List<Employ>queryEmployByDepartmentIdIngoreManager(int departmentId);
 		
 		//将新修改的员工信息存如数据库
 		public void newEmploy(Employ employ);

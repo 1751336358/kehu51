@@ -20,6 +20,12 @@ public interface CustomMapper {
 		//根据username查询该用户是否注册
 		public int isRegister(String username);
 		
+		//查employ表，判断username是否已经注册
+		public int checkUsernameFromEmploy(String username);
+		
+		//查custom表，判断username是否已经注册
+		public int checkUsernameFromCustom(String username);
+				
 		//将注册的客户信息插入数据库
 		public void register(Custom custom);
 		

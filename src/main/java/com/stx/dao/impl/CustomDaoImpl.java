@@ -39,7 +39,15 @@ public class CustomDaoImpl extends SqlSessionDaoSupport implements CustomDao{
 	public int isRegister(String username){
 		return this.getSqlSession().getMapper(CustomMapper.class).isRegister(username);
 	}
+	//查employ表，判断username是否已经注册
+	public int checkUsernameFromEmploy(String username){
+		return this.getSqlSession().getMapper(CustomMapper.class).checkUsernameFromEmploy(username);
+	}
 	
+	//查custom表，判断username是否已经注册
+	public int checkUsernameFromCustom(String username){
+		return this.getSqlSession().getMapper(CustomMapper.class).checkUsernameFromCustom(username);
+	}
 	//将注册的客户信息插入数据库
 	public void register(Custom custom){
 		this.getSqlSession().getMapper(CustomMapper.class).register(custom);
