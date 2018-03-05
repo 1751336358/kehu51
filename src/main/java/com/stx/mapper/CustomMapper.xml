@@ -69,4 +69,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getEmployByCustomId" parameterType="int" resultType="com.stx.pojo.Employ">
 		select * from employ where id=(select employ_id from custom where id=#{id});
 	</select>
+	<!-- 根据employid查employ信息 -->
+	<select id="getEmployById" parameterType="int" resultType="com.stx.pojo.Employ">
+		select username,info from employ where id=#{id}
+	</select>
 </mapper>

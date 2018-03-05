@@ -55,4 +55,7 @@ public interface CustomMapper {
 		
 		//根据客户id查询员工信息
 		public Employ getEmployByCustomId(int id);
+		
+		//根据employid查employ信息
+		public Employ getEmployById(int id);
 }

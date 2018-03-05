@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
@@ -42,4 +45,6 @@ public interface CustomService {
 		//将客户评论信息插入数据库
 		public boolean addcomment(HttpServletRequest request,HttpServletResponse response);
 		
+		//根据employid查employ信息		 
+		public Employ getEmployById(HttpServletRequest request,HttpServletResponse response);
 	}

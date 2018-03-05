@@ -142,6 +142,15 @@ public class CustomController {
 		}
 		return message;
 	}
+	
+	/**
+	 * 根据employid查employ信息
+	 */
+	@RequestMapping("/getEmployById")
+	public @ResponseBody Employ getEmployById(HttpServletRequest request,HttpServletResponse response){
+		Employ employ = customService.getEmployById(request, response);
+		return employ;
+	}
 	@Resource(name="customServices")
 	private CustomService customService;
 }

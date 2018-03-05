@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stx.dao.CommonDao;
 import com.stx.dao.CustomDao;
@@ -230,6 +231,12 @@ public class CustomServiceImpl implements CustomService{
 		return true;
 	}
 	
+	//根据employid查employ信息		 
+	public Employ getEmployById(HttpServletRequest request,HttpServletResponse response){
+		int employId = Integer.parseInt(request.getParameter("id"));
+		Employ employ = customDao.getEmployById(employId);
+		return employ;
+	}
 	
 	@Resource(name="customdao")
 	private CustomDao customDao;
