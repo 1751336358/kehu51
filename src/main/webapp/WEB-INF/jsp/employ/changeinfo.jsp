@@ -3,31 +3,48 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML>
+ 
+ <!DOCTYPE HTML>
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-  
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/changeinfo.css">
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+<head>
+	<base href="<%=basePath%>">
+	<!-- Custom Theme files -->
+	<!-- Custom Theme files -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta name="keywords" content="Shade Flat Contact Form Responsive,Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	<!--Google Fonts-->
+	<link href="${pageContext.request.contextPath}/css/changeinfo/style.css" rel="stylesheet" type="text/css" media="all"/>
+	<link href='${pageContext.request.contextPath}/css/changeinfo/other.css' rel='stylesheet' type='text/css'>
+	<!--Google Fonts-->
+	<script>var __links = document.querySelectorAll('a');function __linkClick(e) { parent.window.postMessage(this.href, '*');} ;for (var i = 0, l = __links.length; i < l; i++) {if ( __links[i].getAttribute('data-t') == '_blank' ) { __links[i].addEventListener('click', __linkClick, false);}}</script>
+	<script src="${pageContext.request.contextPath}/js/changeinfo/jquery.js"></script>
+	<script>$(document).ready(function(c) {
+		$('.sky-close').on('click', function(c){
+			$('.green-button').fadeOut('slow', function(c){
+		  		$('.green-button').remove();
+			});
+		});	  
+	});
+	</script>
+	<script>$(document).ready(function(c) {
+		$('.oran-close').on('click', function(c){
+			$('.orange-button').fadeOut('slow', function(c){
+		  		$('.orange-button').remove();
+			});
+		});	  
+	});
+	</script>
 	<script type="text/javascript">
 		$(function(){
 			var url = "${pageContext.request.contextPath}/updateinfo";
 			$("#submit").click(function(){
 				//获取个表单内容
-				var uid = $("#uid").val();
 				var oldpassword = $("#oldpassword").val();
 				var newpassword = $("#newpassword").val();
 				var info = $("#info").val();
-				$.post(url,"id="+uid+"&oldpassword="+oldpassword+"&newpassword="+newpassword+"&info="+info,function(data){
+				$.post(url,"oldpassword="+oldpassword+"&newpassword="+newpassword+"&info="+info,function(data){
 				//	eval("var message="+data);//修改成功 or 修改失败
 					var message = data;
 					alert(message);
@@ -35,18 +52,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		})
 	</script>
-  </head>
-  
-  <body>
-  	<div id="box">
-  	
-  	
-  	<!-- 修改password或 info-->
-    	<input id="uid" hidden value="${sessionScope.user.id}" name="id"/>
-    	<input id="oldpassword" type="text" name="oldpassword" required="required" placeholder="输入旧密码"/><br/><br/>
-    	<input id="newpassword" type="text" name="newpassword" required="required" placeholder="输入新密码"/><br/><br/>
-    	<textarea id="info" rows="" cols="" name="info" required="required" placeholder="一句话描述自己"></textarea>
-    	<button id="submit">修改</button>
-    </div>
-  </body>
+</head>
+<body>
+<!--coact start here-->
+<!-- <h1>Shade Flat Contact Form</h1> -->
+<div class="contact">
+	<div class="contact-main">
+		<h3>Old Password</h3>
+		<input id="oldpassword" type="text" name="oldpassword" value="old password" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'old password';}"/>
+		<h3>New Password</h3>
+		<input id="newpassword" type="text" name="newpassword" value="new password" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'new password';}"/>
+		<h3>My Info</h3>
+		<textarea id="info" name="info" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Leave your message here ....';}"/>Leave your message here ....</textarea>
+	
+	</div>
+	<div class="enviar">
+		
+        <div class="contact-enviar">
+		  <input id="submit" type="submit" value="Submit">
+		</div>
+		<div class="clear"> </div>
+</div>
+</div>
+<!--contact end here-->
+</body>
 </html>

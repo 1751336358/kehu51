@@ -9,9 +9,9 @@ jQuery(document).ready(function() {
 		$.post('/kehu51/checkInput','username='+username+"&password="+password,function(data){
 			b = data;
 			if(b){
-				this.inputOk = true;
+				inputOk = true;
 			}else{
-				this.inputOk = false;
+				inputOk = false;
 				//dom操作显示错误信息
 				$('.page-container form .error span').html('input error');
 				$('.page-container form .error').fadeIn('fast', function(){});
@@ -19,13 +19,15 @@ jQuery(document).ready(function() {
 		});
 	});
     $('.page-container form').submit(function(e){
+    //	alert(inputOk);
     	//如果输入的用户名或密码错误，阻止提交
-    	if(this.inputOk == false){
+    	if(inputOk == false){
     		//阻止提交按钮的的默认跳转行为，改为ajax发送请求
     		if ( e && e.preventDefault ) 
     	  	      e.preventDefault(); 
     	  	 else 
     	  	      window.event.returnValue = false;
+    		return;
     	} 		
         var username = $(this).find('.username').val();
         var password = $(this).find('.password').val();

@@ -161,7 +161,9 @@ public class EmployServiceImpl implements EmployService{
 	 */
 	public String updateInfo(HttpServletRequest request,HttpServletResponse response){
 		String message;
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		int id = u.getId();
 		String oldPassword = request.getParameter("oldpassword");
 		String newPassword = request.getParameter("newpassword");
 		String info = request.getParameter("info");

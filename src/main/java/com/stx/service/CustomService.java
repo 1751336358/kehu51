@@ -40,7 +40,7 @@ public interface CustomService {
 		public HttpServletRequest changeEmploy(HttpServletRequest request,HttpServletResponse response);
 		
 		//将客户更改员工的信息更新到数据库
-		public void updateEmployId(HttpServletRequest request,HttpServletResponse response);
+		public boolean updateEmployId(HttpServletRequest request,HttpServletResponse response);
 		
 		//将客户评论信息插入数据库
 		public boolean addcomment(HttpServletRequest request,HttpServletResponse response);

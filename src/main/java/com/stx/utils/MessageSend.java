@@ -16,7 +16,7 @@ import com.stx.pojo.WorkMessage;
  */
 public class MessageSend {
 	//目标队列名字id_queueName
-	public static  void sendMessage(WorkMessage workMessage,int id,String queueName) /*throws RuntimeException*/{
+	public static  void sendMessage(WorkMessage workMessage,int id,String queueName) throws RuntimeException{
 		
 		ActiveMQConnectionFactory connectionFactory = null;
 		Connection connection = null;

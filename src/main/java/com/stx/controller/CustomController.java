@@ -124,8 +124,9 @@ public class CustomController {
 	 * 将客户更改员工的信息更新到数据库
 	 */
 	@RequestMapping("/updateemployid")
-	public void updateEmployId(HttpServletRequest request,HttpServletResponse response){
-		customService.updateEmployId(request, response);
+	public @ResponseBody boolean updateEmployId(HttpServletRequest request,HttpServletResponse response){
+		boolean b = customService.updateEmployId(request, response);
+		return b;
 	}
 	
 	/**

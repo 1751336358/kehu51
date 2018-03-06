@@ -91,7 +91,7 @@ public class MassageServiceImpl implements MessageService{
 	 * 2018-02-15
 	 */
 	public List<WorkMessage> queryNewMessage(HttpServletRequest request,HttpServletResponse response){
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		int id = u.getId();
 		String username = u.getUsername();

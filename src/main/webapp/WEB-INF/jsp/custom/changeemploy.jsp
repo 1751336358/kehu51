@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div>
-	<div class="box"></div>	
+	<!-- <div class="box"></div>	暂时取消右边的详情框，没什么用，直接选择更换员工就可以了 -->
   <div class="main content">
     <div class="left-sider">
       <div class="operate">
