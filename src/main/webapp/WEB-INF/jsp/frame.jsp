@@ -21,9 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
-  <frameset rows="220px,*">
+  <frameset rows="150px,*" frameborder="no">
 		<frame src="${pageContext.request.contextPath}/top" name="top"></frame>
-		<frameset cols="200,*">
+		<frameset cols="150,*">
 			<frame src="${pageContext.request.contextPath}/left"></frame>
 			<frame src=" ${pageContext.request.contextPath}/right" name="right"></frame>
 		</frameset>

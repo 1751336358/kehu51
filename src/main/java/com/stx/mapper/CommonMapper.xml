@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,username,password from custom where username like #{username} and password like #{password} and authority_id=#{authority.id}
 	</select>
 	
-	<!-- 查询权限，关联查询菜单列表 -->
+	<!-- 查询权限，关联查询菜单列表,一级菜单 -->
 	<resultMap id="getMenuByAuthorityId" type="com.stx.pojo.Authority">
 		<id property="id" column="a_id"/>
 		<result property="name" column="a_name"/>

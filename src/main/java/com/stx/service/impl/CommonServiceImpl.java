@@ -139,6 +139,7 @@ public class CommonServiceImpl implements CommonService{
 		}else if("custom".equals(loginRole)){	//custom正在登录，查custom表
 			authorityId = commonDao.getAuthorityId4Custom(username);
 		}
+		//权限和一级菜单
 		Authority authority = commonDao.getAuthority(authorityId);
 		session.setAttribute("authority", authority);
 		u.setAuthority(authority);
