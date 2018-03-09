@@ -38,6 +38,9 @@ public class CommonController {
 	 */
 	@RequestMapping("/checkInput")
 	public @ResponseBody  boolean checkInput(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("check Iput被调用");
+		System.out.println(request.getRemoteAddr());
+		System.out.println(request.getRemoteHost());
 		return commonService.checkInput(request, response);
 	}
 	/**

@@ -124,7 +124,7 @@ public class EmployServiceImpl implements EmployService{
 	 * 将日志添加到数据库
 	 */
 	public void addLog(HttpServletRequest request,HttpServletResponse response){
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		int employ_id = u.getId();
 		String employ_name = u.getUsername();

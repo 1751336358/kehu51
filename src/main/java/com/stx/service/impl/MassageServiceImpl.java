@@ -39,7 +39,7 @@ public class MassageServiceImpl implements MessageService{
 	 */
 	@Override
 	public boolean appealBuka(HttpServletRequest request, HttpServletResponse response)  {
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		String bukaTime = request.getParameter("bukaTime");
 		String content = request.getParameter("content");
 		String radio = request.getParameter("radio");
@@ -124,7 +124,7 @@ public class MassageServiceImpl implements MessageService{
 	 */
 	public List<WorkMessage> queryHasSendMsg(HttpServletRequest request,HttpServletResponse response){
 		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		int id = u.getId();
 		String username = u.getUsername();
@@ -160,7 +160,7 @@ public class MassageServiceImpl implements MessageService{
 		String title = request.getParameter("title");
 		String distince_queue = request.getParameter("username");
 		int distince_id = Integer.parseInt(request.getParameter("userid"));
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		String source_queue = u.getUsername();
 		int source_id = u.getId();

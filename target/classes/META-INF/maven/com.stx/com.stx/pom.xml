@@ -88,6 +88,11 @@
    		<artifactId>commons-fileupload</artifactId>
    		<version>1.3.1</version>
    </dependency>
+   <!--  -->
+  <!--  <dependency>
+    <groupId>org.springframework.session</groupId>
+    	<artifactId>spring-session-data-redis</artifactId>
+	</dependency> -->
     <!--实现热部署，导入devtools包  -->
     <dependency>
     	<groupId>org.springframework.boot</groupId>

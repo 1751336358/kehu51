@@ -1,0 +1,261 @@
+/*--
+Author: 小贝壳网站模板
+Author URL: http://www.smallseashell.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body{
+	font-family: 'Ubuntu', sans-serif;
+	background:#32A09F;
+}
+.header {
+    text-align: center;
+    margin-top: 4em;
+}
+.header h1 {
+    font-size: 3.5em;
+    color: #fff;
+    font-weight: 400;
+}
+.main-section {
+    width: 35%;
+    margin: 3em auto 0;
+	text-align: center; 
+}
+.login-form {
+    background: #fff;
+	padding: 2em 1em;
+	    border-radius: 5px;
+}
+.login-form h2 {
+    font-size: 1.6em;
+    text-transform: capitalize;
+	    color: #000;
+}
+.login-form form {
+    margin-top: 2em;
+}
+.login-form ul {
+    padding: 0;
+    margin: 0 0 22px 0;
+}
+.login-form ul li.text-info {
+    width: 18%;
+    color: #000;
+    font-size: 1em;
+    font-weight: 400;
+	float: left;
+	padding-top:.5em;
+	text-align: right;
+    margin-right: 0.5em;
+}
+.login-form form input[type="text"],.login-form form textarea {
+    width: 75%;
+    padding: 8px;
+    font-size: 1em;
+    font-weight: 400;
+    border: 1px solid  #e6e6e6;
+    outline: none;
+    color: #222;
+	float: left;
+	background:#eee;
+}
+.login-form textarea{
+	height:120px;
+	resize:none;
+}
+.login-form input[type="submit"] {
+   font-size: 1em;
+    padding: .8em 1em;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #32A09F;
+    color: #fff;
+    cursor: pointer;
+	width: 35%;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0 0 0 3em;
+	
+}
+.forgot {
+    font-size: .85em;
+    color: #777;
+}
+.login-form input[type="submit"]:hover {
+    background: #000;
+	 transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+}
+.footer {
+    text-align: center;
+    padding: 3em 0;
+}
+.footer p {
+    font-size: 0.9em;
+    color: #fff;
+    margin: 0px;
+	line-height:1.8em;
+}
+.footer p a {
+    color: #fff;
+}
+.footer p a:hover {
+    color: #fff;
+	text-decoration:underline;
+}
+/**responsive*/
+@media(max-width:1440px){
+.main-section {
+    width: 36%;
+}
+}
+@media(max-width:1366px){
+.main-section {
+    width: 38%;
+}
+}
+@media(max-width:1280px){
+.main-section {
+    width: 40%;
+}
+}
+@media(max-width:1080px){
+.main-section {
+    width: 50%;
+}
+.header h1 {
+    font-size: 2.8em;
+}
+.header {
+    text-align: center;
+    margin-top: 3em;
+}
+.login-form h2 {
+    font-size: 1.5em;
+}
+.login-form h4 {
+    font-size: 1.1em;
+}
+}
+@media(max-width:991px){
+.main-section {
+    width: 52%;
+}
+}
+@media(max-width:800px){
+.main-section {
+    width: 55%;
+}
+}
+@media(max-width:768px){
+.main-section {
+    width: 65%;
+}
+}
+@media(max-width:640px){
+.main-section {
+    width: 75%;
+}
+.header h1 {
+    font-size: 2.6em;
+}
+}
+@media (max-width: 480px){
+.main-section {
+    width: 95%;
+	margin: 2em auto 0
+}
+.header {
+    text-align: center;
+    margin-top: 2em;
+}
+.login-form {
+    background: #fff;
+    padding: 1em 1em;
+}
+.login-form h2 {
+    font-size: 1.4em;
+}
+.login-form ul li.text-info {
+    font-size: 0.9em;
+	}
+.login-form input[type="submit"] {
+    font-size: 0.95em;
+}
+.footer {
+    text-align: center;
+    padding: 2em 0;
+}
+}
+@media (max-width: 414px){
+.login-form input[type="submit"] {
+    width: 38%;
+}
+}
+@media (max-width: 375px){
+.header h1 {
+    font-size: 2em;
+}
+.login-form input[type="submit"] {
+   width: 55%;
+ }
+.login-form p {
+    line-height: 1.5em;
+}
+.login-form h2 {
+    font-size: 1.2em;
+}
+.login-form h4 {
+    font-size: 1em;
+}
+.login-form ul li.text-info {
+    padding-bottom: .5em;
+}
+.login-form form input[type="text"], .login-form form textarea{
+   width: 94%;
+       margin-right: 3%;
+}
+.login-form form {
+    margin-top: 1em;
+}
+.login-form input[type="submit"] {
+    margin: 0;
+}
+.login-form ul {
+    padding: 0;
+    margin: 0px 0 10px 0;
+}
+.social-icons {
+    margin-top: 1em;
+}
+.footer p {
+    font-size: .9em;
+}
+}

@@ -8,14 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>员工详细信息页面</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -31,7 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</select>
     	<input type="submit" value="提交" />
   	</form>
-    
     <!-- ajax查询部门信息 -->
     <script type="text/javascript">
     	var url = "${pageContext.request.contextPath}/getDepartment";
