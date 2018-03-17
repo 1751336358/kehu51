@@ -1,35 +1,21 @@
 package com.stx.service.impl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadBase;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Service;
 
-import com.mysql.jdbc.Connection;
 import com.stx.dao.CommonDao;
 import com.stx.pojo.Authority;
+import com.stx.pojo.Menu;
+import com.stx.pojo.MenuVO;
 import com.stx.pojo.User;
 import com.stx.service.CommonService;
 import com.stx.utils.UploadHeadImg;
@@ -143,6 +129,9 @@ public class CommonServiceImpl implements CommonService{
 		Authority authority = commonDao.getAuthority(authorityId);
 		session.setAttribute("authority", authority);
 		u.setAuthority(authority);
+		//为了适应树形目录模板，把查询目录的操作做调整，根据authorityId把所有目录都查出来
+		List<MenuVO> menuVOList = queryMenuByAuthorityId(authorityId);
+		session.setAttribute("menuVOList", menuVOList);
 		//再检查权限，注意：要将查询出来的菜单存入session里
 		if(authorityId == 1){
 			u = commonDao.checkCustom(u);	//username,password,id
@@ -182,7 +171,24 @@ public class CommonServiceImpl implements CommonService{
 			}
 		}
 	}
-	
+	/**
+	 * 根据authorityId查父目录和子目录
+	 */
+	private List<MenuVO> queryMenuByAuthorityId(int authorityId){
+		List<MenuVO> menuVOList = new ArrayList<MenuVO>();
+		//查询父菜单
+		List<Menu> menuList = commonDao.getFMenuByAuthorityId(authorityId);
+		for(Menu menu:menuList){
+			MenuVO menuVO = new MenuVO();
+			menuVO.setfMenu(menu);
+			//循环查询子菜单
+			int menuId = menu.getId();
+			List<Menu> sonMenuList = commonDao.getSonMenuByFatherId(menuId);
+			menuVO.setsMenu(sonMenuList);
+			menuVOList.add(menuVO);
+		}
+		return menuVOList;
+	}
 	//注销
 	public void logout(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		session.removeAttribute("user");

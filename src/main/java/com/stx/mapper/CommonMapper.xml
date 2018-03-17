@@ -53,4 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where authority.id=menu.authority_id and authority.id=#{authorityid} and menu.parent_id=0
 	</select>
 	
+	<!-- 根据auhtorityId查询父菜单 -->
+	<select id="getFMenuByAuthorityId" parameterType="int" resultType="com.stx.pojo.Menu">
+		select * from menu where authority_id=#{authority_id} and parent_id=0;
+	</select>
+	<!-- 根据menuId查询该目录下的子菜单 -->
+	<select id="getSonMenuByFatherId" parameterType="int" resultType="com.stx.pojo.Menu">
+		select * from menu where parent_id = #{id};
+	</select>
 </mapper>

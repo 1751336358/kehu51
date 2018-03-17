@@ -1,38 +1,74 @@
 #workstart{
-	width:130px;
-	height:40px;
-	background: #175A9F;
-	color:white;
-	font-size:20px;
-	font-weight: 800;
+	width:110px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:20px;
 	border:none;
+	height:35px;
+	font-size: 20px;
+	font-weight: 400;
+	background:white;
+	border:1px solid #175A9F;
+	color:#175A9F;
+	display:block;
 	border-radius:5px;
-	margin-bottom: 15px;
-	margin-top:15px;
+	float:right;
+	outline: none;
+	float:left;
+}
+#workstart:hover{
+	background: #175A9F;
+	outline: none;
+	color:white;
+	cursor: pointer;
 }
 #workend{
-	width:130px;
-	height:40px;
-	background: #175A9F;
-	color:white;
-	font-size:20px;
-	font-weight: 800;
+	width:110px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:20px;
 	border:none;
+	height:35px;
+	font-size: 20px;
+	font-weight: 400;
+	background:white;
+	border:1px solid #175A9F;
+	color:#175A9F;
+	display:block;
 	border-radius:5px;
-	margin-bottom: 15px;
-	margin-top:15px;
+	float:right;
+	outline: none;
+	float:left;
+}
+#workend:hover{
+	background: #175A9F;
+	outline: none;
+	color:white;
+	cursor: pointer;
 }
 #appeal{
-	width:130px;
-	height:40px;
-	background: #175A9F;
-	color:white;
-	font-size:20px;
-	font-weight: 800;
+	width:110px;
+	margin:0 auto;
+	margin-top:20px;
+	margin-bottom:20px;
 	border:none;
+	height:35px;
+	font-size: 20px;
+	font-weight: 400;
+	background:white;
+	border:1px solid #175A9F;
+	color:#175A9F;
+	display:block;
 	border-radius:5px;
-	margin-bottom: 15px;
-	margin-top:15px;
+	float:right;
+	outline: none;
+	float:left;
+}
+#appeal:hover{
+	background: #175A9F;
+	outline: none;
+	color:white;
+	cursor: pointer;
 }
 #cover{
 	position: absolute;

@@ -59,20 +59,28 @@
 	margin-top:30px;
 }
 .footer textarea{
-	width:800px;
-	height:200px;
+	width:1000px;
+	height:70px;
 	margin: 0 auto;
 	display:block;
 	font-size:16px;
 	text-indent: 10px;
+	border:1px solid #D0D0D0;
+	border-radius: 5px;
+	outline:none;
 }
 .footer button{
 	margin: 0 auto;
 	margin-top:20px;
 	display:block;
-	color:white;
-	background: #3E82C9;
-	border:none;
+	color:#3E82C9;
+	border:1px solid #3E82C9;
 	border-radius: 5px;
 	padding:10px 15px 10px 15px;
+	background: white;
+	outline: none;
+}
+.footer button:hover{
+	background: #3E82C9;
+	color:white;
 }

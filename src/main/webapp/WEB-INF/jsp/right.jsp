@@ -56,12 +56,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		</div>
    		<script type="text/javascript">
    		function closeWindow(){
-   			var cover = $(".cover");
+			var cover = $(".cover");
    			var cbox = $(".cbox");
    			cover.removeClass("block");
    			cbox.removeClass("block");
    			cover.addClass("none");
-   			cbox.addClass("none");
+   			cbox.addClass("none"); 			
    		}
 	   	//弹出窗口
    		var openWindow = function(This){
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			cbox.append("<div class='msgInfo'>");
 			var msgInfo = $(".cbox .msgInfo");
 			var childNodes = This.childNodes;	//.msg p标签的引用
-			console.log(childNodes);
+
 			for(var i=0;i<childNodes.length-1;i++){
 				console.log(childNodes[i].innerHTML);	//p标签里的内容 sname type content time
 				msgInfo.append("<p>"+childNodes[i].innerHTML+"</p>");
@@ -88,8 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				console.log("为空");
 				return;
 			}
-			console.log(mapContent.length);
-			console.log(mapContent);
 			for(var i=0;i<mapContent.length;i++){
 				var span = mapContent[i].childNodes;	//.other p span
 				console.log(span);
