@@ -39,8 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>${department.info }</td>
     		</tr>
     	</table>
-    	<br/><br/><br/>
-    	<textarea id="content" rows="" cols="" name="content"></textarea>
+    	<br/>
+    	<textarea id="content" name="content"></textarea><br/>
     	<button id="submit">评论</button><br/><br/><br/>
     	<p id="text01">最近20条评论</p>
     	<table>
@@ -62,6 +62,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	
     	<script type="text/javascript">
+    		$("#content").focus(function(){
+    			$("#content").css({"width":"100%","height":"100px"});
+    		});
+    		$("#content").blur(function(){
+    			$("#content").css({"width":"30%","height":"40px"});
+    		});
     		$("#submit").click(function(){
     			var content = $("#content").val();	//评论内容
     			/* var username = "${sessionScope.user.username}";	//客户用户名
@@ -72,6 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			$.get(url,true,function(data){
     			//	eval("var message="+data);
     				var message = data;
+    				$("#content").val("");	//清空评论框
     				alert(message);
     			});
     		});

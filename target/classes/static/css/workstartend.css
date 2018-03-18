@@ -83,23 +83,40 @@
 	filter:alpha(opacity=50);
 }
 #msg_box{
-	position: absolute;
-	width:50%;
-	height:80%;
+	position: fixed;
+	width:0%;
+	height:0%;
 	border:1px solid #ccc;
-	top:10%;
-	left:25%;
+	top:50%;
+	left:50%;
 	z-index: 2;
 	background: white;
-	display:none;
+	overflow:hidden;
+	-webkit-transition:width 1s,height 1s,left 1s,top 1s;
+	-moz-transition:width 1s,height 1s,left 1s,top 1s;
+	-o-transition:width 1s,height 1s,left 1s,top 1s;
+	
+	-webkit-perspective:800;    /*属性定义 3D 元素距视图的距离，以像素计。*/  
+    -webkit-perspective-origin:50% 50%;  
+    -webkit-transform-style:-webkit-preserve-3d; 
 }
 #msg_box #closeWindow{
 	position: absolute;
 	top:0px;
 	right:0px;
-	width:15px;
-	height:15px;
+	width:20px;
+	height:20px;
 	cursor: pointer;
+	-webkit-transition:-webkit-transform 0.5s;
+	-moz-transition:-webkit-transform 0.5s;
+	-o-transition:-webkit-transform 0.5s;
+}
+#msg_box #closeWindow:hover{
+	-webkit-transform:rotateZ(180deg);
+}
+#msg_box #closeWindow img{
+	width:100%;
+	height:100%;
 }
 #msg_box #form{
 	position: absolute;
@@ -107,40 +124,55 @@
 	top:10%;
 	width:80%;
 	height:80%;
-	border: 1px solid red;
 }
 #msg_box #form #time{
 	position:absolute;
-	top:20px;
+	top:10%;
 	left:0px;
 	width:100%;
 }
 #msg_box #form #time lable{
+	position:absolute;
+	left:0px;
+	top:0px;
+	display:block;
+	text-align:right;
 	font-size:12px;
-	margin-left:34px;
+	width:25%;
+	z-index: 4;
 }
 #msg_box #form #time input{
-	width:200px;
-	margin-left:15px;
+	position:absolute;
+	left:26%;
+	top:0px;
+	width:50%;
 }
 #msg_box #form #reason{
 	position:absolute;
-	top:60px;
+	top:25%;
 	left:0px;
 	width:100%;
 }
 #msg_box #form #reason lable{
+	position:absolute;
+	left:0px;
+	top:0px;
+	display:block;
+	text-align:right;
 	font-size:12px;
-	margin-left:10px;
+	width:25%;
+	z-index: 4;
 }
 #msg_box #form #reason textarea{
-	width:200px;
-	height:80px;
-	margin-left:15px;
+	position:absolute;
+	left:26%;
+	top:0px;
+	width:50%;
+	height:60px;
 }
 #msg_box #form #select{
 	position:absolute;
-	top:180px;
+	top:140px;
 	left:0px;
 	width:100%;
 }
@@ -164,12 +196,22 @@
 }
 #msg_box #form #appeal_btn{
 	position: absolute;
-	top:210px;
+	top:180px;
 	width:100%;
 	
 }
 #msg_box #form #appeal_btn button{
 	position: absolute;
-	left:25%;
-	width:50%;
+	left:20%;
+	width:60%;
+	background: #5BC0DE;
+	color:white;
+	font-size:16px;
+	font-weight:400;
+	border:none;
+	height:40px;
+	border-radius: 3px;
+}
+#msg_box #form #appeal_btn button:hover{
+	background: #31B0D5;
 }

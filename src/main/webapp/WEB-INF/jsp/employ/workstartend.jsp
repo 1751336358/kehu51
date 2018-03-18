@@ -38,12 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//申请补卡
 			$("#appeal").click(function(){
 				$("#cover").css("display","block");
-				$("#msg_box").css("display","block");
+				$("#msg_box").css({"width":"40%","height":"50%","left":"30%","top":"25%"});
 			});
 			//关闭窗口
 			$("#msg_box #closeWindow").click(function(){
 				$("#cover").css("display","none");
-				$("#msg_box").css("display","none");
+				/* $("#msg_box").css("display","none"); */
+				$("#msg_box").css({"width":"0%","height":"0%","left":"50%","top":"50%"});
 			});
 			//签到/签退焦点事件
 			var radio = 1;
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<div id="cover"></div>
   	<div id="msg_box">
-  		<div id="closeWindow">X</div>
+  		<div id="closeWindow"><img src="${pageContext.request.contextPath}/images/right/closeWindow.png" /></div>
   		<div id="form">
   			<div id="time">
   				<lable>补卡时间:</lable><input class="bukaTime" name="bukaTime" type="date" />
@@ -99,10 +100,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<input id="input1" type="radio" name="radio" checked="checked" value="1" /><label id="lable1">签到</label><input id="input2" type="radio" name="radio" value="2" /><label id="lable2">签退</label>
   			</div>
   			<div id="appeal_btn">
-  				<button>申请</button>
+  				<button>申&nbsp&nbsp&nbsp请</button>
   			</div>
-  			
-  			
   		</div>
   	</div>
     <div id="box">

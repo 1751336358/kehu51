@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!--  <img src="kehu51\ccc.jpg" /> -->
   	<div class="cover none"></div>
   	<div class="cbox none">
-  		<p class="closeWindow" onclick=closeWindow()>x</p>
+  		<p class="closeWindow" onclick=closeWindow()><img src="${pageContext.request.contextPath}/images/right/closeWindow.png" /></p>
   		<div class="msgInfo"></div>
   	</div>
    	<div class="box">
@@ -65,7 +65,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		}
 	   	//弹出窗口
    		var openWindow = function(This){
-   	   		//弹出窗口
    			var msg = $(".box .msgBox .msgBody .msg");   			
 			var cover = $(".cover");
 			var cbox = $(".cbox");
@@ -74,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			cover.removeClass("none");			
 			cbox.removeClass("none");
 			cbox.empty();
-			cbox.append("<p class='closeWindow' onclick=closeWindow()>x</p>");
+			cbox.append("<p class='closeWindow' onclick=closeWindow()><img src='${pageContext.request.contextPath}/images/right/closeWindow.png' /></p>");
 			cbox.append("<div class='msgInfo'>");
 			var msgInfo = $(".cbox .msgInfo");
 			var childNodes = This.childNodes;	//.msg p标签的引用
