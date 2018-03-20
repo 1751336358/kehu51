@@ -73,7 +73,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			/* var username = "${sessionScope.user.username}";	//客户用户名
     			var employ_id = "${employ.id }";	//员工id
     			var custom_id = "${sessionScope.user.id}";	//客户id */
-    			
+    			if(content==''){
+    				alert("内容不能为空");
+    				return;
+    			}
     			var url = "${pageContext.request.contextPath}/addcomment?content="+content;
     			$.get(url,true,function(data){
     			//	eval("var message="+data);

@@ -189,7 +189,7 @@ public class MassageServiceImpl implements MessageService{
 	@RequestMapping("/batSendMessage")
 	public boolean batSendMessage(HttpServletRequest request,HttpServletResponse response){
 		String selected = request.getParameter("selected");		//7_xxx:11_employrr:
-		String massageContent = request.getParameter("massageContent");
+		String messageContent = request.getParameter("messageContent");
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
 		int source_id = u.getId();
@@ -197,7 +197,7 @@ public class MassageServiceImpl implements MessageService{
 		WorkMessage workMessage = new WorkMessage();
 		workMessage.setSource_id(source_id);
 		workMessage.setSource_queue(source_queue);
-		workMessage.setContent(massageContent);
+		workMessage.setContent(messageContent);
 		workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
 		workMessage.setType("经理消息");
 		//解析选择的员工的id和username
