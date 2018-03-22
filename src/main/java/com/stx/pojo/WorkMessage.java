@@ -2,6 +2,7 @@ package com.stx.pojo;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 /**
  * 消息
@@ -16,7 +17,7 @@ public class WorkMessage implements Serializable{
 	/**
 	 * 消息的附加属性，因为不同的消息有不同的属性，所以这里用map来存储
 	 */
-	private	Map<String,String> contentMap = new HashMap<String,String>();
+	private	Map<String,String> contentMap = new LinkedHashMap<String,String>();
 	private int source_id;	//发送者id
 	private String source_queue;	//发送者队列名
 	private int distince_id;	//接收者id
