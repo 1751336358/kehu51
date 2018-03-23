@@ -44,6 +44,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var oldpassword = $("#oldpassword").val();
 				var newpassword = $("#newpassword").val();
 				var info = $("#info").val();
+				if(oldpassword == ''){
+					$("#oldpassword").focus();
+					return;
+				}
+				if(newpassword == ''){
+					$("#newpassword").focus();
+					return;
+				}
+				if(info == ''){
+					$("#info").focus();
+					return;
+				}
 				$.post(url,"oldpassword="+oldpassword+"&newpassword="+newpassword+"&info="+info,function(data){
 				//	eval("var message="+data);//修改成功 or 修改失败
 					var message = data;
@@ -59,11 +71,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="contact">
 	<div class="contact-main">
 		<h3>Old Password</h3>
-		<input id="oldpassword" type="text" name="oldpassword" value="old password" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'old password';}"/>
+		<input id="oldpassword" type="text" name="oldpassword" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'old password';}"/>
 		<h3>New Password</h3>
-		<input id="newpassword" type="text" name="newpassword" value="new password" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'new password';}"/>
-		<h3>My Info</h3>
-		<textarea id="info" name="info" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Leave your message here ....';}"/>Leave your message here ....</textarea>
+		<input id="newpassword" type="text" name="newpassword" class="hola" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'new password';}"/>
+		<h3>Describe yourself ....</h3>
+		<textarea id="info" name="info" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Describe yourself ....';}"/></textarea>
 	
 	</div>
 	<div class="enviar">
