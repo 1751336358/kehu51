@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.stx.pojo.SystemLog;
 import com.stx.service.SystemLogService;
+import com.stx.thread.SystemLogThread;
 
 @Component
 @Aspect
@@ -24,11 +25,8 @@ public class SystemLogAspact {
 		String className = point.getSignature().getDeclaringTypeName();	//获取调用的类的全名
 		String operTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());	//获取操作时间
 		SystemLog systemLog = new SystemLog(methodName,className,operTime);
-		try {
-			systemLogService.dealWithSystemLog(systemLog);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		//多线程写日志
+		new Thread(new SystemLogThread(this.systemLogService,systemLog)).start();
 	}
 	/*
 	@After("execution(public * com.stx.controller.UserController.*(..))")
