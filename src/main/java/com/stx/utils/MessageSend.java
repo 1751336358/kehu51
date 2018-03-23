@@ -1,4 +1,5 @@
 package com.stx.utils;
+
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -15,6 +16,7 @@ import com.stx.pojo.WorkMessage;
  * 2018-02-14
  */
 public class MessageSend {
+	
 	//目标队列名字id_queueName
 	public static  void sendMessage(WorkMessage workMessage,int id,String queueName) throws RuntimeException{
 		
@@ -51,10 +53,10 @@ public class MessageSend {
 		try {
 			//7.创建消息
 			obgMsg = activeSession.createObjectMessage(workMessage);
-			//8.发送消息
+			//8.发送消息，这里改为后台线程发送
+			
 			messageProducer.send(obgMsg);
 		} catch (JMSException e) {
-			System.out.println("消息发送失败");
 			throw new RuntimeException("消息发送失败");
 		}				
 		try {

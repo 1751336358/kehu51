@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.RejectedExecutionException;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +26,7 @@ import com.stx.pojo.User;
 import com.stx.pojo.Work;
 import com.stx.pojo.WorkMessage;
 import com.stx.service.MessageService;
+import com.stx.thread.MessageSendThread;
 import com.stx.utils.MessageReceive;
 import com.stx.utils.MessageSend;
 import com.stx.utils.MessageSerializable;
@@ -71,9 +75,9 @@ public class MassageServiceImpl implements MessageService{
 		workMessage.setContentMap(map);
 		
 		//发送消息
-		boolean returnMsg = false;
 		try{
-			MessageSend.sendMessage(workMessage, employ.getId(),employ.getUsername());
+		//	MessageSend.sendMessage(workMessage, employ.getId(),employ.getUsername());
+			executorService.execute(new MessageSendThread(workMessage, employ.getId(), employ.getUsername()));
 			//将消息保存为已发消息存入redis[2]
 			Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
 			messageDao.newMsg2HasSendMsg(jedis, u.getId(), u.getUsername(), workMessage);
@@ -173,13 +177,18 @@ public class MassageServiceImpl implements MessageService{
 		workMessage.setDistince_queue(distince_queue);
 		workMessage.setTime(data);
 		workMessage.setType("日志消息");
+		
+		//	messageDao.tagHasBeenRead(workMessage);
+		int id = workMessage.getDistince_id();
+		String queueName = workMessage.getDistince_queue();
 		try{
-			messageDao.tagHasBeenRead(workMessage);
-			return true;	//消息发送成功
-		}catch(RuntimeException e){	
-			System.out.println("标记日志为已读的消息发送失败");
-			return false;	//消息发送失败
+			this.executorService.execute(new MessageSendThread(workMessage, id, queueName));
+		}catch(RejectedExecutionException e){
+			System.out.println("线程异常");
+			return false;
 		}
+		
+		return true;	//消息发送成功
 	}
 	
 	/**
@@ -213,7 +222,8 @@ public class MassageServiceImpl implements MessageService{
 					
 					//发消息,这里应该最好设置为多线程
 					try{
-						MessageSend.sendMessage(workMessage, distince_id, distince_queue);
+					//	MessageSend.sendMessage(workMessage, distince_id, distince_queue);
+						this.executorService.execute(new MessageSendThread(workMessage, distince_id, distince_queue));
 						//在这里应该把批量发送的消息存入redis[2]成为已发消息
 						Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
 						if(jedis != null){
@@ -278,7 +288,8 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setSource_queue(u.getUsername());
 			workMessage.setType("补卡签到消息");
 			workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
-			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+		//	MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			this.executorService.execute(new MessageSendThread(workMessage, Integer.parseInt(employ_id), employ_name));
 			System.out.println("申请补卡消息发送完成");
 			return "您已同意"+employ_name+"的申请签到消息";
 		}else if("0".equals(aggreeLogin)){	//不同意补卡签到
@@ -292,7 +303,8 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setDistince_queue(employ_name);
 			workMessage.setSource_id(u.getId());
 			workMessage.setSource_queue(u.getUsername());
-			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+		//	MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			this.executorService.execute(new MessageSendThread(workMessage, Integer.parseInt(employ_id), employ_name));
 			System.out.println("不同意补卡消息发送成功");
 			return "您未同意"+employ_name+"的申请签到消息";
 		}
@@ -346,7 +358,8 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setSource_queue(u.getUsername());
 			workMessage.setType("补卡签退消息");
 			workMessage.setTime(new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date()));
-			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+		//	MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			this.executorService.execute(new MessageSendThread(workMessage, Integer.parseInt(employ_id), employ_name));
 			System.out.println("申请补卡消息发送完成");
 			return "您已同意"+employ_name+"的申请签退消息";
 		}else if("0".equals(aggreeLogout)){	//不同意不卡签退
@@ -360,7 +373,8 @@ public class MassageServiceImpl implements MessageService{
 			workMessage.setDistince_queue(employ_name);
 			workMessage.setSource_id(u.getId());
 			workMessage.setSource_queue(u.getUsername());
-			MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+		//	MessageSend.sendMessage(workMessage, Integer.parseInt(employ_id), employ_name);
+			this.executorService.execute(new MessageSendThread(workMessage, Integer.parseInt(employ_id), employ_name));
 			System.out.println("不同意补卡消息发送成功");
 			return "您未同意"+employ_name+"的申请签退消息";
 		}
@@ -371,4 +385,6 @@ public class MassageServiceImpl implements MessageService{
 	private EmployDao employDao;
 	@Resource(name="messagedao")
 	private MessageDao messageDao;
+	@Autowired
+	private ExecutorService executorService;
 }

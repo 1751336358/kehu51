@@ -33,6 +33,7 @@ public class SystemLogServiceImpl implements SystemLogService{
 		//	表不存在，新建表
 		if(exisTable == null){
 			try{
+				//在并发下有可能同时建表，会抛异常
 				systemLogDao.createNewTable(tableName);
 			}catch(Exception e){
 				throw new Exception("create table "+tableName+" is failed");
