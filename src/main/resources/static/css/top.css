@@ -15,8 +15,8 @@
 }
 #box #text01{
 	position: absolute;
-	left:570px;
-	top:77px;
+	left:370px;
+	top:20px;
 	background: none;
 	font-size: 60px;
     color: #8a9bb6;
@@ -25,8 +25,8 @@
 }
 #box #text02{
 	position: absolute;
-	left:570px;
-	top:160px;
+	left:370px;
+	top:90px;
 	background: none;
 	font-size:25px;
 	color: #8a9bb6;
@@ -35,8 +35,8 @@
 }
 #box #show{
 	position: absolute;
-	right:572px;
-	top:70px;
+	right:300px;
+	top:30px;
 	height:95px;
 	width:379px;
 	background: #8292ad;
