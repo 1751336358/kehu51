@@ -23,12 +23,12 @@ public class MessageDaoImpl implements MessageDao {
 	 * 将新发送的消息保存为已发消息,存入redis[2]中
 	 */
 	public void newMsg2HasSendMsg(Jedis jedis,int id,String username,WorkMessage workMessage){
-		System.out.println("源id:"+workMessage.getSource_id());
+		/*System.out.println("源id:"+workMessage.getSource_id());
 		System.out.println("源queue:"+workMessage.getSource_queue());
 		System.out.println("目标id:"+workMessage.getDistince_id());
-		System.out.println("目标queue:"+workMessage.getDistince_queue());
+		System.out.println("目标queue:"+workMessage.getDistince_queue());*/
 		String key = id + "_" + username;
-		System.out.println("key:"+key);
+	//	System.out.println("key:"+key);
 		jedis.select(2);
 		jedis.lpush(key.getBytes(), MessageSerializable.serializable(workMessage));
 	}

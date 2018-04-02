@@ -3,15 +3,20 @@ package com.stx.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
+
 import com.stx.dao.EmployDao;
+import com.stx.dao.EmployLeaveDao;
 import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Employ;
+import com.stx.pojo.EmployLeave;
 import com.stx.pojo.Log;
 import com.stx.pojo.User;
 import com.stx.pojo.Work;
@@ -207,7 +212,26 @@ public class EmployServiceImpl implements EmployService{
 		return request;
 	}
 	
+	/**
+	 *insert 请假记录
+	 */
+	public Integer insertLeave(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		EmployLeave employLeave = new EmployLeave();
+		employLeave.setEmployId(u.getId());
+		employLeave.setEmployName(u.getUsername());
+		employLeave.setLeaveReason(request.getParameter("leaveReason"));
+		employLeave.setStartTime(request.getParameter("startTime"));
+		employLeave.setEndTime(request.getParameter("endTime"));
+		employLeave.setCommitTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+		Integer ret = 0;
+		ret = employLeaveDao.insertLeave(employLeave);
+		return ret;
+	}
 	
 	@Resource(name="employdao")
 	private EmployDao employDao;
+	@Resource(name="employleavedao")
+	private EmployLeaveDao employLeaveDao;
 }

@@ -38,4 +38,9 @@ public interface EmployService {
 		
 		//评论我的
 		public HttpServletRequest myComment(HttpServletRequest request,HttpServletResponse response);
+		
+		/**
+		 *insert 请假记录
+		 */
+		public Integer insertLeave(HttpServletRequest request,HttpServletResponse response);
 	}

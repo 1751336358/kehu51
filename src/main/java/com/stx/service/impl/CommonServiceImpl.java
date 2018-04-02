@@ -61,45 +61,34 @@ public class CommonServiceImpl implements CommonService{
 		User user = new User(username,password);
 		//根据authorityid查询不同的角色所对应的菜单列表
 		Authority authority = commonDao.getAuthority(authorityid);
-		System.out.println(authority.getId());
-		System.out.println(authority.getName());
-		System.out.println(authority.getMenus().size());
+		
 		session.setAttribute("authority", authority);
 		user.setAuthority(authority);
 		//再检查权限，注意：要将查询出来的菜单存入session里
 		if(authorityid == 1){
 			user = commonDao.checkCustom(user);	//username,password,id
-			System.out.println("客户");
 			if(user != null){
-				System.out.println("客户输入的用户名密码正确");
 				session.setAttribute("user", user);
 				return true;
 			}else {
-				System.out.println("客户输入错误");
 				session.removeAttribute("user");
 				return false;
 			}
 		}else if(authorityid == 2){
 			user = commonDao.checkEmploy(user);
-			System.out.println("员工");
 			if(user != null){
-				System.out.println("员工输入的用户名密码正确");
 				session.setAttribute("user", user);
 				return true;
 			}else{
-				System.out.println("员工输入错误");
 				session.removeAttribute("user");
 				return false;
 			}
 		}else if(authorityid == 3){
 			user = commonDao.checkEmploy(user);
-			System.out.println("经理");
 			if(user != null){
-				System.out.println("经理输入的用户名密码正确");
 				session.setAttribute("user", user);				
 				return true;
 			}else{
-				System.out.println("经理输入错误");
 				session.removeAttribute("user");
 				return false;
 			}
@@ -135,37 +124,29 @@ public class CommonServiceImpl implements CommonService{
 		//再检查权限，注意：要将查询出来的菜单存入session里
 		if(authorityId == 1){
 			u = commonDao.checkCustom(u);	//username,password,id
-			System.out.println("客户");
+			
 			if(u != null){
-				System.out.println("客户输入的用户名密码正确");
 				session.setAttribute("user", u);
 				return;
 			}else {
-				System.out.println("客户输入错误");
 				session.removeAttribute("user");
 				return;
 			}
 		}else if(authorityId == 2){
 			u = commonDao.checkEmploy(u);
-			System.out.println("员工");
 			if(u != null){
-				System.out.println("员工输入的用户名密码正确");
 				session.setAttribute("user", u);
 				return;
 			}else{
-				System.out.println("员工输入错误");
 				session.removeAttribute("user");
 				return;
 			}
 		}else if(authorityId == 3){
 			u = commonDao.checkEmploy(u);
-			System.out.println("经理");
 			if(u != null){
-				System.out.println("经理输入的用户名密码正确");
 				session.setAttribute("user", u);				
 				return;
 			}else{
-				System.out.println("经理输入错误");
 				session.removeAttribute("user");
 				return;
 			}
@@ -208,8 +189,7 @@ public class CommonServiceImpl implements CommonService{
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		String base64 = request.getParameter("base64")/*.substring(23).trim().replace(" ", "").replaceAll("\r\n", "")*/;	//去掉data:image/jpeg;base64,这个头
-		System.out.println(base64);
-		System.out.println(base64.length());
+		
 		//将文件写入到文件系统，此处是F:\kehu51\id_username.jpg
 		String id = u.getId()+"_";
 		String username = u.getUsername();

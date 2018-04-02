@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and employ_id=#{employ_id}
 			</if>
 		</where>
-		and employ.id=log.employ_id order by id desc limit #{currentPage},5
+		and employ.id=log.employ_id order by id desc limit #{currentPage},10
 	</select>
 	<!-- 根据日志id查询出员工的username -->
 	<select id="getUserNameByLogId" parameterType="int" resultType="java.lang.String">
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from 
 			work,employ 
 		where 
-			employ_id in (select id from employ where department_id=(select department_id from employ where id=#{manager_id})) and work.employ_id=employ.id order by id desc limit #{currentPage},5
+			employ_id in (select id from employ where department_id=(select department_id from employ where id=#{manager_id})) and work.employ_id=employ.id order by id desc limit #{currentPage},10
 	</select>
 	<!-- 查看个人信息 -->
 	<select id="gotochangemyinfo4manager" parameterType="int" resultType="com.stx.pojo.Employ">

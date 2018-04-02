@@ -28,10 +28,10 @@ import com.stx.pojo.WorkMessage;
 import com.stx.service.MessageService;
 import com.stx.thread.MessageSendThread;
 import com.stx.utils.MessageReceive;
-import com.stx.utils.MessageSend;
 import com.stx.utils.MessageSerializable;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 @Service("messageServices")
 public class MassageServiceImpl implements MessageService{
@@ -75,16 +75,23 @@ public class MassageServiceImpl implements MessageService{
 		workMessage.setContentMap(map);
 		
 		//发送消息
+		Jedis jedis = null;
 		try{
 		//	MessageSend.sendMessage(workMessage, employ.getId(),employ.getUsername());
 			executorService.execute(new MessageSendThread(workMessage, employ.getId(), employ.getUsername()));
 			//将消息保存为已发消息存入redis[2]
-			Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		//	Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+			JedisPool pool = (JedisPool)request.getServletContext().getAttribute("jedisPool");
+			jedis = pool.getResource();
 			messageDao.newMsg2HasSendMsg(jedis, u.getId(), u.getUsername(), workMessage);
 			
 		}catch(RuntimeException e){
 			e.printStackTrace();
 			return false;
+		}finally{
+			if(jedis != null){
+				jedis.close();
+			}
 		}
 		System.out.println("消息发送成功");		
 		return true;
@@ -108,7 +115,10 @@ public class MassageServiceImpl implements MessageService{
 			System.out.println("获得了"+messageList.size()+"条消息");
 		}
 		//将最新消息存入redis[1]成为历史消息
-		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		Jedis jedis = null;
+	//	Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		JedisPool pool = (JedisPool)request.getServletContext().getAttribute("jedisPool");
+		jedis = pool.getResource();
 		if(jedis == null){
 			this.logger.debug("debug|(Jedis)request.getServletContext().getAttribute('jedis') is null", jedis);
 			return messageList;
@@ -120,6 +130,7 @@ public class MassageServiceImpl implements MessageService{
 				jedis.lpush(key.getBytes(),MessageSerializable.serializable(workMessage));
 			}
 		}
+		jedis.close();
 		return messageList;
 	}
 	
@@ -127,7 +138,9 @@ public class MassageServiceImpl implements MessageService{
 	 * 查询已发送消息
 	 */
 	public List<WorkMessage> queryHasSendMsg(HttpServletRequest request,HttpServletResponse response){
-		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+	//	Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		JedisPool pool = (JedisPool)request.getServletContext().getAttribute("jedisPool");
+		Jedis jedis = pool.getResource();
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		int id = u.getId();
@@ -143,7 +156,9 @@ public class MassageServiceImpl implements MessageService{
 	 * 2018-02-26
 	 */
 	public List<WorkMessage> queryHistroyMessage(HttpServletRequest request,HttpServletResponse response){
-		Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+	//	Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+		JedisPool pool = (JedisPool)request.getServletContext().getAttribute("jedisPool");
+		Jedis jedis = pool.getResource();
 		HttpSession session = request.getSession(false);
 		if(session != null){
 			User u = (User)session.getAttribute("user");
@@ -221,16 +236,23 @@ public class MassageServiceImpl implements MessageService{
 					workMessage.setDistince_queue(distince_queue);
 					
 					//发消息,这里应该最好设置为多线程
+					Jedis jedis = null;
 					try{
 					//	MessageSend.sendMessage(workMessage, distince_id, distince_queue);
 						this.executorService.execute(new MessageSendThread(workMessage, distince_id, distince_queue));
 						//在这里应该把批量发送的消息存入redis[2]成为已发消息
-						Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+					//	Jedis jedis = (Jedis)request.getServletContext().getAttribute("jedis");
+						JedisPool pool = (JedisPool)request.getServletContext().getAttribute("jedisPool");
+						jedis = pool.getResource();
 						if(jedis != null){
 							messageDao.newMsg2HasSendMsg(jedis, source_id, source_queue, workMessage);
 						}
 					}catch(RuntimeException e){
 						return false;
+					}finally{
+						if(jedis != null){
+							jedis.close();
+						}
 					}
 					
 				}else{

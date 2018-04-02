@@ -72,7 +72,7 @@ public class EmployController {
 	@RequestMapping("/hasDaka")
 	public @ResponseBody boolean buka(HttpServletRequest request,HttpServletResponse response){
 		boolean status = employService.buka(request, response);
-		System.out.println("状态:"+status);
+		
 		return status;
 	}
 	/**
@@ -144,6 +144,24 @@ public class EmployController {
 			request.getRequestDispatcher("/WEB-INF/jsp/employ/mycomment.jsp").forward(request, response);
 		} catch (Exception e) {
 		}
+	}
+	
+	/**
+	 * 跳转到员工请假页面
+	 */
+	@RequestMapping("/leave4employ")
+	public void  leave4employ (HttpServletRequest request,HttpServletResponse response){
+		
+		try {
+			request.getRequestDispatcher("/WEB-INF/jsp/employ/leave4employ.jsp").forward(request, response);
+		} catch (Exception e) {
+		} 
+	}
+	@RequestMapping("/insertLeave")
+	public Integer insertLeave(HttpServletRequest request,HttpServletResponse response){
+		Integer ret = 0;
+		ret = employService.insertLeave(request, response);
+		return ret;
 	}
 	@Resource(name="employServices")
 	private EmployService employService;

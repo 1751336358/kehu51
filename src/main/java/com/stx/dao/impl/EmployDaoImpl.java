@@ -12,6 +12,7 @@ import com.stx.mapper.EmployMapper;
 import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Employ;
+import com.stx.pojo.EmployLeave;
 import com.stx.pojo.Log;
 import com.stx.pojo.Work;
 
@@ -79,6 +80,7 @@ public class EmployDaoImpl extends SqlSessionDaoSupport implements EmployDao{
 		public List<Comment> myComment(int userid){
 			return this.getSqlSession().getMapper(EmployMapper.class).myComment(userid);
 		}
+		
 		@Autowired
 		@Override
 		public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {

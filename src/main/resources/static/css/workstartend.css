@@ -172,7 +172,7 @@
 }
 #msg_box #form #select{
 	position:absolute;
-	top:140px;
+	top:50%;
 	left:0px;
 	width:100%;
 }
@@ -196,7 +196,7 @@
 }
 #msg_box #form #appeal_btn{
 	position: absolute;
-	top:180px;
+	top:70%;
 	width:100%;
 	
 }

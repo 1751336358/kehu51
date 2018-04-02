@@ -74,11 +74,10 @@ public class RequestURLFilter implements Filter{
 		JedisPoolConfig config = new JedisPoolConfig();
 		config.setMaxTotal(30);
 		config.setMaxIdle(2);
-		
-		
-		JedisPool pool = new JedisPool(config, IpService.REDIS_IP, 6379);
-		jedis = pool.getResource();
-		this.cnf.getServletContext().setAttribute("jedis", jedis);
+		JedisPool pool = new JedisPool(config, IpService.REDIS_IP, IpService.REDIS_PORT);
+		this.cnf.getServletContext().setAttribute("jedisPool", pool);
+	//	jedis = pool.getResource();
+	//	this.cnf.getServletContext().setAttribute("jedis", jedis);
 		System.out.println("jedis创建连接");
 	}
 

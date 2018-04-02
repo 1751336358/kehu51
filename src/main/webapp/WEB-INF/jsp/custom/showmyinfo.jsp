@@ -52,12 +52,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			</tr>
   		</table>
   	</div>
-   <%--  id:${requestScope.custom.id}<br/><br/>
-    username:${requestScope.custom.username}<br/><br/>
-    phonenumber:${requestScope.custom.phoneNumber}<br/><br/>
-    email:${requestScope.custom.email}<br/><br/>
-    birthday:${requestScope.custom.birthday }<br/><br/>
-    registertime:${requestScope.custom.registerTime}<br/><br/>
-    queuename:${requestScope.custom.queueName }<br/><br/> --%>
   </body>
 </html>

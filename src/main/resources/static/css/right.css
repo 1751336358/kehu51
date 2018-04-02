@@ -11,15 +11,14 @@ body{
 .box{
 	width:100%;
 	height:100%;
-	float:left;
 	background: #F9F9F9;
 }
 .box .msgBox{
 	width:25%;
-	margin-left:6%;
 	height:380px;
+	margin-left:6%;
+	margin-top:10%;
 	float:left;
-	margin-top:50px;
 	background: white;
 	border:1px solid #ccc;
 	-webkit-transition:width 0.5s,height 0.5s;
@@ -46,7 +45,6 @@ body{
 	width:100%;
 	height:330px;
 }
-/*���ع�����*/
 .box .msgBox .msgBody::-webkit-scrollbar {
     display: none;
 }
