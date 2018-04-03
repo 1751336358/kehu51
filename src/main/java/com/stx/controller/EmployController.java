@@ -1,17 +1,17 @@
 package com.stx.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.stx.pojo.User;
 import com.stx.service.EmployService;
 /**
  * 
@@ -146,23 +146,6 @@ public class EmployController {
 		}
 	}
 	
-	/**
-	 * 跳转到员工请假页面
-	 */
-	@RequestMapping("/leave4employ")
-	public void  leave4employ (HttpServletRequest request,HttpServletResponse response){
-		
-		try {
-			request.getRequestDispatcher("/WEB-INF/jsp/employ/leave4employ.jsp").forward(request, response);
-		} catch (Exception e) {
-		} 
-	}
-	@RequestMapping("/insertLeave")
-	public Integer insertLeave(HttpServletRequest request,HttpServletResponse response){
-		Integer ret = 0;
-		ret = employService.insertLeave(request, response);
-		return ret;
-	}
 	@Resource(name="employServices")
 	private EmployService employService;
 }
