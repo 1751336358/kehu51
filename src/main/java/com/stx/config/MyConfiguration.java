@@ -1,10 +1,14 @@
 package com.stx.config;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.stx.pojo.SystemLog;
+import com.stx.service.SystemLogService;
 /**
  * 系统配置类
  * @author LL
@@ -21,4 +25,6 @@ public class MyConfiguration {
 		ExecutorService executorService = Executors.newFixedThreadPool(30);
 		return executorService;
 	}
+	
+	
 }

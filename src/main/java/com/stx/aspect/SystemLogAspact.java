@@ -30,6 +30,7 @@ public class SystemLogAspact {
 		SystemLog systemLog = new SystemLog(methodName,className,operTime);
 		//多线程写日志
 		executorService.execute(new SystemLogThread(this.systemLogService,systemLog));
+		
 	}
 	/*
 	@After("execution(public * com.stx.controller.UserController.*(..))")
