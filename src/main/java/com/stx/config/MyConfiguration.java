@@ -4,11 +4,12 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
 import com.stx.pojo.SystemLog;
-import com.stx.service.SystemLogService;
+
 /**
  * 系统配置类
  * @author LL
@@ -26,5 +27,9 @@ public class MyConfiguration {
 		return executorService;
 	}
 	
+	@Bean
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
 	
 }
