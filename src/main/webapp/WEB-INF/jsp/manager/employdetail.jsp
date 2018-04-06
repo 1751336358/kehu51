@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="login-bottom">
 					<form action="${pageContext.request.contextPath}/newemploy" method="post">
 						<input type="text" value="${employ.id}"  name="id" hidden/>
-						<input type="text" value="${employ.username }"  name="username">					
+						<input type="text" value="${employ.username }"  name="username" readonly="readonly">					
 						<input type="text" class="password" name="info" value="${employ.info }">
 						<select id="select" name="departmentid">				
 						</select>						
