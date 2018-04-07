@@ -77,7 +77,12 @@
        <groupId>org.springframework.boot</groupId>  
        <artifactId>spring-boot-starter-activemq</artifactId>  
    </dependency>
-  
+  <!-- fastjson包 -->
+    <dependency>
+    	<groupId>com.alibaba</groupId>
+    	<artifactId>fastjson</artifactId>
+    	<version>1.2.20</version>
+    </dependency>
     <!--实现热部署，导入devtools包  -->
     <dependency>
     	<groupId>org.springframework.boot</groupId>

@@ -9,11 +9,11 @@ public class IpService {
 	/**
 	 * ActiveMQ的IP地址
 	 */
-	public static final String ACTIVE_MQ_IP = "tcp://192.168.1.106:61616";
+	public static final String ACTIVE_MQ_IP = "tcp://192.168.43.252:61616";
 	/**
 	 * redis主机和端口
 	 */
-	public static final String REDIS_IP = "192.168.1.106";
+	public static final String REDIS_IP = "192.168.43.252";
 	public static final int REDIS_PORT = 6379;
 	/**
 	 * 本地日志服务器主机和端口
@@ -22,7 +22,7 @@ public class IpService {
 	/**
 	 * nginx负载均衡后的日志服务器IP
 	 */
-	public static final String LOGSERVER_IP_NGINX = "http://192.168.1.106";	//nginx所在的主机，监听的端口是80
+	public static final String LOGSERVER_IP_NGINX = "http://192.168.43.252";	//nginx所在的主机，监听的端口是80
 	/*
 	 upstream log {
 		server 192.168.1.100:8082 weight=1;	#日志服务器所在的主机
