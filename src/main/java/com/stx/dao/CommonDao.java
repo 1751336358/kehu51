@@ -1,10 +1,8 @@
 package com.stx.dao;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.stx.pojo.Authority;
 import com.stx.pojo.Menu;
 import com.stx.pojo.User;
@@ -40,6 +38,5 @@ public interface CommonDao {
 	public List<Menu> getFMenuByAuthorityId(int authority_id);
 	
 	//根据menuId查询子Menu
-	public List<Menu> getSonMenuByFatherId(int menuId);
-	
+	public List<Menu> getSonMenuByFatherId(int menuId);	
 }

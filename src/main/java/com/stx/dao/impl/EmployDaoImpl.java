@@ -48,8 +48,8 @@ public class EmployDaoImpl extends SqlSessionDaoSupport implements EmployDao{
 		}
 		
 		//将日志添加到数据库
-		public void addLog(Log log){
-			this.getSqlSession().getMapper(EmployMapper.class).addLog(log);
+		public Integer addLog(Log log){
+			return this.getSqlSession().getMapper(EmployMapper.class).addLog(log);
 		}
 		
 		//根据当前的员工的id查询出该员工所在的部门的经理的id

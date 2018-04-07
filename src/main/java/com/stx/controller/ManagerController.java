@@ -1,17 +1,14 @@
 package com.stx.controller;
 
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
@@ -26,8 +23,6 @@ import com.stx.service.ManagerService;
  */
 @RestController("managerController")
 public class ManagerController {
-	
-	
 	/**
 	 * 根据父菜单id查询子菜单id
 	 */
@@ -73,8 +68,6 @@ public class ManagerController {
 			
 		} 
 	}
-	
-	
 	/**
 	 * 跳转到修改员工信息页面
 	 */
@@ -164,7 +157,6 @@ public class ManagerController {
 	public @ResponseBody List<Work> getWorkByPage(HttpServletRequest request,HttpServletResponse response){
 		return managerService.getWorkByPage(request, response);
 	}
-	
 	
 	@Resource(name="managerServices")
 	private ManagerService managerService;

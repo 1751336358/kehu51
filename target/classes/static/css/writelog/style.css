@@ -72,7 +72,7 @@ body{
 	text-align: right;
     margin-right: 0.5em;
 }
-.login-form form input[type="text"],.login-form form textarea {
+.login-form  input[type="text"],.login-form  textarea {
     width: 75%;
     padding: 8px;
     font-size: 1em;
@@ -238,7 +238,7 @@ body{
 .login-form ul li.text-info {
     padding-bottom: .5em;
 }
-.login-form form input[type="text"], .login-form form textarea{
+.login-form  input[type="text"], .login-form  textarea{
    width: 94%;
        margin-right: 3%;
 }

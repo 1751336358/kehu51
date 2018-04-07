@@ -1,17 +1,14 @@
 package com.stx.controller;
 
 import java.io.IOException;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.stx.service.CommonService;
 
 /**
@@ -46,16 +43,12 @@ public class CommonController {
 	@RequestMapping("/login")
 	public  void login(HttpServletRequest request,HttpServletResponse response){
 		//不用判断，点击登录按钮时已经做了输入检查，能走到这一步说明username和password是对的
-		commonService.loginIn(request, response);
-		
+		commonService.loginIn(request, response);	
 		try {
 			request.getRequestDispatcher("/WEB-INF/jsp/frame.jsp").forward(request, response);
 		} catch (Exception e) {
 			
 		} 
-				
-			
-	
 	}
 	
 	/**

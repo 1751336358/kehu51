@@ -16,7 +16,7 @@ public interface EmployService {
 		public boolean workEnd(HttpServletRequest request,HttpServletResponse response);
 		
 		//将日志添加到数据库
-		public void addLog(HttpServletRequest request,HttpServletResponse response);
+		public Integer addLog(HttpServletRequest request,HttpServletResponse response) throws Exception;
 		
 		//补卡
 		public boolean buka(HttpServletRequest request,HttpServletResponse response);

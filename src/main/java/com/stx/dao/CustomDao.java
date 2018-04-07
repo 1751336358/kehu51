@@ -1,7 +1,6 @@
 package com.stx.dao;
 
 import java.util.List;
-
 import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Department;

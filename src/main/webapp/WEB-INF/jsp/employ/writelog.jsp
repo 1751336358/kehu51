@@ -17,19 +17,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return true：表单正常提交
 			return false：阻止表单提交
 		*/
-		function submitLog(){
-			var title = $("#title").val();
-			var content = $("#content").val();
-			if(title==''){
-				$("#title").focus();
-				return false;
-			}
-			if(content == ''){
-				$("#content").focus();
-				return false;
-			}
-			return true;
-		}
+		
+		$(function(){
+			$("#submit").click(function(){
+				var title = $("#title").val();
+				var content = $("#content").val();
+				if(title==''){
+					$("#title").focus();
+					return false;
+				}
+				if(content == ''){
+					$("#content").focus();
+					return false;
+				}
+				var url = "${pageContext.request.contextPath}/addlog";
+				$.post(url,"title="+title+"&content="+content,function(data){
+					if(data == 1){
+						$("#title").val("");
+						$("#content").val("");
+						alert("日志发送成功");
+					}else{
+						
+						alert("系统异常，日志发送失败");
+					}
+				});
+			});
+		})
+		
 	</script>
 	<!---header--->
 	<div class="header">
@@ -39,8 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="main">
 		<div class="main-section">
 			<div class="login-form">
-				<!-- onSubmit方法可以阻止表单提交事件 -->
-				<form action="${pageContext.request.contextPath}/addlog" method="post" onSubmit="return submitLog();">
 					<ul>
 						 <li class="text-info">标题</li>
 						 <li><input id="title" name="title" type="text" placeholder="" required></li>
@@ -52,7 +64,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="clear"></div>
 					</ul>
 					<input id="submit" type="submit" value="Send Message">
-				</form>
 			</div>
 		</div>
 	</div>

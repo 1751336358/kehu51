@@ -2,12 +2,10 @@ package com.stx.controller;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,12 +87,15 @@ public class EmployController {
 	 * 将日志添加到数据库
 	 */
 	@RequestMapping("/addlog")
-	public void addLog(HttpServletRequest request,HttpServletResponse response){
-		employService.addLog(request, response);		
-		try {
-			response.sendRedirect("/kehu51/logsuccess");	//需要重定向
-		} catch (IOException e) {
+	public @ResponseBody Integer addLog(HttpServletRequest request,HttpServletResponse response){
+		Integer ret = 0;
+		try{
+			ret = employService.addLog(request, response);
+		}catch(Exception e){
+			System.out.println("日志发送失败");
+			return 0;
 		}
+		return ret;
 	}
 
 	@RequestMapping("/logsuccess")

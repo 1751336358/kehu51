@@ -31,7 +31,7 @@ public interface EmployMapper {
 		public int isWorkEnd(Work work);
 		
 		//将日志添加到数据库
-		public void addLog(Log log);
+		public Integer addLog(Log log);
 		
 		//根据当前的员工的id查询出该员工所在的部门的经理的id
 		public int selManagerId(int employ_id);

@@ -126,7 +126,7 @@ public class EmployServiceImpl implements EmployService{
 	/**
 	 * 将日志添加到数据库
 	 */
-	public void addLog(HttpServletRequest request,HttpServletResponse response){
+	public Integer addLog(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
 		int employ_id = u.getId();
@@ -145,7 +145,8 @@ public class EmployServiceImpl implements EmployService{
 		log.setContent(content);
 		log.setCommittime(committime);
 		log.setManager_id(manager_id);
-		employDao.addLog(log);
+		Integer ret = 0;
+		ret = employDao.addLog(log);
 		System.out.println("主键回显的日志id是："+log.getId());
 		//发送消息给manager
 		WorkMessage workMessage = new WorkMessage();
@@ -157,6 +158,7 @@ public class EmployServiceImpl implements EmployService{
 		workMessage.setDistince_id(manager_id);
 		workMessage.setDistince_queue(manager_name);
 		MessageSend.sendMessage(workMessage, manager_id, manager_name);
+		return ret;
 	}
 	
 	/**

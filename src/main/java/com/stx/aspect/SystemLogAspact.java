@@ -3,16 +3,13 @@ package com.stx.aspect;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
-
 import javax.annotation.Resource;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import com.stx.pojo.SystemLog;
 import com.stx.service.SystemLogService;
 import com.stx.thread.HttpRequestThread;
@@ -68,5 +65,4 @@ public class SystemLogAspact {
 	public void around(ProceedingJoinPoint point){
 	}
 	*/
-
 }
