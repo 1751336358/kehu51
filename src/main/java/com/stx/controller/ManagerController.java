@@ -1,19 +1,23 @@
 package com.stx.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
-import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
 import com.stx.pojo.Menu;
 import com.stx.pojo.Work;
+import com.stx.service.EmployService;
 import com.stx.service.ManagerService;
 
 /**
@@ -158,6 +162,15 @@ public class ManagerController {
 		return managerService.getWorkByPage(request, response);
 	}
 	
+	
+	/**
+	 * 根据员工id查客户信息
+	 */
+	@RequestMapping("/queryCustomDetailByEmployId")
+	public @ResponseBody  List<Custom> queryCustomDetailByEmployId(HttpServletRequest request,HttpServletResponse response){
+		List<Custom> customList = managerService.queryCustomDetailByEmployId(request, response);
+		return customList;
+	}
 	@Resource(name="managerServices")
 	private ManagerService managerService;
 }

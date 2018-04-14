@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
@@ -51,4 +52,6 @@ public interface ManagerService {
 		// Ajax控制考勤列表翻页
 		public List<Work> getWorkByPage(HttpServletRequest request,HttpServletResponse response);
 		
+		//通过员工id查看所有客户详情
+		public List<Custom> queryCustomDetailByEmployId(HttpServletRequest request,HttpServletResponse response);
 	}

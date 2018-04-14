@@ -39,8 +39,8 @@ public class SystemLogAspact {
 			return;
 		}else{
 			//多线程异步发送请求
-		//	String url = IpService.LOGSERVER_IP+"/LogServer/recieveLog";
-			String url = IpService.LOGSERVER_IP_NGINX+"/LogServer/recievelog";
+			String url = IpService.LOGSERVER_IP+"/LogServer/recieveLog";
+		//	String url = IpService.LOGSERVER_IP_NGINX+"/LogServer/recievelog";
 			//这里设计成泛型，可以发送不同的对象，方便以后系统拓展
 			executorService.execute(new HttpRequestThread<SystemLog>(restTemplate, url,systemLog));
 		}

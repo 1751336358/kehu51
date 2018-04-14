@@ -10,8 +10,8 @@
 	border: 1px solid #ccc;
 }
 #box table{
-	margin: 0 auto;
-	width:100%;
+	float:left;
+	width:74%;
 }
 #box table #title{
 	background: #3E82C9;
@@ -42,12 +42,50 @@
 #box table .info:hover{
 	background: #BCD4EC;
 }
+#box table .info .customDetail{
+	color:black;
+}
+#box table .info .customDetail:hover{
+	color:red;
+}
+#box table .info .customDetail:hover{
+	cursor: pointer;
+}
+#box .showDetailBox{
+	float:left;
+	width:25%;
+	height:300px;
+	border:1px solid #ccc;
+	overflow: auto;
+}
+#box .showDetailBox::-webkit-scrollbar {
+    display: none;
+}
+#box .showDetailBox div{
+	border-bottom: 1px solid #ccc;
+}
+#box .showDetailBox div .index{
+	width:100%;
+	height:30px;
+	background: #30C5DB;
+	text-align: left;
+	padding-left:10px;
+	line-height: 30px;
+	color:white;
+	font-weight: 400;
+	font-style: italic;
+}
+#box .showDetailBox div p{
+	font-size:14px;
+	padding-left:5px;
+	height: 25px;
+	line-height: 25px;
+}
 #prePage{
 	float:right;
 	margin-right:40px;
 	width:80px;
 	height:40px;
-	
 }
 #nextPage{
 	float:right;

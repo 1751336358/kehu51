@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stx.dao.ManagerDao;
 import com.stx.dao.EmployDao;
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
@@ -65,6 +66,12 @@ public class ManagerServiceImpl implements ManagerService{
 	public HttpServletRequest getAllEmploy(HttpServletRequest request,HttpServletResponse response){
 		int userid = Integer.parseInt(request.getParameter("userid"));
 		List<Employ> employs = managerDao.getAllEmploy(userid);
+		//顺便查出第一位员工的所有客户详情信息在页面中显示
+		if(employs != null || employs.size() > 0){
+			int employId = employs.get(0).getId();	//第一位员工的id
+			List<Custom> customList = employDao.getAllCustom(employId);
+			request.setAttribute("firstCustom", customList);		
+		}
 		request.setAttribute("employs",employs);
 		return request;
 	}
@@ -177,6 +184,16 @@ public class ManagerServiceImpl implements ManagerService{
 		return works;
 	}
 	
+	//通过员工id查看所有客户详情
+	public List<Custom> queryCustomDetailByEmployId(HttpServletRequest request,HttpServletResponse response){
+		int userid = Integer.parseInt(request.getParameter("userid"));
+		List<Custom> customList = employDao.getAllCustom(userid);
+		if(customList == null || customList.size() == 0){
+			return null;
+		}else{
+			return customList;
+		}
+	}
 	@Resource(name="managerdao")
 	private ManagerDao managerDao;
 	@Resource(name="employdao")
