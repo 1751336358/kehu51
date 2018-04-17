@@ -78,6 +78,17 @@ public class AdminController {
 			e.printStackTrace();
 		} 
 	}
+	/**
+	 * 跳转到员工列表页面
+	 */
+	@RequestMapping("/gotoEmployList")
+	public void gotoEmployList(HttpServletRequest request,HttpServletResponse response){
+		try {
+			request.getRequestDispatcher("/WEB-INF/jsp/admin/employList.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
 	@Resource(name="adminServices")
 	private AdminService adminService;
 }

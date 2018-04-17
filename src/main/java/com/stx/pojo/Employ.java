@@ -18,7 +18,7 @@ public class Employ extends User{
 	private String info;		//信息
 	private String queuename;	//消息队列名字
 	private int departmentid;	//部门id
-	
+	private int open;			//1：启用  -1：禁用
 	public String getInfo() {
 		return info;
 	}
@@ -37,4 +37,11 @@ public class Employ extends User{
 	public void setDepartmentid(int departmentid) {
 		this.departmentid = departmentid;
 	}
+	public int getOpen() {
+		return open;
+	}
+	public void setOpen(int open) {
+		this.open = open;
+	}
+	
 }

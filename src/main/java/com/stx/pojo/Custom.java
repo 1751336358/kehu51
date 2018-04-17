@@ -25,7 +25,7 @@ public class Custom extends User{
 	private String registerTime;	//注册时间
 	private String queueName;	//消息队列名称
 	private Employ employ;		//所属的客户
-	
+	private int open;			//1：启用  -1：禁用
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -64,4 +64,11 @@ public class Custom extends User{
 	public void setEmploy(Employ employ) {
 		this.employ = employ;
 	}
+	public int getOpen() {
+		return open;
+	}
+	public void setOpen(int open) {
+		this.open = open;
+	}
+	
 }
