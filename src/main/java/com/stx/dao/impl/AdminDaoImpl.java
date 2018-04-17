@@ -16,6 +16,7 @@ import com.stx.mapper.AdminMapper;
 import com.stx.mapper.CommonMapper;
 import com.stx.pojo.Authority;
 import com.stx.pojo.Department;
+import com.stx.pojo.Employ;
 import com.stx.pojo.Menu;
 import com.stx.pojo.User;
 
@@ -53,6 +54,13 @@ public class AdminDaoImpl extends SqlSessionDaoSupport implements AdminDao{
 	@Override
 	public Integer delDepartmentById(Integer id){
 		return this.getSqlSession().getMapper(AdminMapper.class).delDepartmentById(id);
+	}
+	
+	/**
+	 * 查询部门员工
+	 */
+	public List<Employ> queryEmployByDepartmentId(Integer departmentId){
+		return this.getSqlSession().getMapper(AdminMapper.class).queryEmployByDepartmentId(departmentId);
 	}
 	@Autowired
 	@Override

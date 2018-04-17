@@ -21,4 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delDepartmentById" parameterType="Integer">
 		delete from department where id=#{id}
 	</delete>
+	<!-- 查询员工通过departmentId -->
+	<select id="queryEmployByDepartmentId" parameterType="Integer" resultType="com.stx.pojo.Employ">
+		select id,username,password,info, department_id departmentid,queuename,open from employ where authority_id=2 and department_id=#{departmentId}
+	</select>
 </mapper>

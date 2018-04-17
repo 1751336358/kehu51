@@ -1,5 +1,6 @@
 package com.stx.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -98,6 +99,22 @@ public class AdminServiceImpl implements AdminService{
 		//再删除部门
 		adminDao.delDepartmentById(id);
 		return 1;
+	}
+	
+	/**
+	 * 查询部门员工信息
+	 */
+	public List<Department> queryDepartmentAndEmploy(){
+		//查询部门信息
+		List<Department> departments = adminDao.queryDepartment();
+		
+		for(Department department:departments){
+			//循环查询员工信息
+			Integer departmentId = department.getId();
+			List<Employ> employs = adminDao.queryEmployByDepartmentId(departmentId);
+			department.setEmploys(employs);
+		}
+		return departments;
 	}
 	@Resource(name="admindao")
 	private AdminDao adminDao;

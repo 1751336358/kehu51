@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
     <head>
         <meta charset="utf-8">
+       
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,81 +18,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employList/x-admin.css" media="all">
     </head>
     <body>
-        
-        <div class="x-body">
+    <c:forEach items="${departments}" var="department">
+    	<div>
             <xblock>
-                <button class="layui-btn layui-btn-danger" onclick="delAll()">开发部</button>
-                <span class="x-right" style="line-height:25px">共有数据：88 条</span>
+                <button class="layui-btn layui-btn-danger">${department.name }</button>
+                <span class="x-right" style="line-height:25px">共有数据：${department.employs.size() } 条</span>
             </xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
-                        <th>
-                            <input type="checkbox" name="" value="">
-                        </th>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            用户名
-                        </th>
-                        <th>
-                            密码</th>
-                        <th>
-                            用户角色</th>
-                        <th>
-                            性别</th>
-                        <th>
-                            注册时间
-                        </th>
-                        <th>
-                            状态
-                        </th>
-                        <th>
-                            操作
-                        </th>
+                        <th> ID</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>用户角色</th>       
+                        <th>状态</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${department.employs}" var="employ">
                     <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td><u style="cursor:pointer" onclick="user_management_show('宋加加','user_management_show.html','10001','360','400')">宋加加</u></td>
-                        <td >
-                        123456</td>
-                        <td >
-                            用户</td>
-                        <td >
-                            男</td>
-                        <td>
-                            2015-07-13 13:13:32
-                        </td>
+                        <td>${employ.id}</td>
+                        <td><u style="cursor:pointer">${employ.username}</u></td>
+                        <td >${employ.password }</td>
+                        <td >用户</td>
+                        
                         <td class="td-status">
-                           <!--  <span class="layui-btn layui-btn-normal layui-btn-mini">  已启用</span> -->
-                            <span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>
+                        	<c:if test="${employ.open==1}">
+                        		<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
+                        	</c:if>
+                            <c:if test="${employ.open==-1}">
+                            	<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>
+                            </c:if>                    
                         </td>
                         <td class="td-manage">
-                            <!-- <a style="text-decoration:none" onclick="member_stop()" href="javascript:;" title="停用">
+                        <c:if test="${employ.open==1}">
+                        	<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
                                 <i class="layui-icon">&#xe601;</i>
-                            </a> -->
-                             <a style="text-decoration:none" onClick="member_start()" href="javascript:;" title="停用"><i class="layui-icon">&#xe62f;</i></a> 
+                            </a>
+                        </c:if>
+                        <c:if test="${employ.open==-1}">  
+                            <a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用">
+                                <i class="layui-icon">&#xe62f;</i>
+                            </a>
+						</c:if>
                         </td>
-                    </tr> 
+                    </tr>
+                  </c:forEach>
                 </tbody>
             </table>
         </div>
-
+        </c:forEach>
         <br /><br /><br />
-        <script src="${pageContext.request.contextPath}/js/employList/layui.js" charset="utf-8"></script>
+        <script src="${pageContext.request.contextPath}/js/lib/layui/layui.js" charset="utf-8"></script>
         <script src="${pageContext.request.contextPath}/js/employList/x-layui.js" charset="utf-8"></script>
         <script>
+
             /*用户-停用*/
-            function member_stop(){
-                layer.confirm('确认要停用吗？',function(){
+            function member_stop(obj,id){
+                layer.confirm('确认要停用吗？',function(index){
                     //发异步把用户状态进行更改
                     
                     layer.msg('已停用!',{icon: 5,time:1000});
@@ -99,14 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
 
             /*用户-启用*/
-            function member_start(){
-                layer.confirm('确认要启用吗？',function(){
+            function member_start(obj,id){
+                layer.confirm('确认要启用吗？',function(index){
                     //发异步把用户状态进行更改
-                
+                    
                     layer.msg('已启用!',{icon: 6,time:1000});
                 });
             }
-
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery
               laydate = layui.laydate;//日期插件
@@ -147,12 +131,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             });
             </script>
             <script>
-            var _hmt = _hmt || [];
-            (function() {
-              var hm = document.createElement("script");
-              var s = document.getElementsByTagName("script")[0]; 
-              s.parentNode.insertBefore(hm, s);
-            })();
-            </script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
     </body>
 </html>

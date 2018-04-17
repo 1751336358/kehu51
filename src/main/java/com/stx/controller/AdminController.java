@@ -83,7 +83,10 @@ public class AdminController {
 	 */
 	@RequestMapping("/gotoEmployList")
 	public void gotoEmployList(HttpServletRequest request,HttpServletResponse response){
+		//查询部门员工信息
+		List<Department> departments = adminService.queryDepartmentAndEmploy();
 		try {
+			request.setAttribute("departments", departments);
 			request.getRequestDispatcher("/WEB-INF/jsp/admin/employList.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

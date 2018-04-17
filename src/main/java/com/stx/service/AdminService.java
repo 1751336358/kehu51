@@ -26,4 +26,9 @@ public interface AdminService {
 	 * @param response
 	 */
 	public Integer delDepartmentById(HttpServletRequest request,HttpServletResponse response);
+	
+	/**
+	 * 查询部门员工信息
+	 */
+	public List<Department> queryDepartmentAndEmploy();
 }

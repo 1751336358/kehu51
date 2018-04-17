@@ -3,6 +3,7 @@ package com.stx.dao;
 import java.util.List;
 
 import com.stx.pojo.Department;
+import com.stx.pojo.Employ;
 
 public interface AdminDao {
 	/**
@@ -27,4 +28,9 @@ public interface AdminDao {
 	 * 删除部门
 	 */
 	public Integer delDepartmentById(Integer id);
+	
+	/**
+	 * 查询部门员工
+	 */
+	public List<Employ> queryEmployByDepartmentId(Integer departmentId);
 }
