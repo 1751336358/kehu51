@@ -35,6 +35,10 @@ public class CommonServiceImpl implements CommonService{
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		if("admin".equals(username) && "admin".equals(password)){	//如果是管理员登录
+			session.setAttribute("loginRole", "admin");
+			return true;
+		}
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -49,7 +53,7 @@ public class CommonServiceImpl implements CommonService{
 		}
 		return true;
 	}
-	//登录
+	//登录，旧接口，暂时废弃
 	@Override
 	public boolean login(HttpServletRequest request,HttpServletResponse response){
 		HttpSession session = request.getSession();
@@ -112,6 +116,8 @@ public class CommonServiceImpl implements CommonService{
 			authorityId = commonDao.getAuthorityId4Employ(username);
 		}else if("custom".equals(loginRole)){	//custom正在登录，查custom表
 			authorityId = commonDao.getAuthorityId4Custom(username);
+		}else if("admin".equals(loginRole)){	//管理员登录
+			authorityId = 4;
 		}
 		//权限和一级菜单
 		Authority authority = commonDao.getAuthority(authorityId);
@@ -123,7 +129,6 @@ public class CommonServiceImpl implements CommonService{
 		//再检查权限，注意：要将查询出来的菜单存入session里
 		if(authorityId == 1){
 			u = commonDao.checkCustom(u);	//username,password,id
-			
 			if(u != null){
 				session.setAttribute("user", u);
 				return;
@@ -149,6 +154,12 @@ public class CommonServiceImpl implements CommonService{
 				session.removeAttribute("user");
 				return;
 			}
+		}else if(authorityId == 4){	//管理员登录
+			u.setId(0);
+			u.setUsername("admin");
+			u.setPassword("admin");
+			session.setAttribute("user", u);
+			return;
 		}
 	}
 	/**

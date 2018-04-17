@@ -67,7 +67,7 @@ public class ManagerServiceImpl implements ManagerService{
 		int userid = Integer.parseInt(request.getParameter("userid"));
 		List<Employ> employs = managerDao.getAllEmploy(userid);
 		//顺便查出第一位员工的所有客户详情信息在页面中显示
-		if(employs != null || employs.size() > 0){
+		if(employs != null && employs.size() > 0){
 			int employId = employs.get(0).getId();	//第一位员工的id
 			List<Custom> customList = employDao.getAllCustom(employId);
 			request.setAttribute("firstCustom", customList);		

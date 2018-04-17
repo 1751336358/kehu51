@@ -70,4 +70,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="myComment" parameterType="int" resultType="com.stx.pojo.Comment">
 		select * from comment where employ_id=#{id} order by id desc;
 	</select>
+	<!-- 判断经理名是否存在 -->
+	<select id="managerExist" parameterType="String" resultType="Integer">
+		select count(*) from employ where authority_id=3 and username=#{username}
+	</select>
+	<!-- 添加经理 ,password默认和username相等-->
+	<insert id="addManager" parameterType="com.stx.pojo.Employ">
+		insert into employ(username,password,info,authority_id,department_id,queuename) values(#{username},#{username},#{info},3,#{departmentid},#{username})
+	</insert>
+	<!-- 删除经理byDepartmentId -->
+	<delete id="delManagerByDepartmentId" parameterType="Integer">
+		delete from employ where department_id=#{id}
+	</delete>
+	<!-- 断该部门下是否有非经理的其他员工，如果有则不能删除该部门 -->
+	<select id="hasOtherEmploy" parameterType="Integer" resultType="Integer">
+		select count(*) from employ where authority_id=2 and department_id=#{id}
+	</select>
 </mapper>

@@ -80,6 +80,25 @@ public class EmployDaoImpl extends SqlSessionDaoSupport implements EmployDao{
 			return this.getSqlSession().getMapper(EmployMapper.class).myComment(userid);
 		}
 		
+		//判断经理名是否存在
+		public Integer managerExist(String username){
+			return this.getSqlSession().getMapper(EmployMapper.class).managerExist(username);
+		}
+		
+		//添加经理
+		public Integer addManager(Employ employ){
+			return this.getSqlSession().getMapper(EmployMapper.class).addManager(employ);
+		}
+		
+		//删除经理delManagerByDepartmentId
+		public Integer delManagerByDepartmentId(Integer id){
+			return this.getSqlSession().getMapper(EmployMapper.class).delManagerByDepartmentId(id);
+		}
+		
+		//断该部门下是否有非经理的其他员工，如果有则不能删除该部门
+		public Integer hasOtherEmploy(Integer id){
+			return this.getSqlSession().getMapper(EmployMapper.class).hasOtherEmploy(id);
+		}
 		@Autowired
 		@Override
 		public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
