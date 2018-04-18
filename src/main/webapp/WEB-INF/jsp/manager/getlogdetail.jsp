@@ -10,9 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>日志详细信息</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getlogdetail.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/getlogdetail.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getlogdetail/getlogdetail.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/getlogdetail/getlogdetail.js"></script>
 	
   </head>
   

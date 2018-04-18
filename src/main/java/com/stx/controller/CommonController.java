@@ -34,7 +34,7 @@ public class CommonController {
 	 * 登录检查输入的用户名和密码是否正确
 	 */
 	@RequestMapping("/checkInput")
-	public @ResponseBody  boolean checkInput(HttpServletRequest request,HttpServletResponse response){
+	public @ResponseBody  Integer checkInput(HttpServletRequest request,HttpServletResponse response){
 		return commonService.checkInput(request, response);
 	}
 	/**

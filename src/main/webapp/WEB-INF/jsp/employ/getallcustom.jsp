@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getallcustom.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getallcustom/getallcustom.css">
 	
 
   </head>
@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<td>邮箱</td>
     		<td>生日</td>
     		<td>注册时间</td>
+    		<td>状态</td>
     	</tr>
     	<c:forEach items="${customs}" var="custom">
     	<tr class="info">
@@ -42,6 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<td>${custom.email }</td>
     		<td>${custom.birthday }</td>
     		<td>${custom.registerTime }</td>
+    		<c:if test="${custom.open ==1}">
+    			<td style="color:green;">启用</td>
+    		</c:if>
+    		<c:if test="${custom.open ==-1}">
+    			<td style="color:red;">禁用</td>
+    		</c:if>
     	</tr>
     	</c:forEach>
     </table>

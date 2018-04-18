@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stx.pojo.Department;
 import com.stx.service.AdminService;
+import com.stx.service.EmployService;
 
 @RestController("adminController")
 public class AdminController {
@@ -92,6 +93,42 @@ public class AdminController {
 			e.printStackTrace();
 		} 
 	}
+	
+	/**
+	 * 修改employ状态：open=1:启用  open=-1:禁用
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/open")
+	public @ResponseBody  Integer open(HttpServletRequest request,HttpServletResponse response){
+		Integer ret = adminService.open(request, response);
+		return ret;
+	}
+	
+	/**
+	 * 修改custom状态：open=1:启用  open=-1:禁用
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/openCustom")
+	public @ResponseBody  Integer openCustom(HttpServletRequest request,HttpServletResponse response){
+		Integer ret = adminService.openCustom(request, response);
+		return ret;
+	}
+	/**
+	 * 通过employid查询客户列表
+	 */
+	@RequestMapping("/queryCustom")
+	public void queryCustom(HttpServletRequest request,HttpServletResponse response){
+		request = employService.getAllCustom(request, response);
+		try {
+			request.getRequestDispatcher("/WEB-INF/jsp/admin/queryCustom.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
 	@Resource(name="adminServices")
 	private AdminService adminService;
+	@Resource(name="employServices")
+	private EmployService employService;
 }

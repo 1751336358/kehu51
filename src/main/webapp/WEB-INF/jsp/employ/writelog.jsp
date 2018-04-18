@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="${pageContext.request.contextPath}/css/writelog/style.css" rel="stylesheet" type="text/css" media="all"/>
 	<!--web-fonts-->
 	<link href='${pageContext.request.contextPath}/css/writelog/other.css' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 	<script type="text/javascript">

@@ -9,10 +9,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/right.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/right/right.css">
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/right.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/right/right.js"></script>
   </head>
   
   <body>
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var childNodes = This.childNodes;	//.msg p标签的引用
 
 			for(var i=0;i<childNodes.length-1;i++){
-				console.log(childNodes[i].innerHTML);	//p标签里的内容 sname type content time
+			//	console.log(childNodes[i].innerHTML);	//p标签里的内容 sname type content time
 				msgInfo.append("<p>"+childNodes[i].innerHTML+"</p>");
 			}
 			var mapContent = childNodes[childNodes.length-1].childNodes;	//.other p里的内容
@@ -89,9 +89,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			for(var i=0;i<mapContent.length;i++){
 				var span = mapContent[i].childNodes;	//.other p span
-				console.log(span);
+		/*		console.log(span);
 				console.log(span[0].innerHTML);	//key
 				console.log(span[1].innerHTML);	//value
+		*/
 				msgInfo.append("<p>"+span[0].innerHTML+":"+span[1].innerHTML+"</p>");
 			}
 			cbox.append("</div>");

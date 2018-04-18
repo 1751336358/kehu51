@@ -4,60 +4,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<%-- <!DOCTYPE HTML>
-<html>
-  <head>
-    <base href="<%=basePath%>">
-	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/left.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$(".menu").click(function(){
-				var id = $(this).attr("id");	//menu_1,menu_2,menu_3
-				var idIndex = id.split("_")[1];
-		//		var idIndex = id.substring(5,6);//1,2,3
-		//		alert(idIndex);
-				//Ajax发送查询子菜单
-				var url = "${pageContext.request.contextPath}"+"/getsonmenu/"+idIndex;
-				$.get(url,true,function(data){
-					var a = data;
-					for(var i=0;i<a.length;i++){
-						var sonClassName = ".sonmenu"+a[i].id;	//子菜单的id(sql)
-						var parentClassname = ".sonmenu_"+a[i].parent_id;//子菜单div的class
-						console.log("i="+i);
-						if(i == 0){
-							$(parentClassname).empty();
-						}
-						//拼接一个a标签,userid是当前登录用户的id号
-						var node = "<a href=${pageContext.request.contextPath}/"+a[i].url+"?userid=${sessionScope.user.id} target=right>"+a[i].name+"</a><br/>";
-						$(parentClassname).append(node);
-					}				
-				})
-			});
-			
-		})
-		
-	</script>
-  </head>
-  
-  <body>
-	  <div class="box">
-		  <c:forEach items="${authority.menus}" var="menu">
-		   		<!--<a href="${pageContext.request.contextPath}/${menu.url}" target="right">${menu.name}</a><br/><br/>  -->
-		   		<p id="menu_${menu.id}" class="menu">${menu.name}</p><!-- 父菜单 -->
-		   		<div class="sonmenu_${menu.id} sonmenu">
-		   			
-		   		</div>
-		   </c:forEach>
-		   <a class="message" href="${pageContext.request.contextPath}/right" target="right">消息</a>
-		   <a class="logout" href="${pageContext.request.contextPath}/logout" target="_blank">退出系统</a>   
-	  </div>
-	   
-	   
-  </body>
-</html> --%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

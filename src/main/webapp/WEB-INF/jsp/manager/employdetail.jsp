@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <link href="${pageContext.request.contextPath}/css/employdetail/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="${pageContext.request.contextPath}/css/employdetail/other.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
 <!-- Custom Theme files -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--web-fonts-->

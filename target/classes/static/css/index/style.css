@@ -183,5 +183,10 @@ button:active {
 
 .connect a:hover { background-position: center bottom; }
 
-
+#warning{
+	float:right;
+	color:red;
+	font-size:12px;
+	margin-top:15px;
+}
 

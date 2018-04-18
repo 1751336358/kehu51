@@ -15,7 +15,7 @@ public interface CommonService {
 		public HttpServletRequest getAllAuthority(HttpServletRequest request,HttpServletResponse response);
 		
 		//登录检查用户名和密码是否正确		
-		public   boolean checkInput(HttpServletRequest request,HttpServletResponse response);
+		public  Integer checkInput(HttpServletRequest request,HttpServletResponse response);
 		//登录
 		public boolean login(HttpServletRequest request,HttpServletResponse response);
 		//登录，新接口

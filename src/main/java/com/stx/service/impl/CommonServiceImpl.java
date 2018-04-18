@@ -30,14 +30,15 @@ public class CommonServiceImpl implements CommonService{
 		request.setAttribute("authorityList", authorityList);
 		return request;
 	}
-	//登录检查用户名和密码是否正确		
-	public  boolean checkInput(HttpServletRequest request,HttpServletResponse response){
+	//登录检查用户名和密码是否正确
+	@Override
+	public  Integer checkInput(HttpServletRequest request,HttpServletResponse response){
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		if("admin".equals(username) && "admin".equals(password)){	//如果是管理员登录
 			session.setAttribute("loginRole", "admin");
-			return true;
+			return 1;
 		}
 		User user = new User();
 		user.setUsername(username);
@@ -45,13 +46,23 @@ public class CommonServiceImpl implements CommonService{
 		int employCount = commonDao.checkInputEmploy(user);
 		int customCount = commonDao.checkInputCustom(user);
 		if(employCount == 0 && customCount == 0){
-			return false;
+			return 0;
 		}else if(employCount == 1){	//说明是employ或manager正在登录
+			//判断employ是否被禁用
+			Integer isOpen = commonDao.isOpen(user);
+			if(isOpen == -1){
+				return -1;
+			}
 			session.setAttribute("loginRole", "employ");
 		}else if(customCount == 1){	//说明是custom正在登录
+			//判断custom是否被禁用
+			Integer isOpen4Custom = commonDao.isOpen4Custom(user);
+			if(isOpen4Custom == -1){
+				return -1;
+			}
 			session.setAttribute("loginRole", "custom");
 		}
-		return true;
+		return 1;	//正常登陆
 	}
 	//登录，旧接口，暂时废弃
 	@Override

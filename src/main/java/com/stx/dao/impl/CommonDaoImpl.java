@@ -72,6 +72,24 @@ public class CommonDaoImpl extends SqlSessionDaoSupport implements CommonDao{
 	public List<Menu> getSonMenuByFatherId(int menuId){
 		return this.getSqlSession().getMapper(CommonMapper.class).getSonMenuByFatherId(menuId);
 	}
+	
+	/**
+	 * 判断employ是否被禁用
+	 * @param u
+	 * @return
+	 */
+	public Integer isOpen(User u){
+		return this.getSqlSession().getMapper(CommonMapper.class).isOpen(u);
+	}
+	
+	/**
+	 * 判断employ是否被禁用
+	 * @param u
+	 * @return
+	 */
+	public Integer isOpen4Custom(User u){
+		return this.getSqlSession().getMapper(CommonMapper.class).isOpen4Custom(u);
+	}
 	@Autowired
 	@Override
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {

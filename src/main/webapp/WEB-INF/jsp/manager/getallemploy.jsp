@@ -9,9 +9,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getallemploy.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/getallemploy.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/getallemploy/getallemploy.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/getallemploy/getallemploy.js"></script>
   </head>
   
   <body>

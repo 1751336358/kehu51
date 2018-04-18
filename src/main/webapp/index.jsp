@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input type="text" name="username" class="username" placeholder="Username">
                 <input type="password" name="password" class="password" placeholder="Password">
                 <button type="submit">Sign me in</button>
-                <!-- <input type="submit" class="submit" value="Sign me in"> -->
+                <p id="warning"></p>
                 <div class="error" style="width:0px;height:0px;"><span>not null</span></div>
             </form>
             <div class="connect">

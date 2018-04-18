@@ -13,9 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tablemodel.css">	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/workstartend.css">	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/comment/tablemodel.css">	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/workstartend/workstartend.css">	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$("#workstart").click(function(){

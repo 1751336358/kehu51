@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0"> 
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mycomment.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mycomment/mycomment.css">
 	
 
   </head>

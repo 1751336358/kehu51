@@ -23,6 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<!-- 查询员工通过departmentId -->
 	<select id="queryEmployByDepartmentId" parameterType="Integer" resultType="com.stx.pojo.Employ">
-		select id,username,password,info, department_id departmentid,queuename,open from employ where authority_id=2 and department_id=#{departmentId}
+		select id,username,password,info, department_id departmentid,authority_id,queuename,open from employ where department_id=#{departmentId} order by authority_id desc
 	</select>
+	<!-- 修改employ状态 -->
+	<update id="open" parameterType="com.stx.pojo.Employ">
+		update employ set open=#{open} where id=#{id}
+	</update>
+	<!-- 修改custom状态 -->
+	<update id="openCustom" parameterType="com.stx.pojo.Custom">
+		update custom set open=#{open} where id=#{id}
+	</update>
 </mapper>

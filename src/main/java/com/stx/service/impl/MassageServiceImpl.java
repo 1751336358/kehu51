@@ -106,7 +106,12 @@ public class MassageServiceImpl implements MessageService{
 		User u = (User)session.getAttribute("user");
 		int id = u.getId();
 		String username = u.getUsername();
-		List<WorkMessage> messageList = MessageReceive.recieve(id,username);
+		List<WorkMessage> messageList = null;
+		try{
+			messageList = MessageReceive.recieve(id,username);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 		if(messageList == null){
 			System.out.println("消息为空");
 		}else if(messageList.size() == 0){

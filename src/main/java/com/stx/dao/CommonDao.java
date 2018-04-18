@@ -39,4 +39,20 @@ public interface CommonDao {
 	
 	//根据menuId查询子Menu
 	public List<Menu> getSonMenuByFatherId(int menuId);	
+	
+	/**
+	 * 判断employ是否被禁用
+	 * @param u
+	 * @return
+	 */
+	public Integer isOpen(User u);
+	
+	/**
+	 * 判断custom是否被禁用
+	 * @param u
+	 * @return
+	 */
+	public Integer isOpen4Custom(User u);
+	
+	
 }

@@ -36,13 +36,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${department.employs}" var="employ">
+                <c:forEach items="${department.employs}" var="employ" varStatus="status">
                     <tr>
                         <td>${employ.id}</td>
                         <td><u style="cursor:pointer">${employ.username}</u></td>
                         <td >${employ.password }</td>
-                        <td >用户</td>
-                        
+                        <c:if test="${status.index==0 }">
+                        	<td >经理</td>
+                        </c:if>
+                        <c:if test="${status.index!=0 }">
+                        	<td >用户</td>
+                        </c:if>
                         <td class="td-status">
                         	<c:if test="${employ.open==1}">
                         		<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
@@ -53,14 +57,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </td>
                         <td class="td-manage">
                         <c:if test="${employ.open==1}">
-                        	<a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+                        	<a style="text-decoration:none" onclick="member_stop(${employ.id})" href="javascript:;" title="停用">
                                 <i class="layui-icon">&#xe601;</i>
                             </a>
+                             <c:if test="${status.index!=0 }">                           
+                            <a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
+                            </c:if>
                         </c:if>
                         <c:if test="${employ.open==-1}">  
-                            <a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用">
+                            <a style="text-decoration:none" onClick="member_start(${employ.id})" href="javascript:;" title="启用">
                                 <i class="layui-icon">&#xe62f;</i>
                             </a>
+                            <c:if test="${status.index!=0 }"> 
+                             <a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
+                             </c:if>
 						</c:if>
                         </td>
                     </tr>
@@ -75,20 +85,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script>
 
             /*用户-停用*/
-            function member_stop(obj,id){
-                layer.confirm('确认要停用吗？',function(index){
+            function member_stop(id){
+                layer.confirm('确认要停用吗？',function(){
                     //发异步把用户状态进行更改
+                    var url = "${pageContext.request.contextPath}/open";
+                    $.post(url,"id="+id+"&open=-1",function(data){
+                    	layer.msg('已停用!',{icon: 5,time:1000});
+                    	location.reload();
+                    });
                     
-                    layer.msg('已停用!',{icon: 5,time:1000});
                 });
             }
 
             /*用户-启用*/
-            function member_start(obj,id){
-                layer.confirm('确认要启用吗？',function(index){
+            function member_start(id){
+                layer.confirm('确认要启用吗？',function(){
                     //发异步把用户状态进行更改
-                    
-                    layer.msg('已启用!',{icon: 6,time:1000});
+                     var url = "${pageContext.request.contextPath}/open";
+                    $.post(url,"id="+id+"&open=1",function(data){
+                    	 layer.msg('已启用!',{icon: 6,time:1000});
+                    	 location.reload();
+                    });
+                   
                 });
             }
             layui.use(['laydate','element','laypage','layer'], function(){

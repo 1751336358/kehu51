@@ -31,4 +31,16 @@ public interface AdminService {
 	 * 查询部门员工信息
 	 */
 	public List<Department> queryDepartmentAndEmploy();
+	
+	/**
+	 * 修改employ状态
+	 * @param request
+	 * @param response
+	 */
+	public Integer open(HttpServletRequest request,HttpServletResponse response);
+	
+	/**
+	 * 修改客户状态
+	 */
+	public Integer openCustom(HttpServletRequest request,HttpServletResponse response);
 }

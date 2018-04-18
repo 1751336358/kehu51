@@ -61,4 +61,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSonMenuByFatherId" parameterType="int" resultType="com.stx.pojo.Menu">
 		select * from menu where parent_id = #{id};
 	</select>
+	<!-- 判断该employ是否被禁用 -->
+	<select id="isOpen" parameterType="com.stx.pojo.User" resultType="Integer">
+		select open from employ where username=#{username} and password=#{password}
+	</select>
+	
+	<!-- 判断该custom是否被禁用 -->
+	<select id="isOpen4Custom" parameterType="com.stx.pojo.User" resultType="Integer">
+		select open from custom where username=#{username} and password=#{password}
+	</select>
 </mapper>

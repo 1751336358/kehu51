@@ -42,9 +42,8 @@ public class CustomController {
 		boolean isRegister = customService.register(request, response, session);
 		try{
 			if(isRegister){
-				String message = "对不起，该用户名已经注册，注册失败";
-				request.setAttribute("message", message);
-				request.getRequestDispatcher("/WEB-INF/jsp/loginfail.jsp").forward(request, response);
+				
+				request.getRequestDispatcher("/WEB-INF/jsp/custom/registerFail.jsp").forward(request, response);
 			}else{
 				//如果注册成功直接跳转到frame.jsp
 				request.getRequestDispatcher("/WEB-INF/jsp/frame.jsp").forward(request, response);	//跳转到系统主页

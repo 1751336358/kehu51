@@ -18,9 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/showemployinfo.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/showemployinfo/showemployinfo.css">
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-1.7.2.min.js"></script>
   </head>
   
   <body>

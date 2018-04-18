@@ -2,6 +2,7 @@ package com.stx.dao;
 
 import java.util.List;
 
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 
@@ -33,4 +34,19 @@ public interface AdminDao {
 	 * 查询部门员工
 	 */
 	public List<Employ> queryEmployByDepartmentId(Integer departmentId);
+	
+	/**
+	 * 修改employ状态
+	 * @param request
+	 * @param response
+	 */
+	public Integer open(Employ employ);
+	
+	/**
+	 * 修改custom状态
+	 * @param request
+	 * @param response
+	 */
+	public Integer openCustom(Custom custom);
+	
 }

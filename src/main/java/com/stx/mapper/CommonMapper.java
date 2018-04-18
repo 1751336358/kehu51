@@ -38,4 +38,10 @@ public interface CommonMapper {
 	
 	//根据menuId查询子Menu
 	public List<Menu> getSonMenuByFatherId(int menuId);
+	
+	//判断employ是否被禁用
+	public Integer isOpen(User u);
+	
+	//判断custom是否被禁用
+	public Integer isOpen4Custom(User u);
 }

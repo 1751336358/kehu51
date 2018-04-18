@@ -3,18 +3,22 @@ jQuery(document).ready(function() {
 	var inputOk = false;
 	//检查输入用户名和密码是否正确
 	$('.page-container form .password').blur(function(){
-		var b = false;
+		
 		var username = $('.page-container form .username').val();
 		var password = $('.page-container form .password').val();
 		$.post('/kehu51/checkInput','username='+username+"&password="+password,function(data){
-			b = data;
-			if(b){
+			if(data==1){	//可正常登陆
+				$("#warning").html("");
 				inputOk = true;
-			}else{
+			}else if(data == 0){	//用户名密码输入错误
 				inputOk = false;
 				//dom操作显示错误信息
+				$("#warning").html("");
 				$('.page-container form .error span').html('input error');
 				$('.page-container form .error').fadeIn('fast', function(){});
+			}else if(data == -1){	//员工被禁用
+				inputOk = false;
+				$("#warning").html("该用户名已被禁用");
 			}
 		});
 	});

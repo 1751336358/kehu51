@@ -1,6 +1,5 @@
 package com.stx.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.stx.dao.AdminDao;
 import com.stx.dao.EmployDao;
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 import com.stx.pojo.User;
@@ -115,6 +115,38 @@ public class AdminServiceImpl implements AdminService{
 			department.setEmploys(employs);
 		}
 		return departments;
+	}
+	
+	/**
+	 * 修改employ状态
+	 * @param request
+	 * @param response
+	 */
+	@Override
+	public Integer open(HttpServletRequest request,HttpServletResponse response){
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Integer open = Integer.valueOf(request.getParameter("open"));
+		Employ employ = new Employ();
+		employ.setId(id);
+		employ.setOpen(open);
+		Integer ret = adminDao.open(employ);
+		return ret;
+	}
+	
+	/**
+	 * 修改custom状态
+	 * @param request
+	 * @param response
+	 */
+	@Override
+	public Integer openCustom(HttpServletRequest request,HttpServletResponse response){
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Integer open = Integer.valueOf(request.getParameter("open"));
+		Custom custom = new Custom();
+		custom.setId(id);
+		custom.setOpen(open);
+		Integer ret = adminDao.openCustom(custom);
+		return ret;
 	}
 	@Resource(name="admindao")
 	private AdminDao adminDao;

@@ -18,12 +18,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/top.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/top/top.css">
   </head>
   
   <body>
   	<div id="box">
-  		<img src="${pageContext.request.contextPath}/images/top.png"/>
+  		<img src="${pageContext.request.contextPath}/images/top/top.png"/>
   		<p id="text01">真正的实惠</p>
   		<p id="text02">小团队也用得起CRM</p>
   		<div id="show">

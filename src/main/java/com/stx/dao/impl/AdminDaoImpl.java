@@ -2,23 +2,16 @@ package com.stx.dao.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.stx.dao.AdminDao;
-import com.stx.dao.CommonDao;
 import com.stx.mapper.AdminMapper;
-import com.stx.mapper.CommonMapper;
-import com.stx.pojo.Authority;
+import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
-import com.stx.pojo.Menu;
-import com.stx.pojo.User;
 
 @Repository("admindao")
 public class AdminDaoImpl extends SqlSessionDaoSupport implements AdminDao{
@@ -61,6 +54,24 @@ public class AdminDaoImpl extends SqlSessionDaoSupport implements AdminDao{
 	 */
 	public List<Employ> queryEmployByDepartmentId(Integer departmentId){
 		return this.getSqlSession().getMapper(AdminMapper.class).queryEmployByDepartmentId(departmentId);
+	}
+	
+	/**
+	 * 修改employ状态
+	 * @param request
+	 * @param response
+	 */
+	public Integer open(Employ employ){
+		return this.getSqlSession().getMapper(AdminMapper.class).open(employ);
+	}
+	
+	/**
+	 * 修改custom状态
+	 * @param request
+	 * @param response
+	 */
+	public Integer openCustom(Custom custom){
+		return this.getSqlSession().getMapper(AdminMapper.class).openCustom(custom);
 	}
 	@Autowired
 	@Override
