@@ -32,7 +32,20 @@ public class AdminDaoImpl extends SqlSessionDaoSupport implements AdminDao{
 	public Integer addDepartment(Department department){
 		return this.getSqlSession().getMapper(AdminMapper.class).addDepartment(department);
 	}
-	
+	/**
+	 * 修改部门名时判断部门名是否存在
+	 */
+	@Override
+	public Integer updateDepartmentExist(Department department){
+		return this.getSqlSession().getMapper(AdminMapper.class).updateDepartmentExist(department);
+	}
+	/**
+	 * 修改部门
+	 */
+	@Override
+	public Integer changeDepartmentInfo(Department department){
+		return this.getSqlSession().getMapper(AdminMapper.class).changeDepartmentInfo(department);
+	}
 	/**
 	 * 查询所有部门
 	 */

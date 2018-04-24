@@ -19,7 +19,14 @@ public interface AdminDao {
 	 * @return
 	 */
 	public Integer addDepartment(Department department);
-	
+	/**
+	 * 修改部门名时判断部门名是否存在
+	 */
+	public Integer updateDepartmentExist(Department department);
+	/**
+	 * 修改部门
+	 */
+	public Integer changeDepartmentInfo(Department department);
 	/**
 	 * 查询所有部门
 	 */

@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <meta name="format-detection" content="telephone=no">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employList/x-admin.css" media="all">
     </head>
+   
     <body>
     <c:forEach items="${departments}" var="department">
     	<div>
@@ -60,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a style="text-decoration:none" onclick="member_stop(${employ.id})" href="javascript:;" title="停用">
                                 <i class="layui-icon">&#xe601;</i>
                             </a>
-                             <c:if test="${status.index!=0 }">                           
-                            <a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
+                            <c:if test="${status.index!=0 }">                           
+	                            <a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
                             </c:if>
                         </c:if>
                         <c:if test="${employ.open==-1}">  
@@ -69,8 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <i class="layui-icon">&#xe62f;</i>
                             </a>
                             <c:if test="${status.index!=0 }"> 
-                             <a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
-                             </c:if>
+                             	<a href="${pageContext.request.contextPath}/queryCustom?userid=${employ.id}" style="margin-left:20px;color:red;">查看员工</a>
+                            </c:if>
 						</c:if>
                         </td>
                     </tr>

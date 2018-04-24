@@ -151,9 +151,11 @@
 .defaultTable .btn a.Top ,.defaultTable .btn a.look { color: #00843e; border: 1px solid #00843e; cursor: pointer;}
 .defaultTable .btn a.modify { color: #fe990b; border: 1px solid #fe990b;}
 .defaultTable .btn a.delete { color: #f23e47; border: 1px solid #f23e47;}
+.defaultTable .btn a.update { color: green; border: 1px solid green;}
 .defaultTable .btn a.Top:hover ,.defaultTable .btn a.look:hover { background: #00843e; color: #fff;}
 .defaultTable .btn a.modify:hover { background: #fe990b; color: #fff;}
 .defaultTable .btn a.delete:hover { background: #f23e47; color: #fff;}
+.defaultTable .btn a.update:hover { background: green; color: #fff;}
 .defaultTable .btn a.Top.toping { background: #00843e; color: #fff;}
 
 .pageSelect { position: relative; height: 74px; margin: 0 2%;}

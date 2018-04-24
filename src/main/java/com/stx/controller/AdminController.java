@@ -127,6 +127,21 @@ public class AdminController {
 			e.printStackTrace();
 		} 
 	}
+	
+	/**
+	 * 修改部门信息
+	 */
+	@RequestMapping("/changeDepartmentInfo")
+	public @ResponseBody Integer changeDepartmentInfo(HttpServletRequest request,HttpServletResponse response){
+		return adminService.changeDepartmentInfo(request, response);
+	}
+	/**
+	 * admin删除用户
+	 */
+	@RequestMapping("/delUser")
+	public @ResponseBody Integer delUser(HttpServletRequest request,HttpServletResponse response){
+		return 1;
+	}
 	@Resource(name="adminServices")
 	private AdminService adminService;
 	@Resource(name="employServices")

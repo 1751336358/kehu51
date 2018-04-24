@@ -14,7 +14,10 @@ public interface AdminMapper {
 	 * @return
 	 */
 	public Integer departNameExist(Department department);
-	
+	/**
+	 * 修改部门名时判断部门名是否存在
+	 */
+	public Integer updateDepartmentExist(Department department);
 	/**
 	 * 添加部门
 	 * @param department
@@ -22,6 +25,10 @@ public interface AdminMapper {
 	 */
 	public Integer addDepartment(Department department);
 	
+	/**
+	 * 修改部门
+	 */
+	public Integer changeDepartmentInfo(Department department);
 	/**
 	 * 查询所有部门
 	 */

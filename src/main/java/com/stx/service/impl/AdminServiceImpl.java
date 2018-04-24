@@ -1,5 +1,7 @@
 package com.stx.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stx.dao.AdminDao;
 import com.stx.dao.EmployDao;
@@ -16,7 +20,9 @@ import com.stx.pojo.Custom;
 import com.stx.pojo.Department;
 import com.stx.pojo.Employ;
 import com.stx.pojo.User;
+import com.stx.pojo.WorkMessage;
 import com.stx.service.AdminService;
+import com.stx.utils.MessageSend;
 
 @Service("adminServices")
 public class AdminServiceImpl implements AdminService{
@@ -147,6 +153,59 @@ public class AdminServiceImpl implements AdminService{
 		custom.setOpen(open);
 		Integer ret = adminDao.openCustom(custom);
 		return ret;
+	}
+	
+	/**
+	 * 修改部门信息
+	 */
+	@RequestMapping("/changeDepartmentInfo")
+	public Integer changeDepartmentInfo(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		if(!"admin".equals(u.getUsername()) && !"admin".equals(u.getPassword()))
+			return 403;	
+		Integer did = Integer.parseInt(request.getParameter("did"));
+		String name = request.getParameter("name");
+		String info = request.getParameter("info");
+		Department department = new Department();
+		department.setId(did);
+		department.setName(name);
+		department.setInfo(info);
+		//判断部门是否存在
+		Integer count = adminDao.updateDepartmentExist(department);
+		if(count > 0){
+			return 0;
+		}
+		//更新
+		Integer ret = adminDao.changeDepartmentInfo(department);
+		//给该部门所有员工和经理发消息
+		if(ret == 1){
+			//查询该部门下的所有员工
+			WorkMessage workMessage = new WorkMessage();
+			workMessage.setSource_id(0);
+			workMessage.setSource_queue("admin");
+			workMessage.setType("系统消息");
+			String time = new SimpleDateFormat("yyyy-MM-dd hh:mm").format(new Date());
+			workMessage.setTime(time);
+			workMessage.setContent("您好，您所在的部门在"+time+"被admin修改为'"+name+"',详情被修改为'"+info+"'。");
+			List<User> userList = employDao.queryEmployByDepartmentId(did);
+			if(userList != null && userList.size() > 0){
+				for(User user:userList){
+					workMessage.setDistince_id(user.getId());
+					workMessage.setDistince_queue(user.getUsername());
+					//发消息
+					MessageSend.sendMessage(workMessage, user.getId(), user.getUsername());
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public Integer delUser(HttpServletRequest request,HttpServletResponse response){
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Integer ret = employDao.delManagerByDepartmentId(id);
+		return ret;
+		
 	}
 	@Resource(name="admindao")
 	private AdminDao adminDao;

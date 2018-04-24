@@ -1,6 +1,7 @@
 F:\eclipse\kehu51\src\main\java\com\stx\utils\MyThreadLocal.java
 F:\eclipse\kehu51\src\main\java\com\stx\utils\IpService.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\impl\CommonServiceImpl.java
+F:\eclipse\kehu51\src\main\java\com\stx\dao\impl\AdminDaoImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\listener\ApplicationPreparedEventListener.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\page\Page.java
 F:\eclipse\kehu51\src\main\java\com\stx\thread\HttpRequestThread.java
@@ -8,6 +9,7 @@ F:\eclipse\kehu51\src\main\java\com\stx\pojo\SystemLogVO.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\impl\EmployServiceImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\controller\ForwardController.java
 F:\eclipse\kehu51\src\main\java\com\stx\controller\EmployController.java
+F:\eclipse\kehu51\src\main\java\com\stx\controller\AdminController.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\impl\SystemLogDaoImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\App.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\User.java
@@ -24,18 +26,20 @@ F:\eclipse\kehu51\src\main\java\com\stx\controller\CommonController.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\SystemLogService.java
 F:\eclipse\kehu51\src\main\java\com\stx\controller\MessageController.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\ManagerService.java
-F:\eclipse\kehu51\src\main\java\com\stx\utils\Test.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\impl\MassageServiceImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\CustomService.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\Authority.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\CustomDao.java
+F:\eclipse\kehu51\src\main\java\com\stx\service\AdminService.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\CommonDao.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\SystemLog.java
 F:\eclipse\kehu51\src\main\java\com\stx\utils\MessageSend.java
 F:\eclipse\kehu51\src\main\java\com\stx\controller\CustomController.java
 F:\eclipse\kehu51\src\main\java\com\stx\service\CommonService.java
+F:\eclipse\kehu51\src\main\java\com\stx\dao\AdminDao.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\impl\CustomDaoImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\impl\EmployDaoImpl.java
+F:\eclipse\kehu51\src\main\java\com\stx\mapper\AdminMapper.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\MessageDao.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\Work.java
 F:\eclipse\kehu51\src\main\java\com\stx\mapper\SystemLogMapper.java
@@ -65,3 +69,4 @@ F:\eclipse\kehu51\src\main\java\com\stx\mapper\CommonMapper.java
 F:\eclipse\kehu51\src\main\java\com\stx\dao\impl\MessageDaoImpl.java
 F:\eclipse\kehu51\src\main\java\com\stx\mapper\EmployMapper.java
 F:\eclipse\kehu51\src\main\java\com\stx\pojo\Department.java
+F:\eclipse\kehu51\src\main\java\com\stx\service\impl\AdminServiceImpl.java

@@ -18,8 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employList/x-admin.css" media="all">
     </head>
     <body>
-    
-    	<div>
+    	<div style="width:80%;margin:0 auto;">
             <xblock>
                 <span class="x-right" style="line-height:25px">共有数据：${customs.size() } 条</span>
             </xblock>

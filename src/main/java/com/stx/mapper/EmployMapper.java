@@ -6,6 +6,7 @@ import com.stx.pojo.Comment;
 import com.stx.pojo.Custom;
 import com.stx.pojo.Employ;
 import com.stx.pojo.Log;
+import com.stx.pojo.User;
 import com.stx.pojo.Work;
 
 
@@ -62,4 +63,7 @@ public interface EmployMapper {
 		
 		//断该部门下是否有非经理的其他员工，如果有则不能删除该部门
 		public Integer hasOtherEmploy(Integer id);
+		
+		//查询该部门下的所有成员(包括员工和经理)的id、username,发消息用
+		public List<User> queryEmployByDepartmentId(Integer departmentId);
 }

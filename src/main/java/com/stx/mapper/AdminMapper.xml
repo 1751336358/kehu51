@@ -13,6 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addDepartment" parameterType="com.stx.pojo.Department" useGeneratedKeys="true" keyProperty="id">
 		insert into department(name,info) values(#{name},#{info})
 	</insert>
+	<!-- 修改部门名时判断部门名是否存在 -->
+	<select id="updateDepartmentExist" parameterType="com.stx.pojo.Department" resultType="Integer">
+		select count(*) from department where id!=#{id} and name=#{name}
+	</select>
+	<!-- 修改部门 -->
+	<update id="changeDepartmentInfo" parameterType="com.stx.pojo.Department">
+		update department set name=#{name},info=#{info} where id=#{id}
+	</update>
 	<!-- 查询所有部门 -->
 	<select id="queryDepartment" resultType="com.stx.pojo.Department">
 		select id,name,info from department

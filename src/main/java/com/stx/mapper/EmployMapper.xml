@@ -86,4 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="hasOtherEmploy" parameterType="Integer" resultType="Integer">
 		select count(*) from employ where authority_id=2 and department_id=#{id}
 	</select>
+	<!--查询该部门下的所有成员(包括员工和经理)的id、username,发消息用 -->
+	<select id="queryEmployByDepartmentId" parameterType="Integer" resultType="com.stx.pojo.Employ">
+		select id,username from employ where department_id=#{departmentId}
+	</select>
 </mapper>

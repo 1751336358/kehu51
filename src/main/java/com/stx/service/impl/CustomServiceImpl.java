@@ -68,12 +68,8 @@ public class CustomServiceImpl implements CustomService{
 		Employ employ = employDao.selEmployById(employ_id);
 		user.setEmploy(employ);
 		customDao.register(user);	//将注册的客户信息插入数据库
-		System.out.println("注册成功");
 		//查询菜单列表,存入session
-		Authority authority = commonDao.getAuthority(1);	//客户的权限
-		System.out.println(authority.getId());
-		System.out.println(authority.getName());
-		System.out.println(authority.getMenus().size());
+		Authority authority = commonDao.getAuthority(1);	//客户的权限		
 		session.setAttribute("authority", authority);
 		user.setAuthority(authority);
 		user.setId(customDao.getCustomByUserName(username).getId());	//主键没有回显，查询出主键
