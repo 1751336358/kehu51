@@ -219,6 +219,7 @@ public class MassageServiceImpl implements MessageService{
 	public boolean batSendMessage(HttpServletRequest request,HttpServletResponse response){
 		String selected = request.getParameter("selected");		//7_xxx:11_employrr:
 		String messageContent = request.getParameter("messageContent");
+		System.out.println("批量发送消息的内容是："+messageContent);
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
 		int source_id = u.getId();

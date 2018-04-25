@@ -22,7 +22,7 @@ $(function(){
 			return;
 		}
 		var batSendMessage = "http://localhost:8081/kehu51/batSendMessage";
-		$.post(batSendMessage,"selected="+selected+"&massageContent="+messageContent,function(message){
+		$.post(batSendMessage,"selected="+selected+"&messageContent="+messageContent,function(message){
 			alert(message);	//弹出消息发送状态
 		});
 	});
